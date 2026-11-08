@@ -20,6 +20,14 @@ def main():
     args = parser.parse_args()
     root = args.out.resolve()
     manifest = json.loads((root / "workshop-manifest.json").read_text(encoding="utf-8"))
+    narration_path = root / "narration-manifest.json"
+    narration = json.loads(narration_path.read_text(encoding="utf-8")) if narration_path.exists() else None
+    if narration:
+        from generate_foundry_narration import normalize
+        assert narration["complete"] and len(narration["slides"]) == 42
+        for slide, record in zip(manifest["slides_data"], narration["slides"]):
+            assert normalize(slide["narration"]) == normalize(" ".join(chunk["text"] for chunk in record["chunks"]))
+            assert all(normalize(chunk["text"]) == normalize(chunk["transcript"]) for chunk in record["chunks"])
     timeline = json.loads((root / "video-timeline.json").read_text(encoding="utf-8"))
     prs = Presentation(root / "advanced-github-copilot-workshop.pptx")
     assert len(prs.slides) == len(timeline) == manifest["slides"] == 42
@@ -94,7 +102,9 @@ def main():
         "sampled_video_frame_comparisons": image_checks,
         "artifacts": {name: {"bytes": (root / name).stat().st_size,
                              "sha256": hashlib.sha256((root / name).read_bytes()).hexdigest()} for name in outputs},
-        "limits": "Synthesized local voice; phrase-level captions; no live Copilot UI recording.",
+        "narrator": manifest.get("narrator", {"provider": "local Microsoft Zira", "voice": "Zira"}),
+        "verbatim_chunks_verified": narration["chunks"] if narration else None,
+        "limits": "Synthesized voice; phrase-level captions; no live Copilot UI recording or independent ASR verification.",
     }
     (root / "media-verification.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(json.dumps({key: value for key, value in report.items() if key not in ("artifacts", "narration_checks")}, indent=2))

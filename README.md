@@ -9,26 +9,31 @@ in one repository using a small fictional **issue triage board**.
 
 The **42-slide editable deck** adapts the supplied template's near-black background,
 Arial typography, white text, cyan accents, and purple-blue palette with original
-workshop content. The **63m52s narrated explainer** is separate self-paced pre/post
+workshop content. The **GPT-audio Alloy narrated explainer** is separate self-paced pre/post
 workshop material; it is **not added to the 180-minute live agenda**.
 
 | Material | Download |
 |---|---|
 | Editable presentation | [PowerPoint deck](deliverables/advanced-github-copilot-workshop.pptx) |
 | Printable slide handout | [PDF slides](deliverables/advanced-github-copilot-workshop.pdf) |
-| Complete narrated lesson | [63m52s MP4](deliverables/advanced-github-copilot-explainer.mp4) |
+| Complete narrated lesson | [GPT-audio Alloy MP4](deliverables/advanced-github-copilot-explainer.mp4) |
 | External captions | [SRT](deliverables/advanced-github-copilot-explainer.srt) / [WebVTT](deliverables/advanced-github-copilot-explainer.vtt) |
 | Accessible narration | [Full transcript](deliverables/explainer-transcript.md) / [audio-only M4A](deliverables/explainer-audio.m4a) |
 | Navigation | [42 chapter timestamps](deliverables/video-chapters.txt) / [video timeline](deliverables/video-timeline.json) |
 | Official facts and limits | [15-source ledger](deliverables/source-ledger.md), checked November 7, 2026 |
 | Visual/verification records | [Slide overview](deliverables/slide-contact-sheet.jpg), [media verification](deliverables/media-verification.json), [text-fit adjustments](deliverables/text-fit-adjustments.json), [content manifest](deliverables/workshop-manifest.json) |
 
-The video uses **local synthesized Microsoft Zira narration**, includes
-852 phrase-timed caption cues and 42 embedded chapters, and explains all 42 topics.
+The video uses **Microsoft Foundry `gpt-audio-1.5`, Alloy voice**, includes
+phrase-timed captions and 42 embedded chapters, and explains all 42 topics.
+The original teaching text and slide files are unchanged. Narration is generated
+in short chunks, verified against the source, and loudness-normalized.
+The [narration manifest](deliverables/narration-manifest.json) records voice
+provenance, chunk transcripts and measured timings.
 It is an original narrated slide lesson, **not a recording of live Copilot UI**.
 Long-form speaker notes are standalone narration, not a verbatim live script.
-The coordinator's verification record reports complete 3832-second audiovisual
-decode and fitted PowerPoint text bounds. [Media sources and rebuild instructions](media/README.md)
+The coordinator's verification record reports complete audiovisual decode,
+source-content coverage, frame alignment and fitted PowerPoint text bounds.
+[Media sources and rebuild instructions](media/README.md)
 are separate from the dependency-free Node app; rebuilding media is optional and
 not part of attendee preflight or lab time.
 
@@ -182,8 +187,8 @@ undoing named files; no destructive Git reset/checkout commands are used.
 | `workshop/templates/` | Unfinished customization and report/task-board templates |
 | `workshop/solutions/` | Complete profiles, skill resources, feature implementations, owned tests |
 | `workshop/instructor-guide.md` | Pacing, worked answers, recovery and debrief |
-| `deliverables/` | All 14 final presentation/video/accessibility/verification outputs |
-| `media/` | Original content source and optional local media rebuild scripts |
+| `deliverables/` | All 15 final presentation/video/accessibility/verification outputs |
+| `media/` | Original content source, optional Foundry narration and media rebuild scripts |
 
 This is a teaching sample, not a production support system. It has no persistent
 storage or write API. File ownership and leases are **advisory**, not enforced

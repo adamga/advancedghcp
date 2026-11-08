@@ -1,6 +1,7 @@
 param(
     [string]$OutputDirectory = ".\deliverables",
-    [int]$SpeechRate = 0
+    [int]$SpeechRate = 0,
+    [switch]$RenderOnly
 )
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path $OutputDirectory).Path
@@ -12,7 +13,7 @@ $audio = Join-Path $root 'audio'
 $app = New-Object -ComObject PowerPoint.Application
 $deck = $null
 try {
-    $deck = $app.Presentations.Open((Join-Path $root 'advanced-github-copilot-workshop.pptx'), 0, 0, 0)
+    $deck = $app.Presentations.Open((Join-Path $root 'advanced-github-copilot-workshop.pptx'), $(if ($RenderOnly) { -1 } else { 0 }), 0, 0)
     if ($deck.Slides.Count -ne $manifest.slides) { throw 'Rendered slide count differs from manifest.' }
     $adjustments = @()
     foreach ($slide in $deck.Slides) {
@@ -30,19 +31,22 @@ try {
             }
         }
     }
-    $deck.Save()
-    $adjustments | ConvertTo-Json -Depth 3 | Set-Content (Join-Path $root 'text-fit-adjustments.json') -Encoding UTF8
+    if (-not $RenderOnly) {
+        $deck.Save()
+        $adjustments | ConvertTo-Json -Depth 3 | Set-Content (Join-Path $root 'text-fit-adjustments.json') -Encoding UTF8
+    }
     for ($i = 1; $i -le $deck.Slides.Count; $i++) {
         $deck.Slides.Item($i).Export((Join-Path $images ('slide-{0:D2}.png' -f $i)), 'PNG', 1280, 720)
     }
-    $deck.SaveAs((Join-Path $root 'advanced-github-copilot-workshop.pdf'), 32)
-    Write-Output "Rendered $($deck.Slides.Count) slides and PDF."
+    if (-not $RenderOnly) { $deck.SaveAs((Join-Path $root 'advanced-github-copilot-workshop.pdf'), 32) }
+    Write-Output "Rendered $($deck.Slides.Count) slides."
 }
 finally {
     if ($deck) { $deck.Close() }
     $app.Quit()
     [void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($app)
 }
+if ($RenderOnly) { return }
 $voice = New-Object -ComObject SAPI.SpVoice
 $zira = @($voice.GetVoices() | Where-Object { $_.GetDescription() -like '*Zira*' })
 if ($zira.Count -eq 0) { throw 'Local Microsoft Zira voice is unavailable. Install a local voice or explicitly select another.' }

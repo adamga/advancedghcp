@@ -9,221 +9,221 @@
     40,
     15
   ],
-  "video_seconds": 3832.0,
-  "video_minutes": 63.87,
+  "video_seconds": 3901.5,
+  "video_minutes": 65.03,
   "complete_av_decode": "pass",
   "embedded_chapters": 42,
   "caption_cues": 852,
   "narration_checks": [
     {
       "slide": 1,
-      "rms": 3286.7,
-      "seconds": 73.61020408163266
+      "rms": 2724.5,
+      "seconds": 77.85
     },
     {
       "slide": 2,
-      "rms": 3125.7,
-      "seconds": 77.08068027210885
+      "rms": 2670.0,
+      "seconds": 77.4
     },
     {
       "slide": 3,
-      "rms": 3238.5,
-      "seconds": 84.33419501133787
+      "rms": 2595.8,
+      "seconds": 87.9
     },
     {
       "slide": 4,
-      "rms": 3230.2,
-      "seconds": 84.64816326530612
+      "rms": 2774.6,
+      "seconds": 86.55
     },
     {
       "slide": 5,
-      "rms": 3169.3,
-      "seconds": 83.50507936507937
+      "rms": 2605.2,
+      "seconds": 83.15
     },
     {
       "slide": 6,
-      "rms": 3186.1,
-      "seconds": 89.68263038548753
+      "rms": 2388.7,
+      "seconds": 92.25
     },
     {
       "slide": 7,
-      "rms": 3217.1,
-      "seconds": 87.86294784580498
+      "rms": 2598.4,
+      "seconds": 86.9
     },
     {
       "slide": 8,
-      "rms": 3155.5,
-      "seconds": 91.30834467120181
+      "rms": 2739.8,
+      "seconds": 90.5
     },
     {
       "slide": 9,
-      "rms": 3261.0,
-      "seconds": 90.02308390022675
+      "rms": 2576.9,
+      "seconds": 87.45
     },
     {
       "slide": 10,
-      "rms": 3159.9,
-      "seconds": 91.19718820861678
+      "rms": 2485.5,
+      "seconds": 89.0
     },
     {
       "slide": 11,
-      "rms": 3275.3,
-      "seconds": 87.23197278911564
+      "rms": 2538.8,
+      "seconds": 89.05
     },
     {
       "slide": 12,
-      "rms": 3216.7,
-      "seconds": 95.980589569161
+      "rms": 2501.8,
+      "seconds": 99.95
     },
     {
       "slide": 13,
-      "rms": 3127.8,
-      "seconds": 87.61832199546485
+      "rms": 2837.7,
+      "seconds": 87.3
     },
     {
       "slide": 14,
-      "rms": 3138.6,
-      "seconds": 86.82834467120182
+      "rms": 2619.3,
+      "seconds": 91.15
     },
     {
       "slide": 15,
-      "rms": 3093.9,
-      "seconds": 91.25678004535148
+      "rms": 2608.3,
+      "seconds": 91.2
     },
     {
       "slide": 16,
-      "rms": 3157.6,
-      "seconds": 87.44272108843538
+      "rms": 2575.9,
+      "seconds": 89.75
     },
     {
       "slide": 17,
-      "rms": 3105.2,
-      "seconds": 88.12816326530613
+      "rms": 2608.7,
+      "seconds": 87.8
     },
     {
       "slide": 18,
-      "rms": 3351.3,
-      "seconds": 90.05242630385487
+      "rms": 2636.6,
+      "seconds": 93.15
     },
     {
       "slide": 19,
-      "rms": 3239.5,
-      "seconds": 85.51619047619047
+      "rms": 2506.3,
+      "seconds": 86.5
     },
     {
       "slide": 20,
-      "rms": 3236.2,
-      "seconds": 91.09233560090703
+      "rms": 2669.5,
+      "seconds": 88.35
     },
     {
       "slide": 21,
-      "rms": 3267.1,
-      "seconds": 88.05786848072562
+      "rms": 2540.4,
+      "seconds": 92.6
     },
     {
       "slide": 22,
-      "rms": 3314.4,
-      "seconds": 78.70911564625851
+      "rms": 2541.3,
+      "seconds": 81.45
     },
     {
       "slide": 23,
-      "rms": 3224.6,
-      "seconds": 137.639410430839
+      "rms": 2642.2,
+      "seconds": 138.25
     },
     {
       "slide": 24,
-      "rms": 3172.4,
-      "seconds": 89.96317460317461
+      "rms": 2418.5,
+      "seconds": 91.0
     },
     {
       "slide": 25,
-      "rms": 3255.3,
-      "seconds": 85.98331065759638
+      "rms": 2535.7,
+      "seconds": 91.75
     },
     {
       "slide": 26,
-      "rms": 3212.1,
-      "seconds": 80.57392290249433
+      "rms": 2600.9,
+      "seconds": 84.55
     },
     {
       "slide": 27,
-      "rms": 3212.7,
-      "seconds": 83.58380952380952
+      "rms": 2471.4,
+      "seconds": 86.0
     },
     {
       "slide": 28,
-      "rms": 3262.9,
-      "seconds": 86.0370068027211
+      "rms": 2492.4,
+      "seconds": 88.95
     },
     {
       "slide": 29,
-      "rms": 3214.4,
-      "seconds": 92.22775510204082
+      "rms": 2645.4,
+      "seconds": 93.9
     },
     {
       "slide": 30,
-      "rms": 3267.2,
-      "seconds": 86.87242630385488
+      "rms": 2468.3,
+      "seconds": 90.0
     },
     {
       "slide": 31,
-      "rms": 3243.2,
-      "seconds": 83.50367346938775
+      "rms": 2658.9,
+      "seconds": 86.75
     },
     {
       "slide": 32,
-      "rms": 3196.0,
-      "seconds": 116.5831746031746
+      "rms": 2586.1,
+      "seconds": 121.65
     },
     {
       "slide": 33,
-      "rms": 3170.7,
-      "seconds": 91.5370068027211
+      "rms": 2625.4,
+      "seconds": 93.55
     },
     {
       "slide": 34,
-      "rms": 3293.3,
-      "seconds": 90.71668934240363
+      "rms": 2435.8,
+      "seconds": 93.8
     },
     {
       "slide": 35,
-      "rms": 3159.7,
-      "seconds": 105.92975056689342
+      "rms": 2421.3,
+      "seconds": 108.95
     },
     {
       "slide": 36,
-      "rms": 3131.7,
-      "seconds": 87.62335600907029
+      "rms": 2631.6,
+      "seconds": 88.0
     },
     {
       "slide": 37,
-      "rms": 3192.3,
-      "seconds": 89.44757369614513
+      "rms": 2657.1,
+      "seconds": 87.75
     },
     {
       "slide": 38,
-      "rms": 3255.7,
-      "seconds": 86.41224489795918
+      "rms": 2460.6,
+      "seconds": 86.85
     },
     {
       "slide": 39,
-      "rms": 3216.7,
-      "seconds": 89.91732426303855
+      "rms": 2520.7,
+      "seconds": 92.25
     },
     {
       "slide": 40,
-      "rms": 3255.8,
-      "seconds": 86.73224489795918
+      "rms": 2641.3,
+      "seconds": 91.7
     },
     {
       "slide": 41,
-      "rms": 3029.2,
-      "seconds": 105.10131519274377
+      "rms": 2349.8,
+      "seconds": 102.85
     },
     {
       "slide": 42,
-      "rms": 3235.3,
-      "seconds": 90.31659863945578
+      "rms": 2890.0,
+      "seconds": 95.55
     }
   ],
   "sampled_video_frame_comparisons": [
@@ -270,33 +270,40 @@
       "sha256": "2d85275da188d16c04674bdd741600ee8bbbdf1b7ee3c013db6e3ae1869cbad9"
     },
     "advanced-github-copilot-explainer.mp4": {
-      "bytes": 30936514,
-      "sha256": "5e6fbbbf75858a9266eb6e7a86a5ef7776107822e5c67a35c9cecaad090932ae"
+      "bytes": 35108837,
+      "sha256": "db07a75a3645135b6be0c74e65c676645c71d8f06d01494d9176e361db052a72"
     },
     "advanced-github-copilot-explainer.srt": {
       "bytes": 89251,
-      "sha256": "c83fa23e756e8f17e909b2d7aeaf5c23b10090507e777fd59827a5f49edc4eae"
+      "sha256": "b89401d595be9d007ed9e6f8b15e4423b5543d8c983ac87fef221fa297ff84be"
     },
     "advanced-github-copilot-explainer.vtt": {
       "bytes": 89261,
-      "sha256": "2aaa0f6f27c022d211a22ba0464170172772830695ed88e7d202d910c5bca810"
+      "sha256": "d181867e0bc1e221d4506d91149430403f9592c6fb6bb2f8d12f60e64f068c1f"
     },
     "explainer-audio.m4a": {
-      "bytes": 28070062,
-      "sha256": "a72fdf3de4d4baea8a9a7c46bca69445dac629dc072a46c652da1e42324ed704"
+      "bytes": 32386545,
+      "sha256": "f96954e41f92406030056b2532bba3eeb6823652337737a33a3b1396fa90cc27"
     },
     "explainer-transcript.md": {
-      "bytes": 60101,
-      "sha256": "52987b8e04487db4e4d64c9f5002a778b3940c53ff9dc6729c4d22d4e32542a9"
+      "bytes": 60139,
+      "sha256": "a85850f8535a031982fa098242d1b88553c14c799279f062b57cf70359fe6a7a"
     },
     "source-ledger.md": {
-      "bytes": 5233,
-      "sha256": "8ec913c69a11dd689b34b6041e678f5503323a70c97a0999dac5d97d8ffaad67"
+      "bytes": 5273,
+      "sha256": "ab4649f92af3098f99d962f523840da0a63418225dfc284ab212e6833dca37c7"
     },
     "video-chapters.txt": {
       "bytes": 2249,
-      "sha256": "19e464c36eb7fe82d94f80045660f329e33d3fbc51578b16e00ebd236aca0a39"
+      "sha256": "5476ae49d620c1133965db8d9e5cd243bce5c77d7ae09b5fe16259274f8f7794"
     }
   },
-  "limits": "Synthesized local voice; phrase-level captions; no live Copilot UI recording."
+  "narrator": {
+    "provider": "Microsoft Foundry",
+    "deployment": "gpt-audio-1.5",
+    "voice": "alloy",
+    "synthesized": true
+  },
+  "verbatim_chunks_verified": 91,
+  "limits": "Synthesized voice; phrase-level captions; no live Copilot UI recording or independent ASR verification."
 }

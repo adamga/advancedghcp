@@ -827,5 +827,11 @@
       "cue": "",
       "kind": "standard"
     }
-  ]
+  ],
+  "narrator": {
+    "provider": "Microsoft Foundry",
+    "deployment": "gpt-audio-1.5",
+    "voice": "alloy",
+    "synthesized": true
+  }
 }

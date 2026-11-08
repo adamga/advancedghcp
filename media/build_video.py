@@ -34,6 +34,23 @@ def main():
     args = parser.parse_args()
     root = args.out.resolve()
     data = json.loads((root / "workshop-manifest.json").read_text(encoding="utf-8"))
+    narrator = data.get("narrator", {"provider": "local Microsoft Zira", "voice": "Zira"})
+    narration_path = root / "narration-manifest.json"
+    narration = json.loads(narration_path.read_text(encoding="utf-8")) if narration_path.exists() else None
+    if narration and (not narration["complete"] or len(narration["slides"]) != data["slides"]):
+        raise ValueError("Foundry narration is incomplete; refusing to build a partial video.")
+    if narration:
+        from generate_foundry_narration import normalize
+        if narration["narrator"] != narrator:
+            raise ValueError("Voice provenance differs between narration and content manifests.")
+        for index, (slide, recorded) in enumerate(zip(data["slides_data"], narration["slides"]), 1):
+            if recorded["slide"] != index or normalize(slide["narration"]) != normalize(
+                    " ".join(chunk["text"] for chunk in recorded["chunks"])):
+                raise ValueError(f"Narration source or ordering mismatch on slide {index}.")
+            if any(normalize(chunk["text"]) != normalize(chunk["transcript"]) for chunk in recorded["chunks"]):
+                raise ValueError(f"Non-verbatim narration on slide {index}.")
+    voice_label = f"{narrator['provider']} / {narrator.get('deployment', 'speech synthesis')} / {narrator['voice']}"
+    audio_filter = ["-af", "loudnorm=I=-16:TP=-1.5:LRA=11"] if narrator["provider"] == "Microsoft Foundry" else []
     ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
     segments = root / "segments"
     segments.mkdir(exist_ok=True)
@@ -43,7 +60,7 @@ def main():
     output_audio = wave.open(str(pcm), "wb")
     params = None
     metadata = [";FFMETADATA1", "title=Advanced GitHub Copilot - Complete explainer",
-                "comment=Original narrated instruction. Local synthesized voice. Sources verified 7 Nov 2026."]
+                f"comment=Original narrated instruction. Synthesized voice: {voice_label}. Sources verified 7 Nov 2026."]
     try:
         for index, slide in enumerate(data["slides_data"], 1):
             audio = root / "audio" / f"slide-{index:02}.wav"
@@ -61,6 +78,8 @@ def main():
                     raise ValueError("Narration audio formats must match.")
                 frames = wav.readframes(wav.getnframes())
                 duration = wav.getnframes() / wav.getframerate()
+            if narration and abs(duration - narration["slides"][index - 1]["duration_seconds"]) > 0.001:
+                raise ValueError(f"Measured and recorded audio durations differ on slide {index}.")
             if duration < 20:
                 raise ValueError(f"Narration too short for complete explanation on slide {index}")
             full_duration = math.ceil((duration + 1) * 2) / 2
@@ -83,19 +102,23 @@ def main():
                              "speech_seconds": duration, "duration_seconds": full_duration})
             # Phrase timing uses exact per-slide audio duration and proportional
             # word counts, not forced-aligned word timestamps.
-            sentences = re.split(r"(?<=[.!?])\s+", slide["narration"].replace("\n", " "))
-            phrases = []
-            for sentence in sentences:
-                words = sentence.split()
-                for offset in range(0, len(words), 16):
-                    phrases.append(" ".join(words[offset:offset + 16]))
-            total_words = sum(len(p.split()) for p in phrases)
-            elapsed = 0.0
-            for phrase in phrases:
-                length = duration * len(phrase.split()) / total_words
-                subtitles.append(f"{cue_id}\n{stamp(start + elapsed)} --> {stamp(start + elapsed + length)}\n{phrase}\n")
-                cue_id += 1
-                elapsed += length
+            anchors = narration["slides"][index - 1]["chunks"] if narration else [
+                {"text": slide["narration"], "offset_seconds": 0, "duration_seconds": duration}
+            ]
+            for anchor in anchors:
+                sentences = re.split(r"(?<=[.!?])\s+", anchor["text"].replace("\n", " "))
+                phrases = []
+                for sentence in sentences:
+                    words = sentence.split()
+                    for offset in range(0, len(words), 16):
+                        phrases.append(" ".join(words[offset:offset + 16]))
+                total_words = sum(len(p.split()) for p in phrases)
+                elapsed = anchor["offset_seconds"]
+                for phrase in phrases:
+                    length = anchor["duration_seconds"] * len(phrase.split()) / total_words
+                    subtitles.append(f"{cue_id}\n{stamp(start + elapsed)} --> {stamp(start + elapsed + length)}\n{phrase}\n")
+                    cue_id += 1
+                    elapsed += length
             escaped = title.replace("\\", "\\\\").replace("=", "\\=").replace(";", "\\;").replace("#", "\\#")
             metadata += ["[CHAPTER]", "TIMEBASE=1/1000", f"START={round(start * 1000)}",
                          f"END={round((start + full_duration) * 1000)}", f"title={escaped}"]
@@ -115,9 +138,9 @@ def main():
     vtt.write_text("WEBVTT\n\n" + re.sub(r"(\d{2}:\d{2}:\d{2}),(\d{3})", r"\1.\2", "\n".join(subtitles)), encoding="utf-8")
     (root / "explainer-transcript.md").write_text(
         "# Complete explainer transcript\n\n"
-        "Original instruction covering all deck topics. Narrated by local Microsoft Zira synthesis.\n"
+        f"Original instruction covering all deck topics. Synthesized narration: {voice_label}.\n"
         "This is not a recording of a live product session. Captions are phrase-level estimates anchored "
-        "to measured slide audio durations; they are not word-level forced alignment.\n"
+        "to measured audio chunk durations where available; they are not word-level forced alignment.\n"
         + "\n".join(transcript), encoding="utf-8")
     (root / "video-chapters.txt").write_text("\n".join(chapters) + "\n", encoding="utf-8")
     (root / "video-timeline.json").write_text(json.dumps(timeline, indent=2), encoding="utf-8")
@@ -125,10 +148,10 @@ def main():
     run(ffmpeg, ["-f", "concat", "-safe", "0", "-i", str(concat), "-i", str(pcm),
                  "-i", str(srt), "-i", str(metadata_file), "-map", "0:v:0", "-map", "1:a:0",
                  "-map", "2:s:0", "-map_metadata", "3", "-map_chapters", "3",
-                 "-c:v", "copy", "-c:a", "aac", "-b:a", "64k", "-ar", "48000",
+                 "-c:v", "copy", *audio_filter, "-c:a", "aac", "-b:a", "64k", "-ar", "48000",
                  "-c:s", "mov_text", "-metadata:s:s:0", "language=eng",
                  "-metadata:s:s:0", "title=English captions", "-movflags", "+faststart", str(destination)])
-    run(ffmpeg, ["-i", str(pcm), "-c:a", "aac", "-b:a", "64k",
+    run(ffmpeg, ["-i", str(pcm), *audio_filter, "-c:a", "aac", "-b:a", "64k",
                  "-map_metadata", "-1", str(root / "explainer-audio.m4a")])
 
     thumbs = Image.new("RGB", (1280, math.ceil(data["slides"] / 4) * 200), "#101218")

@@ -26,7 +26,8 @@ def main():
         if item.endswith(".zip") or "__pycache__" in relative.parts:
             continue
         if relative.parts[:2] in (("deliverables", "audio"), ("deliverables", "slides"),
-                                  ("deliverables", "segments"), ("deliverables", "qa")):
+                                  ("deliverables", "segments"), ("deliverables", "qa"),
+                                  ("deliverables", "narration-chunks")):
             continue
         path = repo.joinpath(*relative.parts)
         if not path.is_file():

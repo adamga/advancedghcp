@@ -13,10 +13,10 @@ and [printable PDF](../deliverables/advanced-github-copilot-workshop.pdf).
 The supplied template's near-black/Arial/white/cyan/purple-blue language is adapted
 with original workshop content; the original reference deck is not redistributed.
 
-The [63m52s complete MP4](../deliverables/advanced-github-copilot-explainer.mp4)
+The [GPT-audio Alloy MP4](../deliverables/advanced-github-copilot-explainer.mp4)
 is **separate self-paced pre/post material**, not an extra segment in the live
-180-minute agenda. It uses locally synthesized Microsoft Zira speech,
-852 phrase-timed captions and 42 embedded chapters. It is a narrated slide lesson,
+180-minute agenda. It uses Microsoft Foundry `gpt-audio-1.5`, Alloy voice,
+phrase-timed captions and 42 embedded chapters. It is a narrated slide lesson,
 not a recording of live Copilot UI. Full speaker notes are standalone narration,
 **not text to read verbatim within the 60-minute talk/demo block**.
 
@@ -35,8 +35,10 @@ Packaging/verification records:
 [media verification](../deliverables/media-verification.json),
 [text-fit adjustments](../deliverables/text-fit-adjustments.json), and
 [content manifest](../deliverables/workshop-manifest.json).
-The media coordinator verified complete 3832-second audiovisual decode,
-42 chapters, caption coverage, frame alignment, and fitted PowerPoint text bounds.
+The [narration manifest](../deliverables/narration-manifest.json) records verified
+source passages and actual audio chunk timings; the original teaching text and
+slide files are unchanged. The media verification covers complete audiovisual
+decode, 42 chapters, caption coverage, frame alignment, and fitted PowerPoint text bounds.
 [Optional media rebuild instructions](../media/README.md) are outside attendee
 preflight and all timed labs; the app remains zero-dependency Node.
 

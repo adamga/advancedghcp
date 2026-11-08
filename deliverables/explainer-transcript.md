@@ -1,7 +1,7 @@
 # Complete explainer transcript
 
-Original instruction covering all deck topics. Narrated by local Microsoft Zira synthesis.
-This is not a recording of a live product session. Captions are phrase-level estimates anchored to measured slide audio durations; they are not word-level forced alignment.
+Original instruction covering all deck topics. Synthesized narration: Microsoft Foundry / gpt-audio-1.5 / alloy.
+This is not a recording of a live product session. Captions are phrase-level estimates anchored to measured audio chunk durations where available; they are not word-level forced alignment.
 
 ## Slide 1: From agent user to agent orchestrator
 
@@ -15,7 +15,7 @@ This is an original, narrated slide lesson, not a recording of a live Copilot se
 
 ## Slide 2: What you will be able to do
 
-Start: 00:01:15.000
+Start: 00:01:19.000
 
 By the end, you should be able to make four practical decisions. First, decide where a repeated instruction belongs. A rule that every change must follow is different from a specialist role, and both are different from a procedure used only for a particular task.
 Second, write a delegated task that a subagent can understand on its own. It should know the goal, the relevant context, the files it may touch, and what result to return. A vague request to help is not enough.
@@ -26,7 +26,7 @@ You will leave with a runnable starter, reusable examples, and lab solutions. Tr
 
 ## Slide 3: A realistic three-hour agenda
 
-Start: 00:02:33.500
+Start: 00:02:37.500
 
 The session has a hard three-hour boundary. The first hour includes explanation and demonstrations; it is not an hour of slides followed by extra demonstrations. The remaining two hours are hands-on.
 Before the event, complete the attendee preflight. Install a supported Node version, check your Git and Copilot access, open the starter, and run its baseline checks. Downloading software and resolving organizational policy issues should happen before the clock starts.
@@ -37,7 +37,7 @@ The facilitator guide identifies the live demonstrations and optional extensions
 
 ## Slide 4: Five words that prevent confusion
 
-Start: 00:03:59.000
+Start: 00:04:06.500
 
 Think of the model as the engine that proposes useful next steps. The harness is the machinery around that engine. It supplies context, exposes tools, handles approvals, and organizes execution. Changing the model does not automatically change the harness or its configuration format.
 A custom agent is a definition. For example, a reviewer definition says what to review, which tools to use, and how to report findings. You can select that reviewer directly, or another agent can invoke it for a delegated task.
@@ -48,7 +48,7 @@ Finally, a session is the ongoing unit of work with its conversation and workspa
 
 ## Slide 5: Separate context is not separate files
 
-Start: 00:05:25.000
+Start: 00:05:34.500
 
 Here is the most important warning in the workshop. Separate conversations are not proof of separate files. If two agents use the same checkout and both edit the same module, one can overwrite the other's change.
 Imagine two cooks with separate recipe cards but one cutting board. Their instructions are separate; their working surface is shared. Separate subagent context is like separate recipe cards. A worktree is more like giving each cook a separate preparation area, although they still share the kitchen's utilities.
@@ -59,7 +59,7 @@ Throughout the labs, we will identify the actual workspace, the allowed write se
 
 ## Slide 6: Teach the documented product, not old defaults
 
-Start: 00:06:50.000
+Start: 00:06:59.000
 
 These materials use live official GitHub and VS Code documentation checked on November seventh, twenty twenty-six, rather than treating a model's training data as a product reference.
 An important example is the October twenty-eighth VS Code release. It documents the Copilot harness as the default for new sessions in both the editor and Agents window. Earlier examples often assume the older Local harness. That difference affects tool names, handoff support, and agent configuration.
@@ -70,7 +70,7 @@ Every product claim has a source identifier. The source ledger provides canonica
 
 ## Slide 7: A desktop home for agent-driven work
 
-Start: 00:08:21.000
+Start: 00:08:32.500
 
 The GitHub Copilot app is a desktop application built around agent-driven development. Its official documentation supports Windows, macOS, and Linux. Think of it as a place to direct work and review results, rather than only a code editor.
 A Project is useful when a goal continues over time and may require several sessions or repositories. Projects are public preview. A session is the more concrete unit that works on a task. For this workshop, one repository and one bounded feature are enough.
@@ -81,7 +81,7 @@ Tool permission settings are a separate decision. A session can still need appro
 
 ## Slide 8: Direct one small task, then inspect it
 
-Start: 00:09:50.000
+Start: 00:10:00.500
 
 In the live demonstration, open the issue triage repository in the Copilot app. Before sending a prompt, point out the environment, workspace, mode, model, and permission settings. These controls answer different questions, so do not collapse them into one idea of autonomy.
 Start with a planning request: explain how to add a triage rule, identify affected files, and return test cases without editing. The result should tell us where the work belongs and what evidence will prove it correct.
@@ -93,7 +93,7 @@ If the desktop app is unavailable under your organization's policy, perform the 
 
 ## Slide 9: An agent-first window beside your editor
 
-Start: 00:11:22.500
+Start: 00:11:32.000
 
 In VS Code, the Agents window is an agent-first interface alongside the regular editor. The documented command is Chat: Open Agents window. The command-line alternative is code, space, double dash agents.
 The primary sidebar helps you organize sessions and open customizations. The central area is the conversation where you direct the task. The secondary sidebar exposes files, changes, search, and available validation tools.
@@ -105,7 +105,7 @@ The editor and Agents window can continue supported sessions without starting ov
 
 ## Slide 10: Select the harness before copying YAML
 
-Start: 00:12:54.000
+Start: 00:13:00.500
 
 A Markdown file can be discovered in two environments yet behave differently in each. This is why we label our examples.
 For the Copilot harness, the current VS Code file reference documents built-in tool aliases including read, search, edit, execute, and agent. Native delegation uses the task tool. The skills field can name enabled skills to load into an agent's context.
@@ -117,7 +117,7 @@ For every example, first select the intended harness, then check discovery and a
 
 ## Slide 11: Write a task contract, not a wish
 
-Start: 00:14:26.500
+Start: 00:14:30.500
 
 A strong task prompt is a compact contract. It says what success looks like and gives the agent enough information to find and verify the right change.
 Compare make triage smarter with a specific request. Add deterministic priority classification for the fictional issue fixtures. Preserve the existing issue input shape. Do not add dependencies. Limit implementation to the priority module and its tests. Include a boundary case and a case that must remain unchanged.
@@ -129,7 +129,7 @@ This is context engineering in practical terms. You are selecting the informatio
 
 ## Slide 12: Put shared rules where everyone can find them
 
-Start: 00:15:55.000
+Start: 00:16:01.000
 
 Repository instructions hold durable conventions such as the test command, the supported runtime, and the rule that fixtures must be synthetic. Those should not be repeated differently in every specialist definition.
 The repository-wide Copilot file is dot github slash copilot instructions dot markdown. Path-specific instructions can live in the instructions directory with an apply-to pattern, subject to the surface's support. AGENTS dot markdown is another supported instruction format in some experiences; do not assume identical activation across all clients.
@@ -141,7 +141,7 @@ In the first lab, you will author and verify these instructions rather than turn
 
 ## Slide 13: A reviewer that can read, not write
 
-Start: 00:17:32.000
+Start: 00:17:42.000
 
 Here is a small custom-agent definition. The frontmatter gives it a name, explains when it is useful, and selects reading and search tools. The Markdown body tells it what decisions to make and how to report.
 The restriction is deliberate. This reviewer does not need terminal execution, edits, or delegation. Removing those tools makes the role easier to reason about. Still, verify actual runtime activity, because tool restrictions can differ by harness and client.
@@ -153,7 +153,7 @@ In the workshop repository, starter templates are separated from completed answe
 
 ## Slide 14: A reusable recipe with a trigger
 
-Start: 00:19:01.000
+Start: 00:19:10.500
 
 A skill is a directory, not only a Markdown paragraph. The required SKILL dot markdown file starts with a name and a description. The name uses lowercase letters, numbers, and hyphens, and matches the parent directory. The description states both what the skill does and when to use it.
 Our example is test changes. Its procedure identifies the tests covering a change, runs the documented commands, and reports passed, failed, and not-run checks. A reference file can explain the output format, and a supporting script can perform a deterministic check.
@@ -165,7 +165,7 @@ This is the first step toward reliable agent composition: give the specialist a 
 
 ## Slide 15: Discovery is not execution evidence
 
-Start: 00:20:29.000
+Start: 00:20:43.000
 
 Skills help manage context because the agent can discover a concise description before loading the full procedure and its resources. This is often called progressive disclosure. It avoids putting every possible checklist into every conversation.
 But you must evaluate the behavior. A skill can exist on disk without being discovered. It can be discovered without being selected. It can be selected without successfully executing its script.
@@ -177,7 +177,7 @@ Avoid loading too many skills into a specialist. Give it the few procedures rele
 
 ## Slide 16: Compose them without mixing harnesses
 
-Start: 00:22:01.500
+Start: 00:22:15.500
 
 Now we combine a role and a recipe. In the Copilot harness, the current VS Code reference supports a skills array in the custom-agent frontmatter. It names enabled skills to load into that agent's context.
 For example, an implementer can have read, search, edit, and execute tools plus the test changes skill. Its body still specifies the allowed files, the behavior to implement, and the required handoff evidence. The skill supplies the repeatable validation procedure.
@@ -189,7 +189,7 @@ For a beginner, the main lesson is composition: the agent answers who is respons
 
 ## Slide 17: Build and verify a role and a recipe
 
-Start: 00:23:30.000
+Start: 00:23:46.500
 
 For the live demonstration, begin with a fresh chat and the correct harness. Open Customizations, create a workspace reviewer, and show the generated file. Replace vague persona language with a focused output contract.
 Ask it to inspect a small source file. Show the tool activity and explain why it should not execute tests. If the report implies tests passed, challenge it and refine the instructions.
@@ -201,7 +201,7 @@ This demonstration is included in the first hour and is intentionally small. The
 
 ## Slide 18: Use a subagent for a bounded result
 
-Start: 00:24:59.500
+Start: 00:25:15.500
 
 Delegation is useful when a separate context can contain a meaningful amount of independent work. A research specialist can read a module and return its contract. A worker can implement one independently owned feature. A reviewer can inspect a completed change.
 Delegation is not automatically an improvement. Splitting a tiny edit into several conversations can take longer and consume more AI usage than doing it directly. A task that depends on another unfinished result is not ready to run in parallel.
@@ -213,7 +213,7 @@ Start with one specialist and a clear stopping condition. Add parallelism only w
 
 ## Slide 19: Give the worker enough context to succeed
 
-Start: 00:26:31.000
+Start: 00:26:50.000
 
 This slide is a worked delegation brief. We ask a researcher to find the priority behavior in the issue triage application. We provide the current contract and the repository constraints, then explicitly forbid edits and command execution.
 The expected result is not an essay about best practices. It is a list of relevant paths, the current input and output shapes, existing test patterns, and unresolved questions that might affect implementation.
@@ -225,7 +225,7 @@ If the worker's result is incomplete, provide the specific missing context appro
 
 ## Slide 20: Named workers, one implementation writer
 
-Start: 00:27:58.000
+Start: 00:28:17.500
 
 This coordinator pattern is deliberately conservative. In a Local harness session, the coordinator lists the exact research and review agents it may use. Its tools include delegation, reading, searching, editing, and the required validation capability.
 The researcher reads and reports. The coordinator implements. The reviewer reads the changed files and returns findings. There is only one implementation writer, so parallel research cannot overwrite code.
@@ -237,7 +237,7 @@ In the lab, inspect the tools and files that actually changed. The YAML is usefu
 
 ## Slide 21: Same workflow, different runtime contract
 
-Start: 00:29:30.500
+Start: 00:29:47.000
 
 For the Copilot harness, keep the same safe workflow but do not copy Local-only fields. Use native delegation with the supported agent tool alias. A skill can be listed in Copilot frontmatter, but the delegated task still needs the relevant constraints and acceptance checks.
 The conceptual coordinator remains responsible for the overall goal. It asks a researcher for a focused result, implements or assigns a bounded change, obtains a review, and integrates the evidence.
@@ -249,7 +249,7 @@ The result should be evaluated in the same way regardless of surface: the correc
 
 ## Slide 22: Switching roles is not parallel delegation
 
-Start: 00:31:00.000
+Start: 00:31:21.000
 
 A handoff changes who is active in the conversation. Local custom agents can offer a button that switches to an implementation agent with a prefilled prompt. This is useful when you want to inspect a planning result before continuing.
 A subagent is different. The main agent invokes a specialist and uses its returned result while retaining ownership of the larger task. You do not have to switch the active agent.
@@ -261,7 +261,7 @@ Choose the mechanism based on the workflow: transition when a human should revie
 
 ## Slide 23: Research -> implement -> prove -> review
 
-Start: 00:32:20.000
+Start: 00:32:43.500
 
 In the live demonstration, use a small triage enhancement from the lab specification. Do not invent the rule during the demonstration. Read its acceptance examples aloud so participants can predict what should happen.
 Ask a read-only researcher to identify the relevant contract, module, and tests. Review its report and show how the coordinator uses that result rather than repeating the entire investigation.
@@ -274,7 +274,7 @@ Finally, fix actionable findings or report what remains uncertain. This shows th
 
 ## Slide 24: Hot files and shared resources
 
-Start: 00:34:39.000
+Start: 00:35:03.000
 
 Before parallel implementation, look for hot files. These are files that several tasks are likely to touch: a shared type or contract, the package manifest, the lockfile, application wiring, generated artifacts, and common fixtures.
 If both workers edit a hot file, merely asking them to be careful is not a reliable plan. Assign that file to one integrator, or complete the prerequisite change before starting independent tasks.
@@ -286,7 +286,7 @@ The general lesson is to identify every writable surface, not only the source mo
 
 ## Slide 25: Parallel readers, one integration writer
 
-Start: 00:36:10.000
+Start: 00:36:35.000
 
 When you are unsure about independent write boundaries, use parallel readers and one integration writer. Researchers can inspect separate questions concurrently, but they return findings rather than changing the shared checkout.
 One researcher might explain the priority rules. Another might inspect the accessible filter controls. The coordinator uses both reports to plan a change. Only the integrator edits the shared source and wiring.
@@ -298,7 +298,7 @@ In the lab, you will first exercise this safe pattern. Then you will compare it 
 
 ## Slide 26: Freeze the contract, then split the work
 
-Start: 00:37:37.000
+Start: 00:38:08.000
 
 Disjoint ownership works when the tasks really are independent. Start by freezing the shared input and output contract. Then assign each worker a small set of files and its own tests.
 For example, one worker may implement a search predicate while another implements a summary formatter. Both consume the same documented issue shape. Neither changes that shape or the shared server wiring. The integrator combines their results later.
@@ -310,7 +310,7 @@ This is a team convention, not a built-in lock. We will add explicit scope check
 
 ## Slide 27: Parallelize ready tasks, not wishful tasks
 
-Start: 00:38:59.000
+Start: 00:39:34.000
 
 A task graph helps you decide what can run now. If both feature tasks depend on a shared contract change, finish that change first. Only then are the feature tasks ready to run independently.
 The graph on this slide has four stages. Define the contract, run two independent workers, integrate their output, then validate the combined application. The arrows represent actual prerequisites, not a preferred list order.
@@ -322,7 +322,7 @@ If the graph is mostly a chain, parallel execution adds little value. Use a sequ
 
 ## Slide 28: A claim is a protocol, not a mutex
 
-Start: 00:40:24.000
+Start: 00:41:01.000
 
 You can improve shared-checkout coordination with an advisory claim protocol. Before writing, a worker states the paths it intends to own, the starting revision, and when the claim should expire. The coordinator checks for conflicts and acknowledges the assignment.
 At handoff, the worker reports the changed files and releases its claim. If it needs another path, it pauses and requests a new assignment.
@@ -334,7 +334,7 @@ Do not oversell claims as a product feature or security boundary. They are an or
 
 ## Slide 29: Use checks and permissions, not slogans
 
-Start: 00:41:51.500
+Start: 00:42:31.000
 
 Guidance is valuable, but enforcement must be explicit. A changed-path scope check can fail when a task modifies files outside its assignment. Required continuous integration can block integration until tests pass. Review ownership can ensure the right people approve a change.
 These mechanisms detect or gate different things. CODEOWNERS routes review; it does not prevent a local edit. A post-change scope check detects a violation after the write; it does not stop the initial write.
@@ -346,7 +346,7 @@ The core labs do not enable hooks. They teach deterministic checks and manual re
 
 ## Slide 30: Separate working copies for independent tasks
 
-Start: 00:43:25.000
+Start: 00:44:06.000
 
 A Git worktree gives one repository another working directory, usually on a different branch. This lets independent tasks edit separate copies without overwriting each other's working files.
 Begin from a committed baseline. That baseline should include the contract and the customizations workers need. Uncommitted agent files do not magically appear in a newly created worktree. Ignored dependencies and local configuration are also absent by default.
@@ -358,7 +358,7 @@ Keep a worktree until integration and verification are complete. Do not remove i
 
 ## Slide 31: A clean merge is not proof of correctness
 
-Start: 00:44:53.000
+Start: 00:45:37.000
 
 Integration is a separate stage with its own owner. First inspect each task's diff and evidence. Verify that the worker stayed within its assignment and that the tests cover the requested behavior rather than only implementation details.
 Then integrate one task at a time. Your normal Git or pull-request workflow may use a merge, a cherry-pick of a reviewed commit, or a PR with required checks. These are integration choices, not reasons to skip review.
@@ -370,7 +370,7 @@ The lab answer key demonstrates the combined result and documents what remains i
 
 ## Slide 32: Compare two safe orchestration patterns
 
-Start: 00:46:18.000
+Start: 00:47:05.000
 
 The third live demonstration compares two patterns rather than declaring worktrees the only answer.
 First, use the shared checkout with parallel read-only specialists. The coordinator receives their reports and performs the edit. Show the changed-file list so participants can see that only the assigned writer changed code.
@@ -384,7 +384,7 @@ This demonstration fits inside the first hour. The forty-minute orchestration la
 
 ## Slide 33: Keep scope, data and approvals deliberate
 
-Start: 00:48:16.000
+Start: 00:49:08.000
 
 Agent safety is not one switch. File isolation, tool permissions, sandboxing, and review each address different risks.
 A worktree separates source changes. A sandbox can restrict filesystem, network, and credential access, depending on platform and configuration. Approval settings determine which tool actions require confirmation. None of them proves the generated code is correct.
@@ -396,7 +396,7 @@ Before committing, inspect the complete diff. Before any external action, verify
 
 ## Slide 34: More agents is not automatically more value
 
-Start: 00:49:49.000
+Start: 00:50:43.000
 
 The best agent workflow is often the smallest one that reliably completes the task. A direct request is appropriate for a small cohesive edit. A specialist is useful when the work needs substantial separate context or a recurring procedure.
 Parallelism saves time only when tasks are independent enough that coordination costs do not exceed the benefit. Repeating the same investigation in several contexts can consume more usage without improving the result.
@@ -408,7 +408,7 @@ In the Copilot app, current documentation also describes usage insights through 
 
 ## Slide 35: Issue triage board: small on purpose
 
-Start: 00:51:21.000
+Start: 00:52:18.000
 
 The practice application is intentionally modest. It serves a static issue triage board using Node's built-in HTTP support and uses the built-in test runner. There is no database, authentication service, external AI call, or dependency-heavy framework to distract from the workflow.
 The board shows eight fictional support issues: six active and two closed, with two active blocked workflows. Four categories have two issues each: accessibility, payments, reporting, and search. The exercises add priority scoring, case-insensitive search, summaries, and evidence export behind documented feature-module boundaries. That gives us a realistic reason to use skills, reviewers, and multiple task owners without building a production support platform.
@@ -420,7 +420,7 @@ When you assign work, use the repository's actual module paths and contract. The
 
 ## Slide 36: Create and verify useful customizations
 
-Start: 00:53:08.000
+Start: 00:54:08.000
 
 The first lab takes thirty minutes. Use the first few minutes to confirm the passing starter and select the intended harness. Then write short repository instructions based on the existing commands and constraints.
 Create a custom agent for a focused recurring role. It should have a useful description, only the tools it needs, and a result format you can evaluate. Do not simply call it senior expert and hope that defines its behavior.
@@ -433,7 +433,7 @@ At the checkpoint, you should be able to explain why each instruction belongs in
 
 ## Slide 37: Delegate a feature and collect proof
 
-Start: 00:54:37.000
+Start: 00:55:37.000
 
 The second lab takes thirty-five minutes. Your first deliverable is a self-contained delegated brief. It includes the relevant contract, repository constraints, allowed actions, and expected report.
 Use the read-only researcher to locate the behavior and existing test pattern. Check its report before implementation. If it assumes missing context, correct the brief.
@@ -446,7 +446,7 @@ At the checkpoint, your report must show what changed, which checks ran, their r
 
 ## Slide 38: Orchestrate two tasks without collisions
 
-Start: 00:56:07.500
+Start: 00:57:06.000
 
 The third lab takes forty minutes and concentrates on one repository. Start by reading the shared contract and the two task specifications. Decide which files belong to each worker and which remain with the integrator.
 Record the dependencies. If either task needs a contract change, perform that prerequisite before parallel work. Do not launch workers against different assumptions.
@@ -459,7 +459,7 @@ At the debrief, explain which strategy you chose, what could still collide, and 
 
 ## Slide 39: Review, hand off and reflect
 
-Start: 00:57:35.000
+Start: 00:58:34.000
 
 The final lab takes fifteen minutes. It is deliberately short because integration and validation have already happened in the previous exercises. Now consolidate the evidence and review the complete result.
 Inspect the entire relevant diff, not only the last turn. Look for unrelated edits, changes to shared contracts, and tests that merely mirror the implementation without proving the requirement.
@@ -472,7 +472,7 @@ A good handoff is the final proof that you can direct agents as engineering coll
 
 ## Slide 40: Stop, inspect, narrow and rerun
 
-Start: 00:59:06.000
+Start: 01:00:07.500
 
 When a workflow goes wrong, recover from evidence rather than repeatedly issuing a broader prompt.
 If an agent or skill is missing, check its path, frontmatter, selected harness, and enabled inventory. In a new worktree, confirm that the customization was committed in the base. A file that exists only in the original checkout is not present in the worktree.
@@ -485,7 +485,7 @@ These habits matter more than memorizing a particular button label, because the 
 
 ## Slide 41: Reliable orchestration is an engineering skill
 
-Start: 01:00:34.000
+Start: 01:01:40.500
 
 Let's finish with four ideas you can reuse immediately.
 First, compose a role, a recipe, and a task contract. The custom agent defines responsibility. The skill supplies a repeated procedure. The prompt specifies this particular outcome and its constraints.
@@ -498,7 +498,7 @@ The repository's labs, instructor answers, source ledger, captions, and transcri
 
 ## Slide 42: Official sources and availability
 
-Start: 01:02:20.500
+Start: 01:03:24.500
 
 This reference slide is an appendix, not extra time added to the live workshop. The complete source ledger contains the official URLs, what each source supports, and the caveats that affect our examples.
 The materials were checked against live documentation on November seventh, twenty twenty-six, US Eastern time. VS Code pages fetched for the workshop displayed November fourth update dates where available, and the Universe release is dated October twenty-eighth.

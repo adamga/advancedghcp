@@ -35,4 +35,4 @@ Task claims/leases, write-ownership matrices, one integration writer, contract f
 ## Media provenance
 The editable deck carries the supplied theme and recreates its dark/cyan/purple visual treatment.
 All teaching text, task diagrams and interface schematics are original. No presenter or GitHub Expert Services affiliation is implied.
-The video uses local Microsoft Zira speech synthesis. It is narrated instruction with code examples, not a recording of a live product demo.
+The video uses Microsoft Foundry `gpt-audio-1.5` with the `alloy` voice for speech synthesis. It is narrated instruction with code examples, not a recording of a live product demo.

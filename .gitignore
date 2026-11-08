@@ -10,11 +10,13 @@ media/audio/
 media/slides/
 media/segments/
 media/qa/
+media/narration-chunks/
 media/.venv/
 media/build/
 deliverables/audio/
 deliverables/slides/
 deliverables/segments/
 deliverables/qa/
+deliverables/narration-chunks/
 deliverables/*.wav
 deliverables/chapters.ffmeta
