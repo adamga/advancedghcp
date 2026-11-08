@@ -831,7 +831,16 @@
   "narrator": {
     "provider": "Microsoft Foundry",
     "deployment": "gpt-audio-1.5",
-    "voice": "alloy",
-    "synthesized": true
+    "voice": "coral",
+    "synthesized": true,
+    "style": "playful",
+    "target_wpm": 155
+  },
+  "video": {
+    "style": "animated",
+    "fps": 24,
+    "script_source": "storyboard.json",
+    "mastering_lufs": -22,
+    "encoded_true_peak_limit_db": -4
   }
 }

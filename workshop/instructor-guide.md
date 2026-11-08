@@ -13,11 +13,13 @@ and [printable PDF](../deliverables/advanced-github-copilot-workshop.pdf).
 The supplied template's near-black/Arial/white/cyan/purple-blue language is adapted
 with original workshop content; the original reference deck is not redistributed.
 
-The [GPT-audio Alloy MP4](../deliverables/advanced-github-copilot-explainer.mp4)
+The [animated Coral MP4](../deliverables/advanced-github-copilot-explainer.mp4)
 is **separate self-paced pre/post material**, not an extra segment in the live
-180-minute agenda. It uses Microsoft Foundry `gpt-audio-1.5`, Alloy voice,
-phrase-timed captions and 42 embedded chapters. It is a narrated slide lesson,
-not a recording of live Copilot UI. Full speaker notes are standalone narration,
+180-minute agenda. It uses Microsoft Foundry `gpt-audio-1.5`, playful Coral voice,
+24 fps explanatory motion graphics, on-screen captions and 42 embedded chapters.
+Its [simpler video script](../deliverables/video-script.md) covers the same topics
+through 126 teaching beats. It is not a recording of live Copilot UI.
+Full slide speaker notes remain a long-form teaching reference,
 **not text to read verbatim within the 60-minute talk/demo block**.
 
 Accessible and navigation editions:
@@ -36,9 +38,13 @@ Packaging/verification records:
 [text-fit adjustments](../deliverables/text-fit-adjustments.json), and
 [content manifest](../deliverables/workshop-manifest.json).
 The [narration manifest](../deliverables/narration-manifest.json) records verified
-source passages and actual audio chunk timings; the original teaching text and
-slide files are unchanged. The media verification covers complete audiovisual
-decode, 42 chapters, caption coverage, frame alignment, and fitted PowerPoint text bounds.
+source passages and actual audio chunk timings. The slide files, application
+and labs are unchanged; the video narration is intentionally simpler.
+The media verification covers complete audiovisual decode, 42 chapters,
+caption coverage, actual illustration motion in every chapter, measured cadence,
+and quieter encoded audio with safe peak headroom.
+Use the [short preview](../deliverables/animated-explainer-preview.mp4) to check
+laptop playback before an event. Hardware volume remains under the listener's control.
 [Optional media rebuild instructions](../media/README.md) are outside attendee
 preflight and all timed labs; the app remains zero-dependency Node.
 
