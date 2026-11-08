@@ -1,0 +1,3409 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:00.381
+Welcome.
+
+2
+00:00:00.381 --> 00:00:06.484
+This workshop is for people who have already tried an agent and understand the basic idea
+
+3
+00:00:06.484 --> 00:00:07.628
+of a skill.
+
+4
+00:00:07.628 --> 00:00:13.730
+You do not need to be an artificial intelligence researcher, and you do not need to
+
+5
+00:00:13.730 --> 00:00:15.256
+build a large application.
+
+6
+00:00:15.256 --> 00:00:21.358
+We will move from asking one agent to make a change toward designing a reliable workflow
+
+7
+00:00:21.358 --> 00:00:23.265
+that several agents can follow.
+
+8
+00:00:23.265 --> 00:00:26.317
+Our practice application is an issue triage board.
+
+9
+00:00:26.317 --> 00:00:30.512
+Imagine a support team deciding which fictional issues deserve attention first.
+
+10
+00:00:30.512 --> 00:00:36.614
+This is familiar enough to explain without a long business briefing, but gives us useful boundaries
+
+11
+00:00:36.614 --> 00:00:38.903
+for rules, presentation, documentation, and tests.
+
+12
+00:00:38.903 --> 00:00:43.098
+The goal is not to create as many agents as possible.
+
+13
+00:00:43.098 --> 00:00:49.201
+The goal is to know when a specialist helps, what information to give it, which tools
+
+14
+00:00:49.201 --> 00:00:53.396
+it should have, and how to prove its result is correct.
+
+15
+00:00:53.396 --> 00:00:58.354
+We will also see why two conversations can still overwrite the same file.
+
+16
+00:00:58.354 --> 00:01:04.075
+This is an original, narrated slide lesson, not a recording of a live Copilot session.
+
+17
+00:01:04.075 --> 00:01:07.508
+The live workshop includes demonstrations and four hands-on labs.
+
+18
+00:01:07.508 --> 00:01:13.610
+Pause the video whenever you want to inspect a code example or try a step yourself.
+
+19
+00:01:15.000 --> 00:01:19.946
+By the end, you should be able to make four practical decisions.
+
+20
+00:01:19.946 --> 00:01:22.832
+First, decide where a repeated instruction belongs.
+
+21
+00:01:22.832 --> 00:01:29.427
+A rule that every change must follow is different from a specialist role, and both are
+
+22
+00:01:29.427 --> 00:01:33.549
+different from a procedure used only for a particular task.
+
+23
+00:01:33.549 --> 00:01:38.907
+Second, write a delegated task that a subagent can understand on its own.
+
+24
+00:01:38.907 --> 00:01:45.503
+It should know the goal, the relevant context, the files it may touch, and what result
+
+25
+00:01:45.503 --> 00:01:46.327
+to return.
+
+26
+00:01:46.327 --> 00:01:49.624
+A vague request to help is not enough.
+
+27
+00:01:49.624 --> 00:01:52.922
+Third, choose a coordination strategy for one repository.
+
+28
+00:01:52.922 --> 00:01:54.983
+Sometimes separate worktrees are appropriate.
+
+29
+00:01:54.983 --> 00:02:00.342
+Sometimes the simpler and safer choice is several readers and only one writer.
+
+30
+00:02:00.342 --> 00:02:06.937
+Sometimes independent files can be assigned to separate writers, provided the shared contract is already fixed.
+
+31
+00:02:06.937 --> 00:02:10.234
+Fourth, check the result using the actual requirements.
+
+32
+00:02:10.234 --> 00:02:16.829
+Passing a test suite matters, but it does not replace inspecting the user flow or checking
+
+33
+00:02:16.829 --> 00:02:20.539
+that a priority rule behaves correctly at its boundary.
+
+34
+00:02:20.539 --> 00:02:25.486
+You will leave with a runnable starter, reusable examples, and lab solutions.
+
+35
+00:02:25.486 --> 00:02:32.081
+Treat those solutions as an answer key, not as files to copy before attempting the exercise.
+
+36
+00:02:33.500 --> 00:02:36.482
+The session has a hard three-hour boundary.
+
+37
+00:02:36.482 --> 00:02:43.296
+The first hour includes explanation and demonstrations; it is not an hour of slides followed by
+
+38
+00:02:43.296 --> 00:02:44.148
+extra demonstrations.
+
+39
+00:02:44.148 --> 00:02:46.704
+The remaining two hours are hands-on.
+
+40
+00:02:46.704 --> 00:02:49.685
+Before the event, complete the attendee preflight.
+
+41
+00:02:49.685 --> 00:02:56.500
+Install a supported Node version, check your Git and Copilot access, open the starter, and run
+
+42
+00:02:56.500 --> 00:02:57.778
+its baseline checks.
+
+43
+00:02:57.778 --> 00:03:03.315
+Downloading software and resolving organizational policy issues should happen before the clock starts.
+
+44
+00:03:03.315 --> 00:03:09.278
+For the first fifteen minutes we establish the vocabulary and tour the two interfaces.
+
+45
+00:03:09.278 --> 00:03:16.093
+The next twenty minutes show how to create a useful custom agent and a skill, then
+
+46
+00:03:16.093 --> 00:03:17.797
+delegate a real task.
+
+47
+00:03:17.797 --> 00:03:24.612
+The final twenty-five minutes of the first hour concentrate on safe parallel work, integration, and review.
+
+48
+00:03:24.612 --> 00:03:29.723
+The four labs are timed at thirty, thirty-five, forty, and fifteen minutes.
+
+49
+00:03:29.723 --> 00:03:33.556
+Their short checkpoints and debriefs are inside those allocations.
+
+50
+00:03:33.556 --> 00:03:37.390
+There is no hidden additional break or setup period.
+
+51
+00:03:37.390 --> 00:03:44.204
+If you need a break, take it during a lab work period and use the hint
+
+52
+00:03:44.204 --> 00:03:45.908
+ladder to catch up.
+
+53
+00:03:45.908 --> 00:03:50.167
+The facilitator guide identifies the live demonstrations and optional extensions.
+
+54
+00:03:50.167 --> 00:03:56.982
+Extensions are deliberately outside the three-hour core, so advanced participants can go deeper without making everyone
+
+55
+00:03:56.982 --> 00:03:57.834
+else late.
+
+56
+00:03:59.000 --> 00:04:04.183
+Think of the model as the engine that proposes useful next steps.
+
+57
+00:04:04.183 --> 00:04:07.638
+The harness is the machinery around that engine.
+
+58
+00:04:07.638 --> 00:04:11.956
+It supplies context, exposes tools, handles approvals, and organizes execution.
+
+59
+00:04:11.956 --> 00:04:17.571
+Changing the model does not automatically change the harness or its configuration format.
+
+60
+00:04:17.571 --> 00:04:20.162
+A custom agent is a definition.
+
+61
+00:04:20.162 --> 00:04:27.072
+For example, a reviewer definition says what to review, which tools to use, and how to
+
+62
+00:04:27.072 --> 00:04:27.936
+report findings.
+
+63
+00:04:27.936 --> 00:04:34.846
+You can select that reviewer directly, or another agent can invoke it for a delegated task.
+
+64
+00:04:34.846 --> 00:04:40.460
+A subagent is the delegated execution, not necessarily another file you must author.
+
+65
+00:04:40.460 --> 00:04:43.052
+Built-in agents can be subagents too.
+
+66
+00:04:43.052 --> 00:04:49.962
+Separate context means the specialist can investigate without filling the main conversation with all its intermediate
+
+67
+00:04:49.962 --> 00:04:50.394
+material.
+
+68
+00:04:50.394 --> 00:04:53.849
+A skill is closer to a reusable recipe.
+
+69
+00:04:53.849 --> 00:04:59.463
+It may contain a checklist, a reference document, a script, or an example.
+
+70
+00:04:59.463 --> 00:05:04.646
+The agent loads it when relevant or when you invoke it explicitly.
+
+71
+00:05:04.646 --> 00:05:10.692
+Finally, a session is the ongoing unit of work with its conversation and workspace.
+
+72
+00:05:10.692 --> 00:05:16.738
+A top-level session, a custom agent definition, and a subagent call are not interchangeable.
+
+73
+00:05:16.738 --> 00:05:23.648
+Keeping those concepts separate makes the user interfaces and the configuration examples much easier to understand.
+
+74
+00:05:25.000 --> 00:05:28.914
+Here is the most important warning in the workshop.
+
+75
+00:05:28.914 --> 00:05:32.394
+Separate conversations are not proof of separate files.
+
+76
+00:05:32.394 --> 00:05:39.352
+If two agents use the same checkout and both edit the same module, one can overwrite
+
+77
+00:05:39.352 --> 00:05:40.657
+the other's change.
+
+78
+00:05:40.657 --> 00:05:45.441
+Imagine two cooks with separate recipe cards but one cutting board.
+
+79
+00:05:45.441 --> 00:05:49.356
+Their instructions are separate; their working surface is shared.
+
+80
+00:05:49.356 --> 00:05:52.835
+Separate subagent context is like separate recipe cards.
+
+81
+00:05:52.835 --> 00:05:59.794
+A worktree is more like giving each cook a separate preparation area, although they still share
+
+82
+00:05:59.794 --> 00:06:01.099
+the kitchen's utilities.
+
+83
+00:06:01.099 --> 00:06:04.578
+Git worktrees separate working directories and normally branches.
+
+84
+00:06:04.578 --> 00:06:10.667
+They do not automatically restrict access to your computer, credentials, network, or external services.
+
+85
+00:06:10.667 --> 00:06:15.016
+Sandboxing and tool permissions address different parts of that problem.
+
+86
+00:06:15.016 --> 00:06:18.495
+There can also be shared resources beyond code.
+
+87
+00:06:18.495 --> 00:06:22.410
+Two servers may try to use the same port.
+
+88
+00:06:22.410 --> 00:06:25.454
+Tests may write the same report file.
+
+89
+00:06:25.454 --> 00:06:29.368
+Concurrent Git commands in one checkout share its index.
+
+90
+00:06:29.368 --> 00:06:35.457
+Different branches in the same folder are not a safe substitute for different worktrees.
+
+91
+00:06:35.457 --> 00:06:42.416
+Throughout the labs, we will identify the actual workspace, the allowed write set, and the shared
+
+92
+00:06:42.416 --> 00:06:44.591
+resources before allowing parallel implementation.
+
+93
+00:06:44.591 --> 00:06:48.505
+When you cannot establish safe boundaries, serialize the writes.
+
+94
+00:06:50.000 --> 00:06:57.211
+These materials use live official GitHub and VS Code documentation checked on November seventh, twenty twenty-six,
+
+95
+00:06:57.211 --> 00:07:02.168
+rather than treating a model's training data as a product reference.
+
+96
+00:07:02.168 --> 00:07:06.675
+An important example is the October twenty-eighth VS Code release.
+
+97
+00:07:06.675 --> 00:07:13.885
+It documents the Copilot harness as the default for new sessions in both the editor and
+
+98
+00:07:13.885 --> 00:07:14.787
+Agents window.
+
+99
+00:07:14.787 --> 00:07:18.392
+Earlier examples often assume the older Local harness.
+
+100
+00:07:18.392 --> 00:07:22.899
+That difference affects tool names, handoff support, and agent configuration.
+
+101
+00:07:22.899 --> 00:07:26.955
+We will label the harness for each runnable example.
+
+102
+00:07:26.955 --> 00:07:34.165
+A target field helps the editor interpret a file, but it does not switch the session's
+
+103
+00:07:34.165 --> 00:07:35.067
+actual harness.
+
+104
+00:07:35.067 --> 00:07:36.869
+You must check both.
+
+105
+00:07:36.869 --> 00:07:38.672
+Availability is not uniform.
+
+106
+00:07:38.672 --> 00:07:44.531
+The Copilot app is documented for all Copilot plans, subject to organizational policy.
+
+107
+00:07:44.531 --> 00:07:46.784
+App Projects are public preview.
+
+108
+00:07:46.784 --> 00:07:50.389
+The customization marketplace and connectors are preview experiences.
+
+109
+00:07:50.389 --> 00:07:53.544
+Computer use is experimental and requires permission.
+
+110
+00:07:53.544 --> 00:07:58.952
+None of those optional capabilities is necessary to finish our core labs.
+
+111
+00:07:58.952 --> 00:08:02.107
+Every product claim has a source identifier.
+
+112
+00:08:02.107 --> 00:08:05.712
+The source ledger provides canonical links and caveats.
+
+113
+00:08:05.712 --> 00:08:12.021
+Before teaching this workshop later, recheck the ledger and the versions attendees actually have.
+
+114
+00:08:12.021 --> 00:08:19.232
+A verification date is an honest snapshot, not a promise that a fast-moving interface will never
+
+115
+00:08:19.232 --> 00:08:19.683
+change.
+
+116
+00:08:21.000 --> 00:08:26.094
+The GitHub Copilot app is a desktop application built around agent-driven development.
+
+117
+00:08:26.094 --> 00:08:29.489
+Its official documentation supports Windows, macOS, and Linux.
+
+118
+00:08:29.489 --> 00:08:36.281
+Think of it as a place to direct work and review results, rather than only a
+
+119
+00:08:36.281 --> 00:08:37.129
+code editor.
+
+120
+00:08:37.129 --> 00:08:43.921
+A Project is useful when a goal continues over time and may require several sessions or
+
+121
+00:08:43.921 --> 00:08:44.345
+repositories.
+
+122
+00:08:44.345 --> 00:08:46.043
+Projects are public preview.
+
+123
+00:08:46.043 --> 00:08:51.137
+A session is the more concrete unit that works on a task.
+
+124
+00:08:51.137 --> 00:08:55.806
+For this workshop, one repository and one bounded feature are enough.
+
+125
+00:08:55.806 --> 00:09:01.324
+When you start a session, choose where it runs and where it edits.
+
+126
+00:09:01.324 --> 00:09:04.719
+A new worktree provides a separate working copy.
+
+127
+00:09:04.719 --> 00:09:09.388
+Current checkout uses existing files and can therefore overlap other writers.
+
+128
+00:09:09.388 --> 00:09:12.784
+Read the workspace selector rather than assuming isolation.
+
+129
+00:09:12.784 --> 00:09:16.180
+The app offers Plan, Interactive, and Autopilot modes.
+
+130
+00:09:16.180 --> 00:09:20.000
+Plan allows you to review the approach before implementation.
+
+131
+00:09:20.000 --> 00:09:21.698
+Interactive supports collaborative steering.
+
+132
+00:09:21.698 --> 00:09:28.489
+Autopilot is appropriate for sufficiently clear tasks, but it does not remove the need to review
+
+133
+00:09:28.489 --> 00:09:29.338
+the result.
+
+134
+00:09:29.338 --> 00:09:32.309
+Tool permission settings are a separate decision.
+
+135
+00:09:32.309 --> 00:09:37.403
+A session can still need approval for a command or external action.
+
+136
+00:09:37.403 --> 00:09:44.194
+Use the Changes view and the actual test output to decide whether the work is ready.
+
+137
+00:09:44.194 --> 00:09:48.863
+The app's convenience does not make every completed agent response correct.
+
+138
+00:09:50.000 --> 00:09:55.652
+In the live demonstration, open the issue triage repository in the Copilot app.
+
+139
+00:09:55.652 --> 00:10:01.740
+Before sending a prompt, point out the environment, workspace, mode, model, and permission settings.
+
+140
+00:10:01.740 --> 00:10:08.262
+These controls answer different questions, so do not collapse them into one idea of autonomy.
+
+141
+00:10:08.262 --> 00:10:15.218
+Start with a planning request: explain how to add a triage rule, identify affected files, and
+
+142
+00:10:15.218 --> 00:10:17.393
+return test cases without editing.
+
+143
+00:10:17.393 --> 00:10:24.349
+The result should tell us where the work belongs and what evidence will prove it correct.
+
+144
+00:10:24.349 --> 00:10:26.089
+Next, review that plan.
+
+145
+00:10:26.089 --> 00:10:31.741
+If it proposes a new framework, a database, or external credentials, redirect it.
+
+146
+00:10:31.741 --> 00:10:34.785
+Our application is intentionally small and offline.
+
+147
+00:10:34.785 --> 00:10:38.263
+We want practice with agents, not infrastructure troubleshooting.
+
+148
+00:10:38.263 --> 00:10:41.741
+Allow implementation only after the scope is clear.
+
+149
+00:10:41.741 --> 00:10:47.394
+While the agent works, inspect whether its edits stay in the assigned files.
+
+150
+00:10:47.394 --> 00:10:53.046
+If it expands the scope, steer the same session with a concrete correction.
+
+151
+00:10:53.046 --> 00:10:58.264
+At the end, open the complete diff and run the documented checks.
+
+152
+00:10:58.264 --> 00:11:02.612
+A response saying all done is not our acceptance criterion.
+
+153
+00:11:02.612 --> 00:11:09.134
+We need the rule's expected output, tests of its edge cases, and no unrelated edits.
+
+154
+00:11:09.134 --> 00:11:16.091
+If the desktop app is unavailable under your organization's policy, perform the same bounded workflow in
+
+155
+00:11:16.091 --> 00:11:16.960
+VS Code.
+
+156
+00:11:16.960 --> 00:11:21.308
+The safety pattern is portable even when the buttons differ.
+
+157
+00:11:22.500 --> 00:11:28.648
+In VS Code, the Agents window is an agent-first interface alongside the regular editor.
+
+158
+00:11:28.648 --> 00:11:32.161
+The documented command is Chat: Open Agents window.
+
+159
+00:11:32.161 --> 00:11:36.113
+The command-line alternative is code, space, double dash agents.
+
+160
+00:11:36.113 --> 00:11:40.505
+The primary sidebar helps you organize sessions and open customizations.
+
+161
+00:11:40.505 --> 00:11:45.335
+The central area is the conversation where you direct the task.
+
+162
+00:11:45.335 --> 00:11:50.166
+The secondary sidebar exposes files, changes, search, and available validation tools.
+
+163
+00:11:50.166 --> 00:11:57.192
+The schematic on this slide is an original orientation diagram, not a screenshot of a particular
+
+164
+00:11:57.192 --> 00:11:57.631
+build.
+
+165
+00:11:57.631 --> 00:12:03.779
+Use the live interface in the demonstration and explain the actual labels attendees see.
+
+166
+00:12:03.779 --> 00:12:10.805
+When you create a session for a Git repository, Branch uses the selected current folder, while
+
+167
+00:12:10.805 --> 00:12:15.636
+New Worktree starts from committed files in a separate working directory.
+
+168
+00:12:15.636 --> 00:12:22.662
+A new worktree requires a repository with a commit, and it does not automatically contain uncommitted
+
+169
+00:12:22.662 --> 00:12:23.540
+custom-agent files.
+
+170
+00:12:23.540 --> 00:12:29.688
+Multiple panes are useful for monitoring, but only one is active at a time.
+
+171
+00:12:29.688 --> 00:12:35.836
+Check the active session before giving feedback, starting a terminal, or opening a browser.
+
+172
+00:12:35.836 --> 00:12:41.106
+The editor and Agents window can continue supported sessions without starting over.
+
+173
+00:12:41.106 --> 00:12:44.179
+Remote and cloud execution have additional requirements.
+
+174
+00:12:44.179 --> 00:12:51.206
+For our labs, local execution keeps the setup small and makes it easy to inspect exactly
+
+175
+00:12:51.206 --> 00:12:52.523
+which files changed.
+
+176
+00:12:54.000 --> 00:13:00.259
+A Markdown file can be discovered in two environments yet behave differently in each.
+
+177
+00:13:00.259 --> 00:13:03.388
+This is why we label our examples.
+
+178
+00:13:03.388 --> 00:13:10.541
+For the Copilot harness, the current VS Code file reference documents built-in tool aliases including read,
+
+179
+00:13:10.541 --> 00:13:12.776
+search, edit, execute, and agent.
+
+180
+00:13:12.776 --> 00:13:15.458
+Native delegation uses the task tool.
+
+181
+00:13:15.458 --> 00:13:21.270
+The skills field can name enabled skills to load into an agent's context.
+
+182
+00:13:21.270 --> 00:13:25.740
+For Local, delegation uses the VS Code run subagent tool.
+
+183
+00:13:25.740 --> 00:13:31.552
+Local supports an agents list to limit which specialists a coordinator may invoke.
+
+184
+00:13:31.552 --> 00:13:33.787
+Local also supports custom-agent handoffs.
+
+185
+00:13:33.787 --> 00:13:40.940
+Do not copy the Local agents list or handoffs into a Copilot-targeted example and expect the
+
+186
+00:13:40.940 --> 00:13:41.834
+same effect.
+
+187
+00:13:41.834 --> 00:13:45.857
+Conversely, Local does not accept the Copilot skills field.
+
+188
+00:13:45.857 --> 00:13:50.328
+Local skills are discovered or explicitly invoked using supported mechanisms.
+
+189
+00:13:50.328 --> 00:13:57.480
+The target property tells the editor which schema to interpret: vscode for Local, or github-copilot for
+
+190
+00:13:57.480 --> 00:13:57.927
+Copilot.
+
+191
+00:13:57.927 --> 00:14:03.739
+It does not change the runtime you selected in the Session Target control.
+
+192
+00:14:03.739 --> 00:14:10.445
+For every example, first select the intended harness, then check discovery and actual tool activity.
+
+193
+00:14:10.445 --> 00:14:17.597
+Editor completion is useful, but it is not proof that the runtime has a particular tool.
+
+194
+00:14:17.597 --> 00:14:24.750
+Our fallback is always a self-contained prompt and a sequential workflow, not pretending unsupported fields are
+
+195
+00:14:24.750 --> 00:14:25.197
+enforced.
+
+196
+00:14:26.500 --> 00:14:29.972
+A strong task prompt is a compact contract.
+
+197
+00:14:29.972 --> 00:14:36.916
+It says what success looks like and gives the agent enough information to find and verify
+
+198
+00:14:36.916 --> 00:14:38.218
+the right change.
+
+199
+00:14:38.218 --> 00:14:41.690
+Compare make triage smarter with a specific request.
+
+200
+00:14:41.690 --> 00:14:45.596
+Add deterministic priority classification for the fictional issue fixtures.
+
+201
+00:14:45.596 --> 00:14:48.199
+Preserve the existing issue input shape.
+
+202
+00:14:48.199 --> 00:14:49.935
+Do not add dependencies.
+
+203
+00:14:49.935 --> 00:14:53.841
+Limit implementation to the priority module and its tests.
+
+204
+00:14:53.841 --> 00:14:58.615
+Include a boundary case and a case that must remain unchanged.
+
+205
+00:14:58.615 --> 00:15:04.257
+The second version is more useful because it constrains both behavior and scope.
+
+206
+00:15:04.257 --> 00:15:11.201
+The agent can still choose implementation details, but it does not have to invent your business
+
+207
+00:15:11.201 --> 00:15:11.635
+requirements.
+
+208
+00:15:11.635 --> 00:15:15.975
+For delegation, add the allowed actions and the result format.
+
+209
+00:15:15.975 --> 00:15:21.183
+A research worker should return paths, existing patterns, and unknowns without editing.
+
+210
+00:15:21.183 --> 00:15:25.523
+An implementation worker should return changed files and validation evidence.
+
+211
+00:15:25.523 --> 00:15:32.032
+A reviewer should not claim to have executed tests when it has only reading tools.
+
+212
+00:15:32.032 --> 00:15:38.976
+Include a stopping condition: stop after the assigned feature passes its checks, or report the specific
+
+213
+00:15:38.976 --> 00:15:42.014
+blocker rather than expanding into unrelated work.
+
+214
+00:15:42.014 --> 00:15:45.052
+This is context engineering in practical terms.
+
+215
+00:15:45.052 --> 00:15:51.996
+You are selecting the information the agent needs, not pasting the entire repository or an unrelated
+
+216
+00:15:51.996 --> 00:15:53.732
+conversation into every call.
+
+217
+00:15:55.000 --> 00:16:02.455
+Repository instructions hold durable conventions such as the test command, the supported runtime, and the rule
+
+218
+00:16:02.455 --> 00:16:04.784
+that fixtures must be synthetic.
+
+219
+00:16:04.784 --> 00:16:09.444
+Those should not be repeated differently in every specialist definition.
+
+220
+00:16:09.444 --> 00:16:15.035
+The repository-wide Copilot file is dot github slash copilot instructions dot markdown.
+
+221
+00:16:15.035 --> 00:16:22.490
+Path-specific instructions can live in the instructions directory with an apply-to pattern, subject to the surface's
+
+222
+00:16:22.490 --> 00:16:22.956
+support.
+
+223
+00:16:22.956 --> 00:16:30.410
+AGENTS dot markdown is another supported instruction format in some experiences; do not assume identical activation
+
+224
+00:16:30.410 --> 00:16:31.808
+across all clients.
+
+225
+00:16:31.808 --> 00:16:36.001
+For our small starter, keep the shared guidance short.
+
+226
+00:16:36.001 --> 00:16:43.456
+Describe the application, the commands, the contract boundary, and the rule against adding dependencies or changing
+
+227
+00:16:43.456 --> 00:16:45.320
+shared files without coordination.
+
+228
+00:16:45.320 --> 00:16:48.115
+There is an important inheritance caveat.
+
+229
+00:16:48.115 --> 00:16:55.570
+GitHub's current custom-agent documentation says repository instructions are not included by default for custom subagents in
+
+230
+00:16:55.570 --> 00:16:56.502
+Copilot CLI.
+
+231
+00:16:56.502 --> 00:17:00.695
+Therefore, our delegated briefs explicitly include the critical invariants.
+
+232
+00:17:00.695 --> 00:17:05.821
+An opt-in or client-specific conversion should not be your only defense.
+
+233
+00:17:05.821 --> 00:17:10.014
+Instructions guide behavior, but do not enforce file permissions.
+
+234
+00:17:10.014 --> 00:17:15.605
+Saying do not edit a file is useful guidance, not a lock.
+
+235
+00:17:15.605 --> 00:17:20.264
+Use tools, approvals, scope checks, and review alongside that guidance.
+
+236
+00:17:20.264 --> 00:17:27.719
+In the first lab, you will author and verify these instructions rather than turning them into
+
+237
+00:17:27.719 --> 00:17:30.981
+a long document that nobody can evaluate.
+
+238
+00:17:32.000 --> 00:17:34.492
+Here is a small custom-agent definition.
+
+239
+00:17:34.492 --> 00:17:41.136
+The frontmatter gives it a name, explains when it is useful, and selects reading and search
+
+240
+00:17:41.136 --> 00:17:41.551
+tools.
+
+241
+00:17:41.551 --> 00:17:46.949
+The Markdown body tells it what decisions to make and how to report.
+
+242
+00:17:46.949 --> 00:17:48.610
+The restriction is deliberate.
+
+243
+00:17:48.610 --> 00:17:52.763
+This reviewer does not need terminal execution, edits, or delegation.
+
+244
+00:17:52.763 --> 00:17:56.915
+Removing those tools makes the role easier to reason about.
+
+245
+00:17:56.915 --> 00:18:02.729
+Still, verify actual runtime activity, because tool restrictions can differ by harness and client.
+
+246
+00:18:02.729 --> 00:18:08.127
+The agent should report actionable behavior defects and missing tests with file references.
+
+247
+00:18:08.127 --> 00:18:11.864
+It should explain the impact and suggest a fix.
+
+248
+00:18:11.864 --> 00:18:18.093
+If it finds nothing, it should say so and identify checks it could not perform.
+
+249
+00:18:18.093 --> 00:18:23.076
+To verify it, select the intended harness and start a fresh chat.
+
+250
+00:18:23.076 --> 00:18:29.720
+Attach one known source file and its tests, ask for a review, then inspect the findings
+
+251
+00:18:29.720 --> 00:18:30.966
+against the code.
+
+252
+00:18:30.966 --> 00:18:34.703
+Also inspect the tool calls and the working tree.
+
+253
+00:18:34.703 --> 00:18:40.517
+A reviewer with read-only tools should not report that it ran the test suite.
+
+254
+00:18:40.517 --> 00:18:43.008
+Discovery is only the first checkpoint.
+
+255
+00:18:43.008 --> 00:18:48.406
+A visible agent that produces vague advice is not yet a useful agent.
+
+256
+00:18:48.406 --> 00:18:52.974
+In the workshop repository, starter templates are separated from completed answers.
+
+257
+00:18:52.974 --> 00:18:59.618
+You will adapt a role to a real recurring task, not just rename an expert persona.
+
+258
+00:19:01.000 --> 00:19:05.135
+A skill is a directory, not only a Markdown paragraph.
+
+259
+00:19:05.135 --> 00:19:10.510
+The required SKILL dot markdown file starts with a name and a description.
+
+260
+00:19:10.510 --> 00:19:15.885
+The name uses lowercase letters, numbers, and hyphens, and matches the parent directory.
+
+261
+00:19:15.885 --> 00:19:21.260
+The description states both what the skill does and when to use it.
+
+262
+00:19:21.260 --> 00:19:23.327
+Our example is test changes.
+
+263
+00:19:23.327 --> 00:19:29.943
+Its procedure identifies the tests covering a change, runs the documented commands, and reports passed, failed,
+
+264
+00:19:29.943 --> 00:19:31.183
+and not-run checks.
+
+265
+00:19:31.183 --> 00:19:37.799
+A reference file can explain the output format, and a supporting script can perform a deterministic
+
+266
+00:19:37.799 --> 00:19:38.212
+check.
+
+267
+00:19:38.212 --> 00:19:43.174
+Keep paths relative to the skill file when referring to its resources.
+
+268
+00:19:43.174 --> 00:19:49.789
+If you move only SKILL dot markdown and leave the script behind, you have not installed
+
+269
+00:19:49.789 --> 00:19:51.030
+the complete skill.
+
+270
+00:19:51.030 --> 00:19:54.337
+Automatic relevance selection is useful but not guaranteed.
+
+271
+00:19:54.337 --> 00:19:57.232
+Test explicit invocation and automatic selection separately.
+
+272
+00:19:57.232 --> 00:20:03.847
+If a skill is available as a slash command, invoke it on a small known task
+
+273
+00:20:03.847 --> 00:20:07.982
+and inspect whether its instructions and resources were actually used.
+
+274
+00:20:07.982 --> 00:20:11.703
+A skill does not grant permission to execute commands.
+
+275
+00:20:11.703 --> 00:20:15.838
+The active agent still needs the relevant tools and approvals.
+
+276
+00:20:15.838 --> 00:20:18.319
+Review every script before trusting it.
+
+277
+00:20:18.319 --> 00:20:24.934
+This is the first step toward reliable agent composition: give the specialist a repeatable procedure rather
+
+278
+00:20:24.934 --> 00:20:27.828
+than hoping it remembers your preferred process.
+
+279
+00:20:29.000 --> 00:20:35.986
+Skills help manage context because the agent can discover a concise description before loading the full
+
+280
+00:20:35.986 --> 00:20:37.733
+procedure and its resources.
+
+281
+00:20:37.733 --> 00:20:40.353
+This is often called progressive disclosure.
+
+282
+00:20:40.353 --> 00:20:44.282
+It avoids putting every possible checklist into every conversation.
+
+283
+00:20:44.282 --> 00:20:46.902
+But you must evaluate the behavior.
+
+284
+00:20:46.902 --> 00:20:50.832
+A skill can exist on disk without being discovered.
+
+285
+00:20:50.832 --> 00:20:53.888
+It can be discovered without being selected.
+
+286
+00:20:53.888 --> 00:20:57.818
+It can be selected without successfully executing its script.
+
+287
+00:20:57.818 --> 00:20:59.564
+Use three small probes.
+
+288
+00:20:59.564 --> 00:21:05.677
+A positive request clearly matches the skill, such as validate the changed priority rule.
+
+289
+00:21:05.677 --> 00:21:12.227
+A negative request, such as explain the application layout, should not unnecessarily run that procedure.
+
+290
+00:21:12.227 --> 00:21:17.030
+An ambiguous request helps you see whether the description needs refinement.
+
+291
+00:21:17.030 --> 00:21:19.650
+Inspect the result and tool activity.
+
+292
+00:21:19.650 --> 00:21:22.706
+Did it read the referenced report format?
+
+293
+00:21:22.706 --> 00:21:25.326
+Did it run the expected command?
+
+294
+00:21:25.326 --> 00:21:29.692
+Did it distinguish a skipped check from a passing one?
+
+295
+00:21:29.692 --> 00:21:32.312
+A convincing-looking report is not proof.
+
+296
+00:21:32.312 --> 00:21:39.298
+Review scripts and data access before enabling a skill, especially one acquired from a marketplace or
+
+297
+00:21:39.298 --> 00:21:40.172
+another repository.
+
+298
+00:21:40.172 --> 00:21:42.355
+Skills can include executable code.
+
+299
+00:21:42.355 --> 00:21:45.848
+Avoid loading too many skills into a specialist.
+
+300
+00:21:45.848 --> 00:21:49.778
+Give it the few procedures relevant to its role.
+
+301
+00:21:49.778 --> 00:21:56.764
+If the role has only read tools, it can describe a verification plan, but it cannot
+
+302
+00:21:56.764 --> 00:22:00.257
+truthfully claim to have run an execution-based skill.
+
+303
+00:22:01.500 --> 00:22:04.896
+Now we combine a role and a recipe.
+
+304
+00:22:04.896 --> 00:22:11.688
+In the Copilot harness, the current VS Code reference supports a skills array in the custom-agent
+
+305
+00:22:11.688 --> 00:22:12.112
+frontmatter.
+
+306
+00:22:12.112 --> 00:22:16.357
+It names enabled skills to load into that agent's context.
+
+307
+00:22:16.357 --> 00:22:23.148
+For example, an implementer can have read, search, edit, and execute tools plus the test changes
+
+308
+00:22:23.148 --> 00:22:23.573
+skill.
+
+309
+00:22:23.573 --> 00:22:30.365
+Its body still specifies the allowed files, the behavior to implement, and the required handoff evidence.
+
+310
+00:22:30.365 --> 00:22:33.336
+The skill supplies the repeatable validation procedure.
+
+311
+00:22:33.336 --> 00:22:37.156
+In Local, do not paste the Copilot skills field.
+
+312
+00:22:37.156 --> 00:22:43.948
+Use supported skill discovery or explicit invocation and tell the worker to follow the relevant procedure.
+
+313
+00:22:43.948 --> 00:22:49.042
+The repository includes harness-labelled examples so you can compare them without guessing.
+
+314
+00:22:49.042 --> 00:22:55.833
+Preloading a skill does not prove it ran, and a disabled or unavailable skill may still
+
+315
+00:22:55.833 --> 00:22:57.531
+appear in editor inventories.
+
+316
+00:22:57.531 --> 00:23:00.503
+Verify the skill's actual availability and use.
+
+317
+00:23:00.503 --> 00:23:03.049
+Also consider whether execute is necessary.
+
+318
+00:23:03.049 --> 00:23:09.417
+A read-only researcher does not need it just because another specialist uses a test skill.
+
+319
+00:23:09.417 --> 00:23:14.510
+Adding terminal access expands the worker's capabilities beyond a simple file editor.
+
+320
+00:23:14.510 --> 00:23:21.302
+For a beginner, the main lesson is composition: the agent answers who is responsible, the skill
+
+321
+00:23:21.302 --> 00:23:28.094
+answers how a repeated task is performed, and the task brief answers what must be achieved
+
+322
+00:23:28.094 --> 00:23:28.943
+this time.
+
+323
+00:23:30.000 --> 00:23:35.379
+For the live demonstration, begin with a fresh chat and the correct harness.
+
+324
+00:23:35.379 --> 00:23:39.930
+Open Customizations, create a workspace reviewer, and show the generated file.
+
+325
+00:23:39.930 --> 00:23:43.654
+Replace vague persona language with a focused output contract.
+
+326
+00:23:43.654 --> 00:23:46.964
+Ask it to inspect a small source file.
+
+327
+00:23:46.964 --> 00:23:51.929
+Show the tool activity and explain why it should not execute tests.
+
+328
+00:23:51.929 --> 00:23:56.894
+If the report implies tests passed, challenge it and refine the instructions.
+
+329
+00:23:56.894 --> 00:23:59.376
+Then create a test changes skill.
+
+330
+00:23:59.376 --> 00:24:03.927
+Include a report template as a real resource in its directory.
+
+331
+00:24:03.927 --> 00:24:10.547
+Invoke it explicitly using the interface supported by the selected harness, and ask it to validate
+
+332
+00:24:10.547 --> 00:24:11.375
+the starter.
+
+333
+00:24:11.375 --> 00:24:13.030
+Inspect the command output.
+
+334
+00:24:13.030 --> 00:24:19.236
+Next, use a plain-language request that matches the description and check whether automatic selection happens.
+
+335
+00:24:19.236 --> 00:24:25.856
+If it does not, this is a useful demonstration of why discovery is not a guarantee.
+
+336
+00:24:25.856 --> 00:24:32.062
+Finally, supply a task that needs a browser check but do not grant browser tools.
+
+337
+00:24:32.062 --> 00:24:37.027
+The correct report marks that check as not run, with a reason.
+
+338
+00:24:37.027 --> 00:24:40.337
+It must not turn unavailable capability into success.
+
+339
+00:24:40.337 --> 00:24:45.302
+This demonstration is included in the first hour and is intentionally small.
+
+340
+00:24:45.302 --> 00:24:51.922
+The lab gives you time to write your own files, test their behavior, and collect evidence.
+
+341
+00:24:51.922 --> 00:24:58.128
+Do not use the demonstration as an excuse to skip verification in your own session.
+
+342
+00:24:59.500 --> 00:25:06.122
+Delegation is useful when a separate context can contain a meaningful amount of independent work.
+
+343
+00:25:06.122 --> 00:25:10.977
+A research specialist can read a module and return its contract.
+
+344
+00:25:10.977 --> 00:25:14.509
+A worker can implement one independently owned feature.
+
+345
+00:25:14.509 --> 00:25:17.599
+A reviewer can inspect a completed change.
+
+346
+00:25:17.599 --> 00:25:20.247
+Delegation is not automatically an improvement.
+
+347
+00:25:20.247 --> 00:25:27.310
+Splitting a tiny edit into several conversations can take longer and consume more AI usage than
+
+348
+00:25:27.310 --> 00:25:28.635
+doing it directly.
+
+349
+00:25:28.635 --> 00:25:35.256
+A task that depends on another unfinished result is not ready to run in parallel.
+
+350
+00:25:35.256 --> 00:25:42.319
+The current GitHub documentation describes an orchestrator that breaks down work, identifies dependencies, assigns context and
+
+351
+00:25:42.319 --> 00:25:44.085
+tools, and combines results.
+
+352
+00:25:44.085 --> 00:25:51.148
+The app and CLI offer fleet mode for suitable tasks, but fleet mode does not make
+
+353
+00:25:51.148 --> 00:25:53.355
+an unsafe write set safe.
+
+354
+00:25:53.355 --> 00:25:56.886
+For our first delegated exercise, choose read-only research.
+
+355
+00:25:56.886 --> 00:26:02.625
+It gives you practice with context and result contracts without introducing overlapping writers.
+
+356
+00:26:02.625 --> 00:26:05.274
+Remember that behavior varies by harness.
+
+357
+00:26:05.274 --> 00:26:10.571
+Local subagent invocations are stateless and do not inherit the full conversation.
+
+358
+00:26:10.571 --> 00:26:14.985
+Another Local review requires a new invocation with updated context.
+
+359
+00:26:14.985 --> 00:26:21.165
+Copilot supports its own delegation lifecycle, so do not teach Local limitations as universal.
+
+360
+00:26:21.165 --> 00:26:25.138
+Start with one specialist and a clear stopping condition.
+
+361
+00:26:25.138 --> 00:26:29.552
+Add parallelism only when the work genuinely benefits from it.
+
+362
+00:26:31.000 --> 00:26:33.963
+This slide is a worked delegation brief.
+
+363
+00:26:33.963 --> 00:26:39.890
+We ask a researcher to find the priority behavior in the issue triage application.
+
+364
+00:26:39.890 --> 00:26:46.664
+We provide the current contract and the repository constraints, then explicitly forbid edits and command execution.
+
+365
+00:26:46.664 --> 00:26:50.897
+The expected result is not an essay about best practices.
+
+366
+00:26:50.897 --> 00:26:57.671
+It is a list of relevant paths, the current input and output shapes, existing test patterns,
+
+367
+00:26:57.671 --> 00:27:00.634
+and unresolved questions that might affect implementation.
+
+368
+00:27:00.634 --> 00:27:02.328
+Make the request self-contained.
+
+369
+00:27:02.328 --> 00:27:09.101
+If the main conversation established that all fixtures are synthetic or that dependencies must not change,
+
+370
+00:27:09.101 --> 00:27:10.371
+include those facts.
+
+371
+00:27:10.371 --> 00:27:15.028
+Do not assume the worker received earlier messages or repository instructions.
+
+372
+00:27:15.028 --> 00:27:21.378
+For an implementation worker, replace read-only with an exact write set and include acceptance examples.
+
+373
+00:27:21.378 --> 00:27:27.305
+Ask it to stop and report if it needs to change a shared contract.
+
+374
+00:27:27.305 --> 00:27:30.692
+That is better than silently expanding the assignment.
+
+375
+00:27:30.692 --> 00:27:37.466
+You should be able to evaluate the handoff without rereading all of the worker's intermediate conversation.
+
+376
+00:27:37.466 --> 00:27:41.276
+The report should link evidence to the requested outcome.
+
+377
+00:27:41.276 --> 00:27:48.049
+If the worker's result is incomplete, provide the specific missing context appropriate to the harness's lifecycle.
+
+378
+00:27:48.049 --> 00:27:54.823
+In Local that means a new invocation with the relevant findings, not pretending you can continue
+
+379
+00:27:54.823 --> 00:27:56.516
+the earlier stateless call.
+
+380
+00:27:58.000 --> 00:28:00.847
+This coordinator pattern is deliberately conservative.
+
+381
+00:28:00.847 --> 00:28:08.438
+In a Local harness session, the coordinator lists the exact research and review agents it may
+
+382
+00:28:08.438 --> 00:28:08.912
+use.
+
+383
+00:28:08.912 --> 00:28:14.605
+Its tools include delegation, reading, searching, editing, and the required validation capability.
+
+384
+00:28:14.605 --> 00:28:16.978
+The researcher reads and reports.
+
+385
+00:28:16.978 --> 00:28:18.401
+The coordinator implements.
+
+386
+00:28:18.401 --> 00:28:22.671
+The reviewer reads the changed files and returns findings.
+
+387
+00:28:22.671 --> 00:28:28.364
+There is only one implementation writer, so parallel research cannot overwrite code.
+
+388
+00:28:28.364 --> 00:28:31.685
+The agents allowlist is a Local-specific configuration.
+
+389
+00:28:31.685 --> 00:28:38.327
+Include the agent tool set and use names that exactly match the worker definitions.
+
+390
+00:28:38.327 --> 00:28:45.918
+Picker visibility is separate from model invocation: hiding a worker from the dropdown does not automatically
+
+391
+00:28:45.918 --> 00:28:46.867
+prevent delegation.
+
+392
+00:28:46.867 --> 00:28:51.612
+The coordinator's instructions describe a sequence, not just a persona.
+
+393
+00:28:51.612 --> 00:28:56.830
+Research first, implement from a reviewed plan, verify, then request review.
+
+394
+00:28:56.830 --> 00:29:04.421
+If the review finds a defect, fix it and make a new Local review invocation with
+
+395
+00:29:04.421 --> 00:29:05.845
+the updated context.
+
+396
+00:29:05.845 --> 00:29:12.013
+This is often a better first multi-agent design than two unrestricted general-purpose workers.
+
+397
+00:29:12.013 --> 00:29:15.808
+It uses specialization without forcing difficult merge coordination.
+
+398
+00:29:15.808 --> 00:29:21.027
+In the lab, inspect the tools and files that actually changed.
+
+399
+00:29:21.027 --> 00:29:28.618
+The YAML is useful configuration, but the evidence should show that the workflow followed the intended
+
+400
+00:29:28.618 --> 00:29:29.092
+boundaries.
+
+401
+00:29:30.500 --> 00:29:36.820
+For the Copilot harness, keep the same safe workflow but do not copy Local-only fields.
+
+402
+00:29:36.820 --> 00:29:40.612
+Use native delegation with the supported agent tool alias.
+
+403
+00:29:40.612 --> 00:29:47.353
+A skill can be listed in Copilot frontmatter, but the delegated task still needs the relevant
+
+404
+00:29:47.353 --> 00:29:49.038
+constraints and acceptance checks.
+
+405
+00:29:49.038 --> 00:29:52.830
+The conceptual coordinator remains responsible for the overall goal.
+
+406
+00:29:52.830 --> 00:29:59.572
+It asks a researcher for a focused result, implements or assigns a bounded change, obtains a
+
+407
+00:29:59.572 --> 00:30:01.678
+review, and integrates the evidence.
+
+408
+00:30:01.678 --> 00:30:08.420
+Without the Local agents allowlist field, an instruction naming preferred workers is guidance, not equivalent schema-level
+
+409
+00:30:08.420 --> 00:30:08.841
+enforcement.
+
+410
+00:30:08.841 --> 00:30:13.476
+Review the actual calls and the tools available to the workers.
+
+411
+00:30:13.476 --> 00:30:20.217
+Fleet mode in the app or CLI can analyze a larger prompt and parallelize appropriate subtasks.
+
+412
+00:30:20.217 --> 00:30:26.537
+It may increase AI usage, and it does not automatically isolate files or remove dependencies.
+
+413
+00:30:26.537 --> 00:30:30.750
+Use it only after you have defined safe task boundaries.
+
+414
+00:30:30.750 --> 00:30:37.491
+For this workshop, the portable fallback is to run the same roles sequentially and pass a
+
+415
+00:30:37.491 --> 00:30:39.177
+written handoff between them.
+
+416
+00:30:39.177 --> 00:30:45.918
+You still learn the contracts and quality gates even when native delegation or a newer interface
+
+417
+00:30:45.918 --> 00:30:46.761
+is unavailable.
+
+418
+00:30:46.761 --> 00:30:53.502
+The result should be evaluated in the same way regardless of surface: the correct behavior, the
+
+419
+00:30:53.502 --> 00:30:58.558
+intended file changes, honest validation evidence, and no unapproved expansion of scope.
+
+420
+00:31:00.000 --> 00:31:03.490
+A handoff changes who is active in the conversation.
+
+421
+00:31:03.490 --> 00:31:09.693
+Local custom agents can offer a button that switches to an implementation agent with a prefilled
+
+422
+00:31:09.693 --> 00:31:10.081
+prompt.
+
+423
+00:31:10.081 --> 00:31:15.121
+This is useful when you want to inspect a planning result before continuing.
+
+424
+00:31:15.121 --> 00:31:16.672
+A subagent is different.
+
+425
+00:31:16.672 --> 00:31:22.876
+The main agent invokes a specialist and uses its returned result while retaining ownership of the
+
+426
+00:31:22.876 --> 00:31:23.652
+larger task.
+
+427
+00:31:23.652 --> 00:31:27.141
+You do not have to switch the active agent.
+
+428
+00:31:27.141 --> 00:31:29.467
+A separate session is different again.
+
+429
+00:31:29.467 --> 00:31:34.120
+It is a tracked unit of work that you can direct independently.
+
+430
+00:31:34.120 --> 00:31:39.548
+Its workspace choice determines whether it has separate files or shares an existing checkout.
+
+431
+00:31:39.548 --> 00:31:45.752
+Current VS Code documentation says custom-agent handoffs are supported only by Local, not by the Copilot
+
+432
+00:31:45.752 --> 00:31:46.140
+harness.
+
+433
+00:31:46.140 --> 00:31:52.344
+The example uses send false so that the user reviews the prefilled prompt before sending it.
+
+434
+00:31:52.344 --> 00:31:56.221
+Do not let a missing handoff button block the lab.
+
+435
+00:31:56.221 --> 00:32:02.424
+A concise manual handoff containing the plan, affected files, checks, and remaining decisions achieves the learning
+
+436
+00:32:02.424 --> 00:32:05.139
+objective without relying on that UI feature.
+
+437
+00:32:05.139 --> 00:32:11.342
+Choose the mechanism based on the workflow: transition when a human should review a stage, delegate
+
+438
+00:32:11.342 --> 00:32:17.546
+when a specialist should return a bounded result, and open a separate session when independently tracked
+
+439
+00:32:17.546 --> 00:32:18.709
+work is appropriate.
+
+440
+00:32:20.000 --> 00:32:25.717
+In the live demonstration, use a small triage enhancement from the lab specification.
+
+441
+00:32:25.717 --> 00:32:29.235
+Do not invent the rule during the demonstration.
+
+442
+00:32:29.235 --> 00:32:34.512
+Read its acceptance examples aloud so participants can predict what should happen.
+
+443
+00:32:34.512 --> 00:32:39.788
+Ask a read-only researcher to identify the relevant contract, module, and tests.
+
+444
+00:32:39.788 --> 00:32:46.824
+Review its report and show how the coordinator uses that result rather than repeating the entire
+
+445
+00:32:46.824 --> 00:32:47.264
+investigation.
+
+446
+00:32:47.264 --> 00:32:50.782
+Next, implement the bounded change with one writer.
+
+447
+00:32:50.782 --> 00:32:56.499
+Keep shared fixtures and server wiring unchanged unless the task explicitly assigns them.
+
+448
+00:32:56.499 --> 00:33:00.456
+Use the validation skill to run the documented checks.
+
+449
+00:33:00.456 --> 00:33:03.095
+Here is the exact worked example.
+
+450
+00:33:03.095 --> 00:33:10.131
+Active issues start with sixty points for high impact, thirty for medium, or ten for low.
+
+451
+00:33:10.131 --> 00:33:12.329
+A blocked workflow adds twenty-five.
+
+452
+00:33:12.329 --> 00:33:15.847
+One hundred or more affected users adds ten.
+
+453
+00:33:15.847 --> 00:33:19.365
+Seven or more days of age adds five.
+
+454
+00:33:19.365 --> 00:33:24.202
+P one begins at eighty points, and P two at forty.
+
+455
+00:33:24.202 --> 00:33:30.359
+Fixture ISS one hundred and one totals one hundred points and is P one.
+
+456
+00:33:30.359 --> 00:33:37.395
+Closed issues override all those additions and return zero, P three, with only the closed-issue reason.
+
+457
+00:33:37.395 --> 00:33:39.593
+Explain three categories of tests.
+
+458
+00:33:39.593 --> 00:33:43.111
+A positive case must trigger the new behavior.
+
+459
+00:33:43.111 --> 00:33:45.750
+A negative case must remain unchanged.
+
+460
+00:33:45.750 --> 00:33:48.828
+A boundary case verifies the actual threshold.
+
+461
+00:33:48.828 --> 00:33:55.864
+Eighty itself is unreachable under this fixed additive scoring policy, so compare the nearest reachable cases:
+
+462
+00:33:55.864 --> 00:33:59.822
+seventy-five is P two, while eighty-five is P one.
+
+463
+00:33:59.822 --> 00:34:05.978
+Test one hundred users versus ninety-nine and seven days versus six separately as well.
+
+464
+00:34:05.978 --> 00:34:11.255
+Then ask a restricted reviewer to inspect the change against the requirements.
+
+465
+00:34:11.255 --> 00:34:17.851
+The reviewer can find reasoning defects, but it cannot truthfully claim execution without execution tools.
+
+466
+00:34:17.851 --> 00:34:20.929
+The coordinator supplies the actual test evidence.
+
+467
+00:34:20.929 --> 00:34:24.887
+Finally, fix actionable findings or report what remains uncertain.
+
+468
+00:34:24.887 --> 00:34:31.043
+This shows the full loop: researched context, bounded implementation, measured evidence, and independent review.
+
+469
+00:34:31.043 --> 00:34:37.639
+It is much more useful than a demonstration that stops after the agent writes code.
+
+470
+00:34:39.000 --> 00:34:42.102
+Before parallel implementation, look for hot files.
+
+471
+00:34:42.102 --> 00:34:49.193
+These are files that several tasks are likely to touch: a shared type or contract, the
+
+472
+00:34:49.193 --> 00:34:54.068
+package manifest, the lockfile, application wiring, generated artifacts, and common fixtures.
+
+473
+00:34:54.068 --> 00:35:01.158
+If both workers edit a hot file, merely asking them to be careful is not a
+
+474
+00:35:01.158 --> 00:35:02.045
+reliable plan.
+
+475
+00:35:02.045 --> 00:35:08.692
+Assign that file to one integrator, or complete the prerequisite change before starting independent tasks.
+
+476
+00:35:08.692 --> 00:35:14.453
+There are also shared resources that do not appear in a source diff.
+
+477
+00:35:14.453 --> 00:35:18.442
+Two test commands can write the same report directory.
+
+478
+00:35:18.442 --> 00:35:21.987
+Two servers can compete for port three thousand.
+
+479
+00:35:21.987 --> 00:35:24.646
+A shared database can mix state.
+
+480
+00:35:24.646 --> 00:35:27.305
+External services can receive duplicate requests.
+
+481
+00:35:27.305 --> 00:35:31.294
+In one checkout, Git's index and branch are shared.
+
+482
+00:35:31.294 --> 00:35:37.941
+Do not let two agents independently stage all files and commit at the same time.
+
+483
+00:35:37.941 --> 00:35:41.930
+One writer can accidentally include the other's unfinished work.
+
+484
+00:35:41.930 --> 00:35:49.021
+Worktrees reduce that particular problem because they provide separate working copies and indices, but integration still
+
+485
+00:35:49.021 --> 00:35:49.907
+requires care.
+
+486
+00:35:49.907 --> 00:35:56.111
+The practice app avoids databases, credentials, and external services to keep these issues manageable.
+
+487
+00:35:56.111 --> 00:36:00.986
+Its task board still records file ownership and test output expectations.
+
+488
+00:36:00.986 --> 00:36:08.077
+The general lesson is to identify every writable surface, not only the source module named in
+
+489
+00:36:08.077 --> 00:36:08.963
+the prompt.
+
+490
+00:36:10.000 --> 00:36:16.481
+When you are unsure about independent write boundaries, use parallel readers and one integration writer.
+
+491
+00:36:16.481 --> 00:36:23.394
+Researchers can inspect separate questions concurrently, but they return findings rather than changing the shared checkout.
+
+492
+00:36:23.394 --> 00:36:26.419
+One researcher might explain the priority rules.
+
+493
+00:36:26.419 --> 00:36:29.443
+Another might inspect the accessible filter controls.
+
+494
+00:36:29.443 --> 00:36:33.332
+The coordinator uses both reports to plan a change.
+
+495
+00:36:33.332 --> 00:36:37.221
+Only the integrator edits the shared source and wiring.
+
+496
+00:36:37.221 --> 00:36:39.381
+Another variation is patch proposals.
+
+497
+00:36:39.381 --> 00:36:44.134
+A worker returns a diff or proposed implementation without applying it.
+
+498
+00:36:44.134 --> 00:36:49.751
+The integrator checks it against the current file version and applies it deliberately.
+
+499
+00:36:49.751 --> 00:36:56.664
+If the base changed, regenerate or rebase the proposal; do not paste an old replacement over
+
+500
+00:36:56.664 --> 00:36:57.528
+new work.
+
+501
+00:36:57.528 --> 00:37:04.442
+This approach is slower than unrestricted parallel writing in some cases, but it greatly reduces coordination
+
+502
+00:37:04.442 --> 00:37:04.874
+risk.
+
+503
+00:37:04.874 --> 00:37:10.923
+It is a strong default for small repositories, tightly coupled tasks, or inexperienced teams.
+
+504
+00:37:10.923 --> 00:37:16.972
+Use separate specialists only when their work is substantial enough to justify the overhead.
+
+505
+00:37:16.972 --> 00:37:21.725
+Two readers examining the same short file may simply duplicate effort.
+
+506
+00:37:21.725 --> 00:37:26.046
+In the lab, you will first exercise this safe pattern.
+
+507
+00:37:26.046 --> 00:37:32.959
+Then you will compare it with disjoint writers and worktrees, so you learn to choose rather
+
+508
+00:37:32.959 --> 00:37:35.983
+than assume one technique fits every task.
+
+509
+00:37:37.000 --> 00:37:40.681
+Disjoint ownership works when the tasks really are independent.
+
+510
+00:37:40.681 --> 00:37:44.362
+Start by freezing the shared input and output contract.
+
+511
+00:37:44.362 --> 00:37:49.679
+Then assign each worker a small set of files and its own tests.
+
+512
+00:37:49.679 --> 00:37:55.814
+For example, one worker may implement a search predicate while another implements a summary formatter.
+
+513
+00:37:55.814 --> 00:37:58.677
+Both consume the same documented issue shape.
+
+514
+00:37:58.677 --> 00:38:02.358
+Neither changes that shape or the shared server wiring.
+
+515
+00:38:02.358 --> 00:38:04.812
+The integrator combines their results later.
+
+516
+00:38:04.812 --> 00:38:10.538
+The task board should record the owner, allowed files, dependencies, acceptance checks, and status.
+
+517
+00:38:10.538 --> 00:38:15.446
+It should also say which shared files are reserved for the integrator.
+
+518
+00:38:15.446 --> 00:38:21.991
+A worker that discovers it needs another owner's file must stop and request a contract decision.
+
+519
+00:38:21.991 --> 00:38:25.672
+Do not let it quietly edit outside the assignment.
+
+520
+00:38:25.672 --> 00:38:30.171
+That small interruption prevents a much larger merge or behavior defect.
+
+521
+00:38:30.171 --> 00:38:34.261
+Remember that different source files can still be behaviorally coupled.
+
+522
+00:38:34.261 --> 00:38:40.805
+If one worker renames a field that the other consumes, file disjointness does not make the
+
+523
+00:38:40.805 --> 00:38:41.623
+tasks independent.
+
+524
+00:38:41.623 --> 00:38:45.713
+The frozen contract is as important as the ownership list.
+
+525
+00:38:45.713 --> 00:38:49.394
+This is a team convention, not a built-in lock.
+
+526
+00:38:49.394 --> 00:38:55.938
+We will add explicit scope checks and inspect the combined diff to detect violations rather than
+
+527
+00:38:55.938 --> 00:38:57.574
+merely trusting the board.
+
+528
+00:38:59.000 --> 00:39:03.308
+A task graph helps you decide what can run now.
+
+529
+00:39:03.308 --> 00:39:09.340
+If both feature tasks depend on a shared contract change, finish that change first.
+
+530
+00:39:09.340 --> 00:39:13.649
+Only then are the feature tasks ready to run independently.
+
+531
+00:39:13.649 --> 00:39:17.095
+The graph on this slide has four stages.
+
+532
+00:39:17.095 --> 00:39:23.558
+Define the contract, run two independent workers, integrate their output, then validate the combined application.
+
+533
+00:39:23.558 --> 00:39:27.867
+The arrows represent actual prerequisites, not a preferred list order.
+
+534
+00:39:27.867 --> 00:39:31.313
+Shared configuration changes belong in a serialized stage.
+
+535
+00:39:31.313 --> 00:39:37.776
+If a dependency must be added, let the integrator update the manifest and lockfile once.
+
+536
+00:39:37.776 --> 00:39:41.654
+Do not ask every worker to solve installation separately.
+
+537
+00:39:41.654 --> 00:39:45.100
+Reserve one owner for the coordination board too.
+
+538
+00:39:45.100 --> 00:39:51.563
+Multiple agents updating the same board can collide just as they can collide in code.
+
+539
+00:39:51.563 --> 00:39:56.302
+Workers can report status to the coordinator, which updates the record.
+
+540
+00:39:56.302 --> 00:39:58.887
+Individual tests are necessary but insufficient.
+
+541
+00:39:58.887 --> 00:40:05.781
+Two branches can pass independently and fail together because they make different assumptions about the contract
+
+542
+00:40:05.781 --> 00:40:07.073
+or user flow.
+
+543
+00:40:07.073 --> 00:40:10.951
+Run the combined suite and smoke checks after integration.
+
+544
+00:40:10.951 --> 00:40:16.121
+If the graph is mostly a chain, parallel execution adds little value.
+
+545
+00:40:16.121 --> 00:40:22.584
+Use a sequential workflow and invest the saved attention in clearer acceptance examples and review.
+
+546
+00:40:24.000 --> 00:40:28.218
+You can improve shared-checkout coordination with an advisory claim protocol.
+
+547
+00:40:28.218 --> 00:40:34.966
+Before writing, a worker states the paths it intends to own, the starting revision, and when
+
+548
+00:40:34.966 --> 00:40:36.653
+the claim should expire.
+
+549
+00:40:36.653 --> 00:40:40.448
+The coordinator checks for conflicts and acknowledges the assignment.
+
+550
+00:40:40.448 --> 00:40:45.509
+At handoff, the worker reports the changed files and releases its claim.
+
+551
+00:40:45.509 --> 00:40:50.570
+If it needs another path, it pauses and requests a new assignment.
+
+552
+00:40:50.570 --> 00:40:57.318
+An expiry prevents a stale claim from blocking work forever, but expiry is not permission to
+
+553
+00:40:57.318 --> 00:40:59.005
+overwrite an active worker.
+
+554
+00:40:59.005 --> 00:41:03.223
+The coordinator must inspect the current state and resolve uncertainty.
+
+555
+00:41:03.223 --> 00:41:08.284
+This is similar to a team agreeing who edits a document section.
+
+556
+00:41:08.284 --> 00:41:11.658
+It works only when participants follow the protocol.
+
+557
+00:41:11.658 --> 00:41:18.406
+A Markdown file or chat message is not an operating-system mutex and does not stop a
+
+558
+00:41:18.406 --> 00:41:20.515
+terminal command from writing elsewhere.
+
+559
+00:41:20.515 --> 00:41:24.732
+Actual locking requires an enforcement mechanism with defined failure behavior.
+
+560
+00:41:24.732 --> 00:41:31.480
+In many coding workshops, the practical combination is advisory ownership, narrow tools, scope checks, and one
+
+561
+00:41:31.480 --> 00:41:31.902
+integrator.
+
+562
+00:41:31.902 --> 00:41:36.119
+Worktrees are another option when independent working copies are helpful.
+
+563
+00:41:36.119 --> 00:41:40.759
+Do not oversell claims as a product feature or security boundary.
+
+564
+00:41:40.759 --> 00:41:47.507
+They are an original workflow technique in these materials, and the labs deliberately include a violation
+
+565
+00:41:47.507 --> 00:41:50.037
+check so participants see the limitation.
+
+566
+00:41:51.500 --> 00:41:55.117
+Guidance is valuable, but enforcement must be explicit.
+
+567
+00:41:55.117 --> 00:42:01.446
+A changed-path scope check can fail when a task modifies files outside its assignment.
+
+568
+00:42:01.446 --> 00:42:05.515
+Required continuous integration can block integration until tests pass.
+
+569
+00:42:05.515 --> 00:42:10.036
+Review ownership can ensure the right people approve a change.
+
+570
+00:42:10.036 --> 00:42:13.201
+These mechanisms detect or gate different things.
+
+571
+00:42:13.201 --> 00:42:17.722
+CODEOWNERS routes review; it does not prevent a local edit.
+
+572
+00:42:17.722 --> 00:42:24.955
+A post-change scope check detects a violation after the write; it does not stop the initial
+
+573
+00:42:24.955 --> 00:42:25.407
+write.
+
+574
+00:42:25.407 --> 00:42:29.476
+Tool restrictions reduce the capabilities available to a specialist.
+
+575
+00:42:29.476 --> 00:42:36.710
+Be careful with terminal execution, because a shell can modify files even if a separate edit
+
+576
+00:42:36.710 --> 00:42:38.066
+tool is absent.
+
+577
+00:42:38.066 --> 00:42:43.943
+Current Copilot hooks can inspect a pre-tool-use event and return a documented denial.
+
+578
+00:42:43.943 --> 00:42:49.820
+VS Code's hooks experience is preview, and different harnesses use different event formats.
+
+579
+00:42:49.820 --> 00:42:53.889
+A post-tool hook cannot undo an action already completed.
+
+580
+00:42:53.889 --> 00:43:01.123
+There is a subtle failure rule: documented command pre-tool-use errors deny a call, but timeouts fall
+
+581
+00:43:01.123 --> 00:43:02.931
+through to normal permissions.
+
+582
+00:43:02.931 --> 00:43:06.548
+Therefore, do not describe every hook as fail-closed.
+
+583
+00:43:06.548 --> 00:43:09.713
+The core labs do not enable hooks.
+
+584
+00:43:09.713 --> 00:43:15.590
+They teach deterministic checks and manual review, with hooks as an optional extension.
+
+585
+00:43:15.590 --> 00:43:22.824
+Before using a hook for enforcement, test valid, invalid, malformed, and timed-out cases in the actual
+
+586
+00:43:22.824 --> 00:43:23.728
+execution environment.
+
+587
+00:43:25.000 --> 00:43:31.142
+A Git worktree gives one repository another working directory, usually on a different branch.
+
+588
+00:43:31.142 --> 00:43:36.846
+This lets independent tasks edit separate copies without overwriting each other's working files.
+
+589
+00:43:36.846 --> 00:43:39.040
+Begin from a committed baseline.
+
+590
+00:43:39.040 --> 00:43:43.866
+That baseline should include the contract and the customizations workers need.
+
+591
+00:43:43.866 --> 00:43:49.131
+Uncommitted agent files do not magically appear in a newly created worktree.
+
+592
+00:43:49.131 --> 00:43:53.519
+Ignored dependencies and local configuration are also absent by default.
+
+593
+00:43:53.519 --> 00:43:58.345
+The example creates two task worktrees from the same agreed base.
+
+594
+00:43:58.345 --> 00:44:05.365
+The paths and branch names are examples; check your actual repository and use the platform-specific instructions
+
+595
+00:44:05.365 --> 00:44:06.681
+in the lab.
+
+596
+00:44:06.681 --> 00:44:12.824
+Worktrees still share parts of Git's repository metadata and do not isolate external resources.
+
+597
+00:44:12.824 --> 00:44:19.844
+Use different server ports and output directories, and do not let workers change shared credentials or
+
+598
+00:44:19.844 --> 00:44:20.721
+external services.
+
+599
+00:44:20.721 --> 00:44:25.986
+When a task finishes, its commit is still on its task branch.
+
+600
+00:44:25.986 --> 00:44:29.496
+It has not automatically reached the target branch.
+
+601
+00:44:29.496 --> 00:44:33.884
+Review and integrate it deliberately, then retest the combined result.
+
+602
+00:44:33.884 --> 00:44:37.832
+Keep a worktree until integration and verification are complete.
+
+603
+00:44:37.832 --> 00:44:43.097
+Do not remove it merely because the agent's last response sounded successful.
+
+604
+00:44:43.097 --> 00:44:50.117
+If there is a conflict, resolve it based on the contract and intended behavior, not by
+
+605
+00:44:50.117 --> 00:44:51.872
+blindly choosing one side.
+
+606
+00:44:53.000 --> 00:44:56.666
+Integration is a separate stage with its own owner.
+
+607
+00:44:56.666 --> 00:44:59.517
+First inspect each task's diff and evidence.
+
+608
+00:44:59.517 --> 00:45:06.035
+Verify that the worker stayed within its assignment and that the tests cover the requested behavior
+
+609
+00:45:06.035 --> 00:45:08.071
+rather than only implementation details.
+
+610
+00:45:08.071 --> 00:45:10.923
+Then integrate one task at a time.
+
+611
+00:45:10.923 --> 00:45:17.440
+Your normal Git or pull-request workflow may use a merge, a cherry-pick of a reviewed commit,
+
+612
+00:45:17.440 --> 00:45:19.884
+or a PR with required checks.
+
+613
+00:45:19.884 --> 00:45:23.550
+These are integration choices, not reasons to skip review.
+
+614
+00:45:23.550 --> 00:45:26.809
+A conflict means the two changes need reasoning.
+
+615
+00:45:26.809 --> 00:45:29.660
+Do not automatically choose ours or theirs.
+
+616
+00:45:29.660 --> 00:45:34.548
+Read both intentions, check the shared contract, and preserve the required behavior.
+
+617
+00:45:34.548 --> 00:45:37.400
+Even a clean merge can be wrong.
+
+618
+00:45:37.400 --> 00:45:43.917
+The changes may compile and pass their separate tests while disagreeing on a field name, filter
+
+619
+00:45:43.917 --> 00:45:45.546
+semantics, or user-visible order.
+
+620
+00:45:45.546 --> 00:45:49.620
+Run the complete relevant suite and exercise the combined flow.
+
+621
+00:45:49.620 --> 00:45:56.137
+For the issue triage app, that means opening the page, applying the new behavior, and checking
+
+622
+00:45:56.137 --> 00:45:58.988
+the expected output against the fixture examples.
+
+623
+00:45:58.988 --> 00:46:05.506
+A test success message alone is not enough if the feature never appears in the interface.
+
+624
+00:46:05.506 --> 00:46:12.023
+The lab answer key demonstrates the combined result and documents what remains intentionally out of scope.
+
+625
+00:46:12.023 --> 00:46:16.504
+Good integration includes an honest handoff, not just a merge commit.
+
+626
+00:46:18.000 --> 00:46:24.090
+The third live demonstration compares two patterns rather than declaring worktrees the only answer.
+
+627
+00:46:24.090 --> 00:46:28.005
+First, use the shared checkout with parallel read-only specialists.
+
+628
+00:46:28.005 --> 00:46:31.920
+The coordinator receives their reports and performs the edit.
+
+629
+00:46:31.920 --> 00:46:38.446
+Show the changed-file list so participants can see that only the assigned writer changed code.
+
+630
+00:46:38.446 --> 00:46:43.666
+Second, show two independent tasks from a committed contract in separate worktrees.
+
+631
+00:46:43.666 --> 00:46:48.886
+Point out the actual paths and branches, not just separate conversation tabs.
+
+632
+00:46:48.886 --> 00:46:53.236
+Use the lab's scope-check mechanism to demonstrate a controlled violation.
+
+633
+00:46:53.236 --> 00:46:58.891
+A proposed change to a shared file should fail the task's allowed-path check.
+
+634
+00:46:58.891 --> 00:47:04.546
+Do not manufacture an unsafe destructive operation; the lesson is detection and correction.
+
+635
+00:47:04.546 --> 00:47:09.331
+Then review one task, integrate it, and repeat for the next.
+
+636
+00:47:09.331 --> 00:47:13.682
+The concrete combined example is a case-insensitive search for PAYMENTS.
+
+637
+00:47:13.682 --> 00:47:19.337
+It returns ISS one hundred and one and ISS one hundred and five.
+
+638
+00:47:19.337 --> 00:47:24.992
+The summary shows two total issues, one active and one active blocked issue.
+
+639
+00:47:24.992 --> 00:47:31.952
+Evidence export includes only the active issue, ISS one hundred and one, with its P one
+
+640
+00:47:31.952 --> 00:47:32.387
+priority.
+
+641
+00:47:32.387 --> 00:47:38.477
+This checks that search, summary, priority and handoff agree on the same visible issues.
+
+642
+00:47:38.477 --> 00:47:42.392
+Run the combined acceptance checks and inspect the page.
+
+643
+00:47:42.392 --> 00:47:49.352
+Explain that commit actions in some UI workflows can skip local hooks, so required checks must
+
+644
+00:47:49.352 --> 00:47:53.703
+be run explicitly and enforced by the normal integration policy.
+
+645
+00:47:53.703 --> 00:48:00.663
+Finally, ask participants which pattern they would choose if both tasks needed the same contract change.
+
+646
+00:48:00.663 --> 00:48:07.623
+The correct first step is to serialize or assign that contract change, not to launch more
+
+647
+00:48:07.623 --> 00:48:08.058
+agents.
+
+648
+00:48:08.058 --> 00:48:11.103
+This demonstration fits inside the first hour.
+
+649
+00:48:11.103 --> 00:48:14.583
+The forty-minute orchestration lab provides the hands-on practice.
+
+650
+00:48:16.000 --> 00:48:18.774
+Agent safety is not one switch.
+
+651
+00:48:18.774 --> 00:48:23.859
+File isolation, tool permissions, sandboxing, and review each address different risks.
+
+652
+00:48:23.859 --> 00:48:26.171
+A worktree separates source changes.
+
+653
+00:48:26.171 --> 00:48:32.643
+A sandbox can restrict filesystem, network, and credential access, depending on platform and configuration.
+
+654
+00:48:32.643 --> 00:48:36.342
+Approval settings determine which tool actions require confirmation.
+
+655
+00:48:36.342 --> 00:48:40.502
+None of them proves the generated code is correct.
+
+656
+00:48:40.502 --> 00:48:44.663
+The starter uses fictional issues and no external integration.
+
+657
+00:48:44.663 --> 00:48:51.135
+Do not replace those fixtures with customer data or paste secrets into a prompt.
+
+658
+00:48:51.135 --> 00:48:58.532
+If you later connect an MCP server or connector, inspect the permissions and the data destination.
+
+659
+00:48:58.532 --> 00:49:02.231
+Review acquired skills and plugins before enabling them.
+
+660
+00:49:02.231 --> 00:49:09.628
+A skill directory may contain scripts, and hooks can run without the model asking for the
+
+661
+00:49:09.628 --> 00:49:10.552
+procedure explicitly.
+
+662
+00:49:10.552 --> 00:49:13.789
+Marketplace availability is not a trust guarantee.
+
+663
+00:49:13.789 --> 00:49:21.185
+Treat repository content and external text as data, not authoritative instructions to bypass the task's rules.
+
+664
+00:49:21.185 --> 00:49:28.582
+If an issue asks the agent to ignore ownership boundaries, the worker should report that request
+
+665
+00:49:28.582 --> 00:49:30.432
+rather than obey it.
+
+666
+00:49:30.432 --> 00:49:33.205
+Before committing, inspect the complete diff.
+
+667
+00:49:33.205 --> 00:49:37.829
+Before any external action, verify the destination and required approval.
+
+668
+00:49:37.829 --> 00:49:45.225
+The workshop focuses on local code precisely so you can learn these habits without creating avoidable
+
+669
+00:49:45.225 --> 00:49:47.537
+cloud cost or data exposure.
+
+670
+00:49:49.000 --> 00:49:54.747
+The best agent workflow is often the smallest one that reliably completes the task.
+
+671
+00:49:54.747 --> 00:49:58.852
+A direct request is appropriate for a small cohesive edit.
+
+672
+00:49:58.852 --> 00:50:05.009
+A specialist is useful when the work needs substantial separate context or a recurring procedure.
+
+673
+00:50:05.009 --> 00:50:11.577
+Parallelism saves time only when tasks are independent enough that coordination costs do not exceed the
+
+674
+00:50:11.577 --> 00:50:11.987
+benefit.
+
+675
+00:50:11.987 --> 00:50:18.144
+Repeating the same investigation in several contexts can consume more usage without improving the result.
+
+676
+00:50:18.144 --> 00:50:19.376
+Bound delegation depth.
+
+677
+00:50:19.376 --> 00:50:23.481
+Recursive delegation needs a stopping condition and has harness-specific support.
+
+678
+00:50:23.481 --> 00:50:26.764
+It is not part of our core labs.
+
+679
+00:50:26.764 --> 00:50:32.511
+A simple coordinator and one or two workers are enough to learn the principle.
+
+680
+00:50:32.511 --> 00:50:37.437
+Choose a model available to your account and suitable for the task.
+
+681
+00:50:37.437 --> 00:50:44.005
+Do not copy a fixed model identifier from an old presentation and assume it is still
+
+682
+00:50:44.005 --> 00:50:44.415
+offered.
+
+683
+00:50:44.415 --> 00:50:50.162
+Keep model changes separate from harness changes so you know what affected the result.
+
+684
+00:50:50.162 --> 00:50:52.214
+Measure both quality and usage.
+
+685
+00:50:52.214 --> 00:50:55.498
+Did the worker return a correct, usable result?
+
+686
+00:50:55.498 --> 00:50:59.193
+How much extra context and waiting did coordination introduce?
+
+687
+00:50:59.193 --> 00:51:02.887
+Did a lighter model suffice for a straightforward task?
+
+688
+00:51:02.887 --> 00:51:07.813
+In the Copilot app, current documentation also describes usage insights through chronicle.
+
+689
+00:51:07.813 --> 00:51:13.970
+That is an optional way to reflect on patterns, not a requirement for the lab.
+
+690
+00:51:13.970 --> 00:51:19.717
+The key habit is to optimize the workflow, not just increase the agent count.
+
+691
+00:51:21.000 --> 00:51:23.751
+The practice application is intentionally modest.
+
+692
+00:51:23.751 --> 00:51:31.089
+It serves a static issue triage board using Node's built-in HTTP support and uses the built-in
+
+693
+00:51:31.089 --> 00:51:32.006
+test runner.
+
+694
+00:51:32.006 --> 00:51:39.343
+There is no database, authentication service, external AI call, or dependency-heavy framework to distract from the
+
+695
+00:51:39.343 --> 00:51:39.801
+workflow.
+
+696
+00:51:39.801 --> 00:51:47.139
+The board shows eight fictional support issues: six active and two closed, with two active blocked
+
+697
+00:51:47.139 --> 00:51:47.597
+workflows.
+
+698
+00:51:47.597 --> 00:51:52.641
+Four categories have two issues each: accessibility, payments, reporting, and search.
+
+699
+00:51:52.641 --> 00:51:59.520
+The exercises add priority scoring, case-insensitive search, summaries, and evidence export behind documented feature-module boundaries.
+
+700
+00:51:59.520 --> 00:52:06.857
+That gives us a realistic reason to use skills, reviewers, and multiple task owners without building
+
+701
+00:52:06.857 --> 00:52:08.691
+a production support platform.
+
+702
+00:52:08.691 --> 00:52:10.984
+Start with a passing baseline.
+
+703
+00:52:10.984 --> 00:52:17.404
+A workshop should not require you to fix unrelated infrastructure before learning its topic.
+
+704
+00:52:17.404 --> 00:52:22.907
+The missing lab features are intentional and described in the lab specifications.
+
+705
+00:52:22.907 --> 00:52:27.493
+The repository separates starter templates, attendee instructions, and instructor answers.
+
+706
+00:52:27.493 --> 00:52:34.830
+The answer key can demonstrate one valid solution, but the acceptance checks evaluate behavior rather than
+
+707
+00:52:34.830 --> 00:52:36.206
+requiring identical code.
+
+708
+00:52:36.206 --> 00:52:40.791
+Use the documented start and test commands from the README.
+
+709
+00:52:40.791 --> 00:52:48.128
+Run the smoke check and inspect the page so you know the app works before asking
+
+710
+00:52:48.128 --> 00:52:49.963
+agents to change it.
+
+711
+00:52:49.963 --> 00:52:55.465
+When you assign work, use the repository's actual module paths and contract.
+
+712
+00:52:55.465 --> 00:53:02.803
+The generic diagrams in this deck illustrate the pattern; the lab files are the executable source
+
+713
+00:53:02.803 --> 00:53:06.930
+of truth for exact features, fixtures, and allowed files.
+
+714
+00:53:08.000 --> 00:53:10.445
+The first lab takes thirty minutes.
+
+715
+00:53:10.445 --> 00:53:16.559
+Use the first few minutes to confirm the passing starter and select the intended harness.
+
+716
+00:53:16.559 --> 00:53:21.449
+Then write short repository instructions based on the existing commands and constraints.
+
+717
+00:53:21.449 --> 00:53:25.117
+Create a custom agent for a focused recurring role.
+
+718
+00:53:25.117 --> 00:53:31.638
+It should have a useful description, only the tools it needs, and a result format you
+
+719
+00:53:31.638 --> 00:53:32.453
+can evaluate.
+
+720
+00:53:32.453 --> 00:53:37.751
+Do not simply call it senior expert and hope that defines its behavior.
+
+721
+00:53:37.751 --> 00:53:41.827
+Create a real skill directory with matching name and frontmatter.
+
+722
+00:53:41.827 --> 00:53:47.125
+Include at least one supporting resource, and reference it from SKILL dot markdown.
+
+723
+00:53:47.125 --> 00:53:51.200
+Verify that its commands and paths work in this repository.
+
+724
+00:53:51.200 --> 00:53:53.238
+Test discovery and behavior separately.
+
+725
+00:53:53.238 --> 00:53:57.314
+A listed agent or skill is available, not necessarily correct.
+
+726
+00:53:57.314 --> 00:54:03.427
+Use a small known request, inspect the activity, and compare the result with the source.
+
+727
+00:54:03.427 --> 00:54:09.948
+Record a positive invocation and a case that must be reported as not run or out
+
+728
+00:54:09.948 --> 00:54:10.763
+of scope.
+
+729
+00:54:10.763 --> 00:54:14.023
+This makes honesty part of the acceptance criteria.
+
+730
+00:54:14.023 --> 00:54:19.729
+The lab provides step-by-step actions, expected outputs, a hint ladder, and an answer key.
+
+731
+00:54:19.729 --> 00:54:25.027
+If you fall behind, use the first hint before copying a complete solution.
+
+732
+00:54:25.027 --> 00:54:31.548
+At the checkpoint, you should be able to explain why each instruction belongs in its chosen
+
+733
+00:54:31.548 --> 00:54:35.623
+file and why the specialist does not need unrestricted tools.
+
+734
+00:54:37.000 --> 00:54:39.781
+The second lab takes thirty-five minutes.
+
+735
+00:54:39.781 --> 00:54:43.488
+Your first deliverable is a self-contained delegated brief.
+
+736
+00:54:43.488 --> 00:54:49.050
+It includes the relevant contract, repository constraints, allowed actions, and expected report.
+
+737
+00:54:49.050 --> 00:54:54.611
+Use the read-only researcher to locate the behavior and existing test pattern.
+
+738
+00:54:54.611 --> 00:54:56.929
+Check its report before implementation.
+
+739
+00:54:56.929 --> 00:55:00.636
+If it assumes missing context, correct the brief.
+
+740
+00:55:00.636 --> 00:55:05.734
+Then use the coordinator workflow to implement the lab's exact enhancement.
+
+741
+00:55:05.734 --> 00:55:09.906
+One implementation writer owns the assigned source and tests.
+
+742
+00:55:09.906 --> 00:55:13.150
+The skill provides the repeatable validation procedure.
+
+743
+00:55:13.150 --> 00:55:17.321
+The acceptance criteria include positive, negative, and boundary cases.
+
+744
+00:55:17.321 --> 00:55:24.273
+Do not accept a nearby example as proof of the actual threshold or precedence rule.
+
+745
+00:55:24.273 --> 00:55:29.371
+Ask the reviewer to inspect the changed code against the requirements.
+
+746
+00:55:29.371 --> 00:55:36.786
+Supply the test output as evidence; do not let a read-only reviewer claim it executed commands.
+
+747
+00:55:36.786 --> 00:55:43.275
+If native delegation is unavailable, perform the roles sequentially with a concise manual handoff.
+
+748
+00:55:43.275 --> 00:55:47.909
+You still need to produce the same behavior and evidence.
+
+749
+00:55:47.909 --> 00:55:55.325
+At the checkpoint, your report must show what changed, which checks ran, their results, and any
+
+750
+00:55:55.325 --> 00:55:56.251
+remaining uncertainty.
+
+751
+00:55:56.251 --> 00:56:00.423
+It must also identify the ownership boundary you preserved.
+
+752
+00:56:00.423 --> 00:56:06.448
+The goal is a complete, verifiable loop, not merely a successful subagent call.
+
+753
+00:56:07.500 --> 00:56:12.114
+The third lab takes forty minutes and concentrates on one repository.
+
+754
+00:56:12.114 --> 00:56:16.728
+Start by reading the shared contract and the two task specifications.
+
+755
+00:56:16.728 --> 00:56:22.182
+Decide which files belong to each worker and which remain with the integrator.
+
+756
+00:56:22.182 --> 00:56:23.440
+Record the dependencies.
+
+757
+00:56:23.440 --> 00:56:28.893
+If either task needs a contract change, perform that prerequisite before parallel work.
+
+758
+00:56:28.893 --> 00:56:31.830
+Do not launch workers against different assumptions.
+
+759
+00:56:31.830 --> 00:56:38.541
+Exercise the shared-checkout safe pattern using readers and one writer, then compare the worktree option where
+
+760
+00:56:38.541 --> 00:56:38.961
+available.
+
+761
+00:56:38.961 --> 00:56:43.994
+The lab's fallback runs the same tasks sequentially without newer UI features.
+
+762
+00:56:43.994 --> 00:56:47.770
+Use the task board to record claims and handoffs.
+
+763
+00:56:47.770 --> 00:56:49.867
+Treat the board as advisory.
+
+764
+00:56:49.867 --> 00:56:56.579
+Run the changed-path scope check to catch a controlled violation and explain whether the check prevents
+
+765
+00:56:56.579 --> 00:56:59.096
+a write or detects it afterward.
+
+766
+00:56:59.096 --> 00:57:03.290
+Review the worker results and integrate one at a time.
+
+767
+00:57:03.290 --> 00:57:07.905
+Shared files, Git integration, and board updates belong to the integrator.
+
+768
+00:57:07.905 --> 00:57:11.680
+Do not allow concurrent stage-all commits in one checkout.
+
+769
+00:57:11.680 --> 00:57:15.875
+Finally, rerun the combined checks and inspect the actual application.
+
+770
+00:57:15.875 --> 00:57:18.811
+Separate green test reports are not sufficient.
+
+771
+00:57:18.811 --> 00:57:25.523
+At the debrief, explain which strategy you chose, what could still collide, and how you would
+
+772
+00:57:25.523 --> 00:57:28.879
+handle a worker that needed an unassigned file.
+
+773
+00:57:28.879 --> 00:57:33.912
+That reasoning is the main advanced skill this workshop aims to develop.
+
+774
+00:57:35.000 --> 00:57:37.619
+The final lab takes fifteen minutes.
+
+775
+00:57:37.619 --> 00:57:44.166
+It is deliberately short because integration and validation have already happened in the previous exercises.
+
+776
+00:57:44.166 --> 00:57:48.095
+Now consolidate the evidence and review the complete result.
+
+777
+00:57:48.095 --> 00:57:52.460
+Inspect the entire relevant diff, not only the last turn.
+
+778
+00:57:52.460 --> 00:57:59.444
+Look for unrelated edits, changes to shared contracts, and tests that merely mirror the implementation without
+
+779
+00:57:59.444 --> 00:58:00.753
+proving the requirement.
+
+780
+00:58:00.753 --> 00:58:06.427
+Run the final quality gates and the user-flow check described in the lab.
+
+781
+00:58:06.427 --> 00:58:12.102
+If a check cannot run, mark it as not run with a reason.
+
+782
+00:58:12.102 --> 00:58:15.157
+Do not present it as a success.
+
+783
+00:58:15.157 --> 00:58:21.268
+Write a handoff that another developer can use without reading the full agent history.
+
+784
+00:58:21.268 --> 00:58:28.252
+Include the outcome, changed paths, contract version or assumptions, exact checks, results, risks, and next decisions.
+
+785
+00:58:28.252 --> 00:58:29.998
+Then reflect on orchestration.
+
+786
+00:58:29.998 --> 00:58:32.180
+Which tasks were actually independent?
+
+787
+00:58:32.180 --> 00:58:34.363
+Did separate contexts improve focus?
+
+788
+00:58:34.363 --> 00:58:39.164
+Did coordination consume more effort than a direct edit would have?
+
+789
+00:58:39.164 --> 00:58:45.712
+Would you use worktrees, one writer, or a sequential chain for the same task tomorrow?
+
+790
+00:58:45.712 --> 00:58:48.331
+The workshop ends at three hours.
+
+791
+00:58:48.331 --> 00:58:55.315
+Optional extensions such as hook enforcement, marketplace packaging, or cloud continuity belong after the core session.
+
+792
+00:58:55.315 --> 00:59:02.298
+A good handoff is the final proof that you can direct agents as engineering collaborators rather
+
+793
+00:59:02.298 --> 00:59:04.917
+than simply collect their completion messages.
+
+794
+00:59:06.000 --> 00:59:12.285
+When a workflow goes wrong, recover from evidence rather than repeatedly issuing a broader prompt.
+
+795
+00:59:12.285 --> 00:59:18.989
+If an agent or skill is missing, check its path, frontmatter, selected harness, and enabled inventory.
+
+796
+00:59:18.989 --> 00:59:24.436
+In a new worktree, confirm that the customization was committed in the base.
+
+797
+00:59:24.436 --> 00:59:30.721
+A file that exists only in the original checkout is not present in the worktree.
+
+798
+00:59:30.721 --> 00:59:37.006
+If a worker has the wrong tools, compare the runtime activity with the harness-specific reference.
+
+799
+00:59:37.006 --> 00:59:41.196
+Do not assume an editor completion guarantees availability or enforcement.
+
+800
+00:59:41.196 --> 00:59:46.643
+If two writers overlap, pause them and inspect the actual files and changes.
+
+801
+00:59:46.643 --> 00:59:51.671
+Preserve useful work, identify the shared contract, and choose one integration owner.
+
+802
+00:59:51.671 --> 00:59:57.537
+Do not run a destructive reset just to get back to a clean-looking state.
+
+803
+00:59:57.537 --> 01:00:02.565
+Stopping a request does not undo completed terminal commands or external actions.
+
+804
+01:00:02.565 --> 01:00:09.268
+Checkpoints may restore certain workspace edits and chat state, but they are not a general rollback
+
+805
+01:00:09.268 --> 01:00:09.687
+system.
+
+806
+01:00:09.687 --> 01:00:15.972
+Use the documented non-destructive lab reset or normal Git recovery appropriate to the actual state.
+
+807
+01:00:15.972 --> 01:00:19.743
+After correction, rerun the checks affected by the change.
+
+808
+01:00:19.743 --> 01:00:24.771
+A recovery is complete only when the required behavior is verified again.
+
+809
+01:00:24.771 --> 01:00:31.475
+These habits matter more than memorizing a particular button label, because the interfaces and defaults will
+
+810
+01:00:31.475 --> 01:00:32.732
+continue to evolve.
+
+811
+01:00:34.000 --> 01:00:38.592
+Let's finish with four ideas you can reuse immediately.
+
+812
+01:00:38.592 --> 01:00:43.694
+First, compose a role, a recipe, and a task contract.
+
+813
+01:00:43.694 --> 01:00:46.245
+The custom agent defines responsibility.
+
+814
+01:00:46.245 --> 01:00:49.306
+The skill supplies a repeated procedure.
+
+815
+01:00:49.306 --> 01:00:53.898
+The prompt specifies this particular outcome and its constraints.
+
+816
+01:00:53.898 --> 01:00:57.469
+Second, distinguish context isolation from workspace isolation.
+
+817
+01:00:57.469 --> 01:01:01.551
+Separate subagents or chats can still share files.
+
+818
+01:01:01.551 --> 01:01:07.673
+A worktree separates working copies, while permissions and sandboxing address different risks.
+
+819
+01:01:07.673 --> 01:01:10.734
+Third, parallelize only genuinely independent work.
+
+820
+01:01:10.734 --> 01:01:16.857
+Freeze contracts, assign explicit ownership, serialize shared-file changes, and use one integrator.
+
+821
+01:01:16.857 --> 01:01:21.959
+Advisory claims help coordination but do not enforce a lock.
+
+822
+01:01:21.959 --> 01:01:25.020
+Fourth, trust evidence over confident prose.
+
+823
+01:01:25.020 --> 01:01:33.183
+Review the source, run requirement-focused checks, inspect the actual user flow, and report skipped checks honestly.
+
+824
+01:01:33.183 --> 01:01:37.775
+Before you leave, test your understanding with three questions.
+
+825
+01:01:37.775 --> 01:01:41.857
+Can a read-only reviewer claim it ran tests?
+
+826
+01:01:41.857 --> 01:01:42.367
+No.
+
+827
+01:01:42.367 --> 01:01:46.448
+Does target vscode switch the runtime to Local?
+
+828
+01:01:46.448 --> 01:01:46.959
+No.
+
+829
+01:01:46.959 --> 01:01:51.550
+Can two worktrees pass separately and fail after integration?
+
+830
+01:01:51.550 --> 01:01:56.142
+Yes, which is why we retest the combined result.
+
+831
+01:01:56.142 --> 01:02:03.285
+The repository's labs, instructor answers, source ledger, captions, and transcript support repeating the workshop.
+
+832
+01:02:03.285 --> 01:02:08.897
+Recheck the product sources before teaching it on a later date.
+
+833
+01:02:08.897 --> 01:02:17.061
+The durable lesson is not a fixed interface: it is the discipline of directing bounded work
+
+834
+01:02:17.061 --> 01:02:19.101
+and proving the result.
+
+835
+01:02:20.500 --> 01:02:26.951
+This reference slide is an appendix, not extra time added to the live workshop.
+
+836
+01:02:26.951 --> 01:02:34.324
+The complete source ledger contains the official URLs, what each source supports, and the caveats that
+
+837
+01:02:34.324 --> 01:02:35.706
+affect our examples.
+
+838
+01:02:35.706 --> 01:02:42.618
+The materials were checked against live documentation on November seventh, twenty twenty-six, US Eastern time.
+
+839
+01:02:42.618 --> 01:02:49.991
+VS Code pages fetched for the workshop displayed November fourth update dates where available, and the
+
+840
+01:02:49.991 --> 01:02:52.756
+Universe release is dated October twenty-eighth.
+
+841
+01:02:52.756 --> 01:03:00.129
+Before a later delivery, verify the actual installed clients, organizational permissions, available harnesses, and customization syntax.
+
+842
+01:03:00.129 --> 01:03:03.815
+Do not infer compatibility from a filename alone.
+
+843
+01:03:03.815 --> 01:03:10.266
+App Projects, customization marketplaces, connectors, and the VS Code hooks experience have preview limitations.
+
+844
+01:03:10.266 --> 01:03:12.109
+Computer use is experimental.
+
+845
+01:03:12.109 --> 01:03:17.178
+The core labs avoid needing those features or any external service.
+
+846
+01:03:17.178 --> 01:03:21.786
+The diagrams in this deck are original schematics for orientation.
+
+847
+01:03:21.786 --> 01:03:29.159
+They are not captured product screenshots, and the video is narrated instruction rather than a live-session
+
+848
+01:03:29.159 --> 01:03:29.620
+recording.
+
+849
+01:03:29.620 --> 01:03:36.993
+The PowerPoint uses the visual language of the supplied reference deck without carrying forward its old
+
+850
+01:03:36.993 --> 01:03:39.297
+teaching content or presenter affiliation.
+
+851
+01:03:39.297 --> 01:03:45.748
+Use the transcript and captions if you prefer reading or need an accessible alternative.
+
+852
+01:03:45.748 --> 01:03:50.817
+Use the hands-on files for exact executable commands and acceptance outputs.

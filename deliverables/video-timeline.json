@@ -1,0 +1,296 @@
+[
+  {
+    "slide": 1,
+    "title": "From agent user to agent orchestrator",
+    "start_seconds": 0.0,
+    "speech_seconds": 73.61020408163266,
+    "duration_seconds": 75.0
+  },
+  {
+    "slide": 2,
+    "title": "What you will be able to do",
+    "start_seconds": 75.0,
+    "speech_seconds": 77.08068027210885,
+    "duration_seconds": 78.5
+  },
+  {
+    "slide": 3,
+    "title": "A realistic three-hour agenda",
+    "start_seconds": 153.5,
+    "speech_seconds": 84.33419501133787,
+    "duration_seconds": 85.5
+  },
+  {
+    "slide": 4,
+    "title": "Five words that prevent confusion",
+    "start_seconds": 239.0,
+    "speech_seconds": 84.64816326530612,
+    "duration_seconds": 86.0
+  },
+  {
+    "slide": 5,
+    "title": "Separate context is not separate files",
+    "start_seconds": 325.0,
+    "speech_seconds": 83.50507936507937,
+    "duration_seconds": 85.0
+  },
+  {
+    "slide": 6,
+    "title": "Teach the documented product, not old defaults",
+    "start_seconds": 410.0,
+    "speech_seconds": 89.68263038548753,
+    "duration_seconds": 91.0
+  },
+  {
+    "slide": 7,
+    "title": "A desktop home for agent-driven work",
+    "start_seconds": 501.0,
+    "speech_seconds": 87.86294784580498,
+    "duration_seconds": 89.0
+  },
+  {
+    "slide": 8,
+    "title": "Direct one small task, then inspect it",
+    "start_seconds": 590.0,
+    "speech_seconds": 91.30834467120181,
+    "duration_seconds": 92.5
+  },
+  {
+    "slide": 9,
+    "title": "An agent-first window beside your editor",
+    "start_seconds": 682.5,
+    "speech_seconds": 90.02308390022675,
+    "duration_seconds": 91.5
+  },
+  {
+    "slide": 10,
+    "title": "Select the harness before copying YAML",
+    "start_seconds": 774.0,
+    "speech_seconds": 91.19718820861678,
+    "duration_seconds": 92.5
+  },
+  {
+    "slide": 11,
+    "title": "Write a task contract, not a wish",
+    "start_seconds": 866.5,
+    "speech_seconds": 87.23197278911564,
+    "duration_seconds": 88.5
+  },
+  {
+    "slide": 12,
+    "title": "Put shared rules where everyone can find them",
+    "start_seconds": 955.0,
+    "speech_seconds": 95.980589569161,
+    "duration_seconds": 97.0
+  },
+  {
+    "slide": 13,
+    "title": "A reviewer that can read, not write",
+    "start_seconds": 1052.0,
+    "speech_seconds": 87.61832199546485,
+    "duration_seconds": 89.0
+  },
+  {
+    "slide": 14,
+    "title": "A reusable recipe with a trigger",
+    "start_seconds": 1141.0,
+    "speech_seconds": 86.82834467120182,
+    "duration_seconds": 88.0
+  },
+  {
+    "slide": 15,
+    "title": "Discovery is not execution evidence",
+    "start_seconds": 1229.0,
+    "speech_seconds": 91.25678004535148,
+    "duration_seconds": 92.5
+  },
+  {
+    "slide": 16,
+    "title": "Compose them without mixing harnesses",
+    "start_seconds": 1321.5,
+    "speech_seconds": 87.44272108843538,
+    "duration_seconds": 88.5
+  },
+  {
+    "slide": 17,
+    "title": "Build and verify a role and a recipe",
+    "start_seconds": 1410.0,
+    "speech_seconds": 88.12816326530613,
+    "duration_seconds": 89.5
+  },
+  {
+    "slide": 18,
+    "title": "Use a subagent for a bounded result",
+    "start_seconds": 1499.5,
+    "speech_seconds": 90.05242630385487,
+    "duration_seconds": 91.5
+  },
+  {
+    "slide": 19,
+    "title": "Give the worker enough context to succeed",
+    "start_seconds": 1591.0,
+    "speech_seconds": 85.51619047619047,
+    "duration_seconds": 87.0
+  },
+  {
+    "slide": 20,
+    "title": "Named workers, one implementation writer",
+    "start_seconds": 1678.0,
+    "speech_seconds": 91.09233560090703,
+    "duration_seconds": 92.5
+  },
+  {
+    "slide": 21,
+    "title": "Same workflow, different runtime contract",
+    "start_seconds": 1770.5,
+    "speech_seconds": 88.05786848072562,
+    "duration_seconds": 89.5
+  },
+  {
+    "slide": 22,
+    "title": "Switching roles is not parallel delegation",
+    "start_seconds": 1860.0,
+    "speech_seconds": 78.70911564625851,
+    "duration_seconds": 80.0
+  },
+  {
+    "slide": 23,
+    "title": "Research -> implement -> prove -> review",
+    "start_seconds": 1940.0,
+    "speech_seconds": 137.639410430839,
+    "duration_seconds": 139.0
+  },
+  {
+    "slide": 24,
+    "title": "Hot files and shared resources",
+    "start_seconds": 2079.0,
+    "speech_seconds": 89.96317460317461,
+    "duration_seconds": 91.0
+  },
+  {
+    "slide": 25,
+    "title": "Parallel readers, one integration writer",
+    "start_seconds": 2170.0,
+    "speech_seconds": 85.98331065759638,
+    "duration_seconds": 87.0
+  },
+  {
+    "slide": 26,
+    "title": "Freeze the contract, then split the work",
+    "start_seconds": 2257.0,
+    "speech_seconds": 80.57392290249433,
+    "duration_seconds": 82.0
+  },
+  {
+    "slide": 27,
+    "title": "Parallelize ready tasks, not wishful tasks",
+    "start_seconds": 2339.0,
+    "speech_seconds": 83.58380952380952,
+    "duration_seconds": 85.0
+  },
+  {
+    "slide": 28,
+    "title": "A claim is a protocol, not a mutex",
+    "start_seconds": 2424.0,
+    "speech_seconds": 86.0370068027211,
+    "duration_seconds": 87.5
+  },
+  {
+    "slide": 29,
+    "title": "Use checks and permissions, not slogans",
+    "start_seconds": 2511.5,
+    "speech_seconds": 92.22775510204082,
+    "duration_seconds": 93.5
+  },
+  {
+    "slide": 30,
+    "title": "Separate working copies for independent tasks",
+    "start_seconds": 2605.0,
+    "speech_seconds": 86.87242630385488,
+    "duration_seconds": 88.0
+  },
+  {
+    "slide": 31,
+    "title": "A clean merge is not proof of correctness",
+    "start_seconds": 2693.0,
+    "speech_seconds": 83.50367346938775,
+    "duration_seconds": 85.0
+  },
+  {
+    "slide": 32,
+    "title": "Compare two safe orchestration patterns",
+    "start_seconds": 2778.0,
+    "speech_seconds": 116.5831746031746,
+    "duration_seconds": 118.0
+  },
+  {
+    "slide": 33,
+    "title": "Keep scope, data and approvals deliberate",
+    "start_seconds": 2896.0,
+    "speech_seconds": 91.5370068027211,
+    "duration_seconds": 93.0
+  },
+  {
+    "slide": 34,
+    "title": "More agents is not automatically more value",
+    "start_seconds": 2989.0,
+    "speech_seconds": 90.71668934240363,
+    "duration_seconds": 92.0
+  },
+  {
+    "slide": 35,
+    "title": "Issue triage board: small on purpose",
+    "start_seconds": 3081.0,
+    "speech_seconds": 105.92975056689342,
+    "duration_seconds": 107.0
+  },
+  {
+    "slide": 36,
+    "title": "Create and verify useful customizations",
+    "start_seconds": 3188.0,
+    "speech_seconds": 87.62335600907029,
+    "duration_seconds": 89.0
+  },
+  {
+    "slide": 37,
+    "title": "Delegate a feature and collect proof",
+    "start_seconds": 3277.0,
+    "speech_seconds": 89.44757369614513,
+    "duration_seconds": 90.5
+  },
+  {
+    "slide": 38,
+    "title": "Orchestrate two tasks without collisions",
+    "start_seconds": 3367.5,
+    "speech_seconds": 86.41224489795918,
+    "duration_seconds": 87.5
+  },
+  {
+    "slide": 39,
+    "title": "Review, hand off and reflect",
+    "start_seconds": 3455.0,
+    "speech_seconds": 89.91732426303855,
+    "duration_seconds": 91.0
+  },
+  {
+    "slide": 40,
+    "title": "Stop, inspect, narrow and rerun",
+    "start_seconds": 3546.0,
+    "speech_seconds": 86.73224489795918,
+    "duration_seconds": 88.0
+  },
+  {
+    "slide": 41,
+    "title": "Reliable orchestration is an engineering skill",
+    "start_seconds": 3634.0,
+    "speech_seconds": 105.10131519274377,
+    "duration_seconds": 106.5
+  },
+  {
+    "slide": 42,
+    "title": "Official sources and availability",
+    "start_seconds": 3740.5,
+    "speech_seconds": 90.31659863945578,
+    "duration_seconds": 91.5
+  }
+]

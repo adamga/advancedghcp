@@ -1,0 +1,42 @@
+00:00:00  01  From agent user to agent orchestrator
+00:01:15  02  What you will be able to do
+00:02:33  03  A realistic three-hour agenda
+00:03:59  04  Five words that prevent confusion
+00:05:25  05  Separate context is not separate files
+00:06:50  06  Teach the documented product, not old defaults
+00:08:21  07  A desktop home for agent-driven work
+00:09:50  08  Direct one small task, then inspect it
+00:11:22  09  An agent-first window beside your editor
+00:12:54  10  Select the harness before copying YAML
+00:14:26  11  Write a task contract, not a wish
+00:15:55  12  Put shared rules where everyone can find them
+00:17:32  13  A reviewer that can read, not write
+00:19:01  14  A reusable recipe with a trigger
+00:20:29  15  Discovery is not execution evidence
+00:22:01  16  Compose them without mixing harnesses
+00:23:30  17  Build and verify a role and a recipe
+00:24:59  18  Use a subagent for a bounded result
+00:26:31  19  Give the worker enough context to succeed
+00:27:58  20  Named workers, one implementation writer
+00:29:30  21  Same workflow, different runtime contract
+00:31:00  22  Switching roles is not parallel delegation
+00:32:20  23  Research -> implement -> prove -> review
+00:34:39  24  Hot files and shared resources
+00:36:10  25  Parallel readers, one integration writer
+00:37:37  26  Freeze the contract, then split the work
+00:38:59  27  Parallelize ready tasks, not wishful tasks
+00:40:24  28  A claim is a protocol, not a mutex
+00:41:51  29  Use checks and permissions, not slogans
+00:43:25  30  Separate working copies for independent tasks
+00:44:53  31  A clean merge is not proof of correctness
+00:46:18  32  Compare two safe orchestration patterns
+00:48:16  33  Keep scope, data and approvals deliberate
+00:49:49  34  More agents is not automatically more value
+00:51:21  35  Issue triage board: small on purpose
+00:53:08  36  Create and verify useful customizations
+00:54:37  37  Delegate a feature and collect proof
+00:56:07  38  Orchestrate two tasks without collisions
+00:57:35  39  Review, hand off and reflect
+00:59:06  40  Stop, inspect, narrow and rerun
+01:00:34  41  Reliable orchestration is an engineering skill
+01:02:20  42  Official sources and availability

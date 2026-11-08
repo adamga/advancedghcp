@@ -1,0 +1,68 @@
+[
+  {
+    "slide": 6,
+    "shape": "Teach the documented product, not old defaults",
+    "before": 32.0,
+    "after": 31.0
+  },
+  {
+    "slide": 11,
+    "shape": "Goal and concrete acceptance examples",
+    "before": 16.0,
+    "after": 14.0
+  },
+  {
+    "slide": 11,
+    "shape": "GOAL: implement one named behavior CONTEXT: contract + relevant files + examples WRITE SET: module A",
+    "before": 12.0,
+    "after": 11.0
+  },
+  {
+    "slide": 12,
+    "shape": "Put shared rules where everyone can find them",
+    "before": 32.0,
+    "after": 31.0
+  },
+  {
+    "slide": 19,
+    "shape": "Give the worker enough context to succeed",
+    "before": 32.0,
+    "after": 30.0
+  },
+  {
+    "slide": 19,
+    "shape": "Acceptance examples and check commands",
+    "before": 16.0,
+    "after": 15.0
+  },
+  {
+    "slide": 20,
+    "shape": "Named workers, one implementation writer",
+    "before": 32.0,
+    "after": 31.0
+  },
+  {
+    "slide": 30,
+    "shape": "Separate working copies for independent tasks",
+    "before": 32.0,
+    "after": 31.0
+  },
+  {
+    "slide": 33,
+    "shape": "Keep scope, data and approvals deliberate",
+    "before": 32.0,
+    "after": 31.0
+  },
+  {
+    "slide": 34,
+    "shape": "More agents is not automatically more value",
+    "before": 32.0,
+    "after": 31.0
+  },
+  {
+    "slide": 39,
+    "shape": "Inspect all changed files and requirement coverage",
+    "before": 15.0,
+    "after": 14.0
+  }
+]

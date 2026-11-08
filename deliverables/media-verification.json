@@ -1,0 +1,302 @@
+{
+  "result": "pass",
+  "slides": 42,
+  "live_minutes": 180,
+  "presentation_demo_minutes": 60,
+  "lab_minutes": [
+    30,
+    35,
+    40,
+    15
+  ],
+  "video_seconds": 3832.0,
+  "video_minutes": 63.87,
+  "complete_av_decode": "pass",
+  "embedded_chapters": 42,
+  "caption_cues": 852,
+  "narration_checks": [
+    {
+      "slide": 1,
+      "rms": 3286.7,
+      "seconds": 73.61020408163266
+    },
+    {
+      "slide": 2,
+      "rms": 3125.7,
+      "seconds": 77.08068027210885
+    },
+    {
+      "slide": 3,
+      "rms": 3238.5,
+      "seconds": 84.33419501133787
+    },
+    {
+      "slide": 4,
+      "rms": 3230.2,
+      "seconds": 84.64816326530612
+    },
+    {
+      "slide": 5,
+      "rms": 3169.3,
+      "seconds": 83.50507936507937
+    },
+    {
+      "slide": 6,
+      "rms": 3186.1,
+      "seconds": 89.68263038548753
+    },
+    {
+      "slide": 7,
+      "rms": 3217.1,
+      "seconds": 87.86294784580498
+    },
+    {
+      "slide": 8,
+      "rms": 3155.5,
+      "seconds": 91.30834467120181
+    },
+    {
+      "slide": 9,
+      "rms": 3261.0,
+      "seconds": 90.02308390022675
+    },
+    {
+      "slide": 10,
+      "rms": 3159.9,
+      "seconds": 91.19718820861678
+    },
+    {
+      "slide": 11,
+      "rms": 3275.3,
+      "seconds": 87.23197278911564
+    },
+    {
+      "slide": 12,
+      "rms": 3216.7,
+      "seconds": 95.980589569161
+    },
+    {
+      "slide": 13,
+      "rms": 3127.8,
+      "seconds": 87.61832199546485
+    },
+    {
+      "slide": 14,
+      "rms": 3138.6,
+      "seconds": 86.82834467120182
+    },
+    {
+      "slide": 15,
+      "rms": 3093.9,
+      "seconds": 91.25678004535148
+    },
+    {
+      "slide": 16,
+      "rms": 3157.6,
+      "seconds": 87.44272108843538
+    },
+    {
+      "slide": 17,
+      "rms": 3105.2,
+      "seconds": 88.12816326530613
+    },
+    {
+      "slide": 18,
+      "rms": 3351.3,
+      "seconds": 90.05242630385487
+    },
+    {
+      "slide": 19,
+      "rms": 3239.5,
+      "seconds": 85.51619047619047
+    },
+    {
+      "slide": 20,
+      "rms": 3236.2,
+      "seconds": 91.09233560090703
+    },
+    {
+      "slide": 21,
+      "rms": 3267.1,
+      "seconds": 88.05786848072562
+    },
+    {
+      "slide": 22,
+      "rms": 3314.4,
+      "seconds": 78.70911564625851
+    },
+    {
+      "slide": 23,
+      "rms": 3224.6,
+      "seconds": 137.639410430839
+    },
+    {
+      "slide": 24,
+      "rms": 3172.4,
+      "seconds": 89.96317460317461
+    },
+    {
+      "slide": 25,
+      "rms": 3255.3,
+      "seconds": 85.98331065759638
+    },
+    {
+      "slide": 26,
+      "rms": 3212.1,
+      "seconds": 80.57392290249433
+    },
+    {
+      "slide": 27,
+      "rms": 3212.7,
+      "seconds": 83.58380952380952
+    },
+    {
+      "slide": 28,
+      "rms": 3262.9,
+      "seconds": 86.0370068027211
+    },
+    {
+      "slide": 29,
+      "rms": 3214.4,
+      "seconds": 92.22775510204082
+    },
+    {
+      "slide": 30,
+      "rms": 3267.2,
+      "seconds": 86.87242630385488
+    },
+    {
+      "slide": 31,
+      "rms": 3243.2,
+      "seconds": 83.50367346938775
+    },
+    {
+      "slide": 32,
+      "rms": 3196.0,
+      "seconds": 116.5831746031746
+    },
+    {
+      "slide": 33,
+      "rms": 3170.7,
+      "seconds": 91.5370068027211
+    },
+    {
+      "slide": 34,
+      "rms": 3293.3,
+      "seconds": 90.71668934240363
+    },
+    {
+      "slide": 35,
+      "rms": 3159.7,
+      "seconds": 105.92975056689342
+    },
+    {
+      "slide": 36,
+      "rms": 3131.7,
+      "seconds": 87.62335600907029
+    },
+    {
+      "slide": 37,
+      "rms": 3192.3,
+      "seconds": 89.44757369614513
+    },
+    {
+      "slide": 38,
+      "rms": 3255.7,
+      "seconds": 86.41224489795918
+    },
+    {
+      "slide": 39,
+      "rms": 3216.7,
+      "seconds": 89.91732426303855
+    },
+    {
+      "slide": 40,
+      "rms": 3255.8,
+      "seconds": 86.73224489795918
+    },
+    {
+      "slide": 41,
+      "rms": 3029.2,
+      "seconds": 105.10131519274377
+    },
+    {
+      "slide": 42,
+      "rms": 3235.3,
+      "seconds": 90.31659863945578
+    }
+  ],
+  "sampled_video_frame_comparisons": [
+    {
+      "slide": 1,
+      "mean_pixel_difference": 1.382
+    },
+    {
+      "slide": 7,
+      "mean_pixel_difference": 1.743
+    },
+    {
+      "slide": 14,
+      "mean_pixel_difference": 1.739
+    },
+    {
+      "slide": 20,
+      "mean_pixel_difference": 1.77
+    },
+    {
+      "slide": 23,
+      "mean_pixel_difference": 1.475
+    },
+    {
+      "slide": 26,
+      "mean_pixel_difference": 1.881
+    },
+    {
+      "slide": 35,
+      "mean_pixel_difference": 1.511
+    },
+    {
+      "slide": 42,
+      "mean_pixel_difference": 1.553
+    }
+  ],
+  "artifacts": {
+    "advanced-github-copilot-workshop.pptx": {
+      "bytes": 202288,
+      "sha256": "ef15d2e99141e79a2282ef6d0cce8234b30e4cdbee28a43be77cd67b4768f3f7"
+    },
+    "advanced-github-copilot-workshop.pdf": {
+      "bytes": 356183,
+      "sha256": "2d85275da188d16c04674bdd741600ee8bbbdf1b7ee3c013db6e3ae1869cbad9"
+    },
+    "advanced-github-copilot-explainer.mp4": {
+      "bytes": 30936514,
+      "sha256": "5e6fbbbf75858a9266eb6e7a86a5ef7776107822e5c67a35c9cecaad090932ae"
+    },
+    "advanced-github-copilot-explainer.srt": {
+      "bytes": 89251,
+      "sha256": "c83fa23e756e8f17e909b2d7aeaf5c23b10090507e777fd59827a5f49edc4eae"
+    },
+    "advanced-github-copilot-explainer.vtt": {
+      "bytes": 89261,
+      "sha256": "2aaa0f6f27c022d211a22ba0464170172772830695ed88e7d202d910c5bca810"
+    },
+    "explainer-audio.m4a": {
+      "bytes": 28070062,
+      "sha256": "a72fdf3de4d4baea8a9a7c46bca69445dac629dc072a46c652da1e42324ed704"
+    },
+    "explainer-transcript.md": {
+      "bytes": 60101,
+      "sha256": "52987b8e04487db4e4d64c9f5002a778b3940c53ff9dc6729c4d22d4e32542a9"
+    },
+    "source-ledger.md": {
+      "bytes": 5233,
+      "sha256": "8ec913c69a11dd689b34b6041e678f5503323a70c97a0999dac5d97d8ffaad67"
+    },
+    "video-chapters.txt": {
+      "bytes": 2249,
+      "sha256": "19e464c36eb7fe82d94f80045660f329e33d3fbc51578b16e00ebd236aca0a39"
+    }
+  },
+  "limits": "Synthesized local voice; phrase-level captions; no live Copilot UI recording."
+}
