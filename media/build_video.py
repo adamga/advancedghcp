@@ -32,12 +32,18 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path, default=Path("deliverables"))
     parser.add_argument("--preview-chapters", type=int)
+    parser.add_argument("--reuse-video", action="store_true", help="Remaster an already verified video without rerendering its visuals")
     args = parser.parse_args()
     root = args.out.resolve()
     data = json.loads((root / "workshop-manifest.json").read_text(encoding="utf-8"))
     from video_source import effective_chapters
     source = effective_chapters(data, root)
     animated = data.get("video", {}).get("style") == "animated"
+    existing_video = root / "advanced-github-copilot-explainer.mp4"
+    if args.reuse_video:
+        previous = json.loads((root / "media-verification.json").read_text(encoding="utf-8"))
+        if hashlib.sha256(existing_video.read_bytes()).hexdigest() != previous["artifacts"][existing_video.name]["sha256"]:
+            raise ValueError("Only the previously verified video can be reused for remastering.")
     count = args.preview_chapters or data["slides"]
     if not 1 <= count <= data["slides"]:
         raise ValueError("Preview chapter count is invalid.")
@@ -83,7 +89,7 @@ def main():
         for index, slide in enumerate(source, 1):
             audio = root / "audio" / f"slide-{index:02}.wav"
             image = root / "slides" / f"slide-{index:02}.png"
-            if not audio.is_file() or (not animated and not image.is_file()):
+            if not audio.is_file() or (not animated and not args.reuse_video and not image.is_file()):
                 raise FileNotFoundError(f"Missing rendered image or narration for slide {index}")
             with wave.open(str(audio), "rb") as wav:
                 current = (wav.getnchannels(), wav.getsampwidth(), wav.getframerate())
@@ -107,7 +113,9 @@ def main():
             output_audio.writeframes(b"\0" * silence_frames * params[0] * params[1])
 
             segment = segments / f"slide-{index:02}.mp4"
-            if animated:
+            if args.reuse_video:
+                pass
+            elif animated:
                 from animated_renderer import render
                 render(segment, slide, narration["slides"][index - 1], full_duration, video_bitrate)
             else:
@@ -174,6 +182,7 @@ def main():
     (root / ("preview-chapters.txt" if args.preview_chapters else "video-chapters.txt")).write_text("\n".join(chapters) + "\n", encoding="utf-8")
     (root / ("preview-timeline.json" if args.preview_chapters else "video-timeline.json")).write_text(json.dumps(timeline, indent=2), encoding="utf-8")
     destination = root / f"{stem}.mp4"
+    mux_destination = root / "delivery-remux.tmp.mp4" if args.reuse_video else destination
     audio_destination = root / ("preview-audio.m4a" if args.preview_chapters else "explainer-audio.m4a")
     measured = None
     if animated:
@@ -183,19 +192,20 @@ def main():
     for attempt in range(3):
         if animated:
             audio_filter = ["-af", mastering_filter(measured, attenuation)]
-        bitrate = "96k" if animated else "64k"
-        run(ffmpeg, ["-f", "concat", "-safe", "0", "-i", str(concat), "-i", str(pcm),
+        bitrate = "72k" if animated else "64k"
+        visual_input = ["-i", str(existing_video)] if args.reuse_video else ["-f", "concat", "-safe", "0", "-i", str(concat)]
+        run(ffmpeg, [*visual_input, "-i", str(pcm),
                      "-i", str(srt), "-i", str(metadata_file), "-map", "0:v:0", "-map", "1:a:0",
                      "-map", "2:s:0", "-map_metadata", "3", "-map_chapters", "3",
                      "-c:v", "copy", *audio_filter, "-c:a", "aac", "-b:a", bitrate, "-ar", "48000", "-ac", "1",
                      "-c:s", "mov_text", "-metadata:s:s:0", "language=eng",
                      "-metadata:s:s:0", "title=English captions", "-disposition:s:0", "0",
-                     "-movflags", "+faststart", str(destination)])
-        run(ffmpeg, ["-i", str(pcm), *audio_filter, "-c:a", "aac", "-b:a", bitrate, "-ar", "48000", "-ac", "1",
+                     "-movflags", "+faststart", str(mux_destination)])
+        run(ffmpeg, ["-i", str(pcm), *audio_filter, "-c:a", "aac", "-b:a", "96k" if animated else bitrate, "-ar", "48000", "-ac", "1",
                      "-map_metadata", "-1", str(audio_destination)])
         if not animated:
             break
-        video_levels, audio_levels = profile(destination), profile(audio_destination)
+        video_levels, audio_levels = profile(mux_destination), profile(audio_destination)
         peak = max(float(video_levels["input_tp"]), float(audio_levels["input_tp"]))
         if peak <= ENCODED_TP_LIMIT:
             break
@@ -210,8 +220,10 @@ def main():
             "source": measured, "video": video_levels, "audio_only": audio_levels,
             "additional_attenuation_db": attenuation, "preview": bool(args.preview_chapters),
         }, indent=2), encoding="utf-8")
-    if destination.stat().st_size >= 95 * 1024 * 1024:
-        raise ValueError("Video exceeds the repository delivery size budget.")
+    if mux_destination.stat().st_size >= 64 * 1024 * 1024:
+        raise ValueError("Video exceeds the attachment delivery size budget.")
+    if args.reuse_video:
+        mux_destination.replace(destination)
 
     thumbs = Image.new("RGB", (1280, math.ceil(count / 4) * 200), "#101218")
     draw = ImageDraw.Draw(thumbs)

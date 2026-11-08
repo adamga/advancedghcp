@@ -12,6 +12,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo", type=Path, required=True)
     parser.add_argument("--out", type=Path, default=Path("deliverables"))
+    parser.add_argument("--compact-media", action="store_true",
+                        help="Publish optional audio-only/preview separately to meet attachment limits")
     args = parser.parse_args()
     repo = args.repo.resolve()
     destination = args.out.resolve()
@@ -40,6 +42,9 @@ def main():
     for name, full in (("complete-workshop.zip", True), ("sample-app-and-labs.zip", False)):
         output = destination / name
         selected = [(item, path) for item, path in files if full or not item.startswith(("media/", "deliverables/"))]
+        omitted = ("deliverables/explainer-audio.m4a", "deliverables/animated-explainer-preview.mp4")
+        if full and args.compact_media:
+            selected = [(item, path) for item, path in selected if item not in omitted]
         with zipfile.ZipFile(output, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
             for item, path in selected:
                 archive.write(path, f"advancedghcp/{item}")
@@ -52,9 +57,18 @@ def main():
                     "No Git metadata is included. Run git init and create a baseline commit before using worktree labs.\n"
                     "Run npm test and npm start from the advancedghcp directory.\n",
                 )
+            elif args.compact_media:
+                archive.writestr(
+                    "OPTIONAL-MEDIA.txt",
+                    "This archive contains the full video, deck, app, labs, instructor materials and source.\n"
+                    "The optional audio-only M4A and short preview are separate downloads to meet file limits.\n"
+                    "If wanted, place them in advancedghcp/deliverables/ beside the full video.\n",
+                )
         with zipfile.ZipFile(output) as archive:
             if archive.testzip() is not None:
                 raise ValueError(f"Archive CRC validation failed: {name}")
+        if args.compact_media and output.stat().st_size >= 64 * 1024 * 1024:
+            raise ValueError(f"Compact archive exceeds the attachment size limit: {name}")
         reports[name] = {"files": len(selected), "bytes": output.stat().st_size,
                          "sha256": hashlib.sha256(output.read_bytes()).hexdigest()}
     revision = subprocess.run(["git", "-C", str(repo), "rev-parse", "HEAD"],

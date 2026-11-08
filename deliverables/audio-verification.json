@@ -16,14 +16,14 @@
     "target_offset": "0.10"
   },
   "video": {
-    "input_i": "-22.24",
-    "input_tp": "-4.93",
+    "input_i": "-22.23",
+    "input_tp": "-5.33",
     "input_lra": "3.90",
-    "input_thresh": "-32.68",
+    "input_thresh": "-32.67",
     "output_i": "-21.87",
-    "output_tp": "-4.62",
+    "output_tp": "-4.87",
     "output_lra": "3.90",
-    "output_thresh": "-32.32",
+    "output_thresh": "-32.31",
     "normalization_type": "dynamic",
     "target_offset": "-0.13"
   },

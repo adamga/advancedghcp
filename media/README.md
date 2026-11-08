@@ -90,7 +90,8 @@ No partial narration or local-voice fallback is accepted as a complete video.
 Cadence uses pitch-preserving time stretching, bounded to modest adjustments.
 The actual speech rate is recorded and checked rather than inferred from a prompt.
 The current quieter master targets about -22 LUFS, high-passes low rumble at
-80 Hz, and reserves -6 dBTP before 96 kbps AAC encoding. Both encoded outputs
+80 Hz, and reserves -6 dBTP before AAC encoding (72 kbps mono in the video,
+96 kbps in the optional audio-only edition). Both encoded outputs
 must measure no higher than -4 dBTP; extra attenuation is applied if needed.
 No music or sound effects compete with the narration. This removes digital
 overs but cannot guarantee performance at every laptop's hardware volume setting.
@@ -114,6 +115,10 @@ with original text and diagrams. No legacy presenter affiliation is copied.
 
 After committing the workshop source and final media, create distributable
 archives with `python .\media\package_workshop.py --repo .`.
+Use `--compact-media` for attachment delivery: the full video and core workshop
+materials remain in the ZIP; optional audio-only and preview files are separate
+downloads. `build_video.py --reuse-video` remasters previously verified visuals
+without rerendering them, then the normal verification must run again.
 The complete archive includes the media. The lightweight app/labs archive
 excludes large media and Git metadata; initialize Git and commit a baseline
 before its worktree exercises.

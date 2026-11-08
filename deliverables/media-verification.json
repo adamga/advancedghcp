@@ -231,19 +231,19 @@
   "spoken_words": 5725,
   "actual_wpm": 148.1108376422436,
   "encoded_audio_levels": {
-    "input_i": "-22.24",
-    "input_tp": "-4.93",
+    "input_i": "-22.23",
+    "input_tp": "-5.33",
     "input_lra": "3.90",
-    "input_thresh": "-32.68",
+    "input_thresh": "-32.67",
     "output_i": "-21.87",
-    "output_tp": "-4.62",
+    "output_tp": "-4.87",
     "output_lra": "3.90",
-    "output_thresh": "-32.32",
+    "output_thresh": "-32.31",
     "normalization_type": "dynamic",
     "target_offset": "-0.13",
     "baseline_input_i": "-16.41",
     "baseline_input_tp": "0.34",
-    "loudness_reduction_lu": 5.829999999999998
+    "loudness_reduction_lu": 5.82
   },
   "sampled_video_frame_comparisons": [
     {
@@ -509,8 +509,8 @@
       "sha256": "2d85275da188d16c04674bdd741600ee8bbbdf1b7ee3c013db6e3ae1869cbad9"
     },
     "advanced-github-copilot-explainer.mp4": {
-      "bytes": 69871968,
-      "sha256": "20f3501692d97ebbc793113736fd0b4f76306a33c62124f244db3acc053f6e5e"
+      "bytes": 62157128,
+      "sha256": "9d8a0e73d2b689e772f8373223209d28034a35ab174f86b8004e21bca0f0bcb7"
     },
     "advanced-github-copilot-explainer.srt": {
       "bytes": 57513,
