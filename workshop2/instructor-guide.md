@@ -88,10 +88,10 @@ it**, and it becomes a habit they can use on any future task:
 **Workshop 2 explainer videos.** Two fun, animated, Coral-narrated videos cover the sample
 app, the scenario and why we change it, the approach, and a quick start:
 
-- **Trainer briefing** (about 11:25, 24 chapters): [MP4](../deliverables/explainers/workshop2-trainer-briefing.mp4) /
+- **Trainer briefing** (about 11:24, 24 chapters): [MP4](../deliverables/explainers/workshop2-trainer-briefing.mp4) /
   [SRT](../deliverables/explainers/workshop2-trainer-briefing.srt). Watch it **before** the
   session: it adds pre-class setup, verification, the answer key, pacing and troubleshooting.
-- **Attendee guide** (about 5:43, 15 chapters): [MP4](../deliverables/explainers/workshop2-attendee-guide.mp4) /
+- **Attendee guide** (about 5:40, 15 chapters): [MP4](../deliverables/explainers/workshop2-attendee-guide.mp4) /
   [SRT](../deliverables/explainers/workshop2-attendee-guide.srt). Send it to attendees as
   optional pre-work, or play it at the start of the session. It is **not** an extra
   segment in the timed 180-minute agenda.

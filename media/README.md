@@ -129,8 +129,8 @@ and are built by the self-contained pipeline in `media/explainers/`.
 
 | Video | Audience | Length | Chapters | Output |
 |---|---|---|---|---|
-| Attendee guide | People taking the labs: the app, the scenario, why, the approach, quick start, if you get stuck | about 5:43 | 15 | `deliverables/explainers/workshop2-attendee-guide.mp4` |
-| Trainer briefing | The facilitator: all of the above plus pre-class setup, verification, the answer key, pacing and troubleshooting | about 11:25 | 24 | `deliverables/explainers/workshop2-trainer-briefing.mp4` |
+| Attendee guide | People taking the labs: the app, the scenario, why, the approach, quick start, if you get stuck | about 5:40 | 15 | `deliverables/explainers/workshop2-attendee-guide.mp4` |
+| Trainer briefing | The facilitator: all of the above plus pre-class setup, verification, the answer key, pacing and troubleshooting | about 11:24 | 24 | `deliverables/explainers/workshop2-trainer-briefing.mp4` |
 
 Each has a matching `.srt` and `-poster.jpg`. Captions are also embedded as a soft
 subtitle track, and every scene is a chapter.

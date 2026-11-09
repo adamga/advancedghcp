@@ -181,8 +181,8 @@ Copilot UI**.
 
 | Video | For | Length | Download |
 |---|---|---|---|
-| Attendee guide | People taking the labs | about 5:43 | [MP4](deliverables/explainers/workshop2-attendee-guide.mp4) / [SRT](deliverables/explainers/workshop2-attendee-guide.srt) / [poster](deliverables/explainers/workshop2-attendee-guide-poster.jpg) |
-| Trainer briefing | The facilitator: adds pre-class setup, verification, answer key, pacing and troubleshooting | about 11:25 | [MP4](deliverables/explainers/workshop2-trainer-briefing.mp4) / [SRT](deliverables/explainers/workshop2-trainer-briefing.srt) / [poster](deliverables/explainers/workshop2-trainer-briefing-poster.jpg) |
+| Attendee guide | People taking the labs | about 5:40 | [MP4](deliverables/explainers/workshop2-attendee-guide.mp4) / [SRT](deliverables/explainers/workshop2-attendee-guide.srt) / [poster](deliverables/explainers/workshop2-attendee-guide-poster.jpg) |
+| Trainer briefing | The facilitator: adds pre-class setup, verification, answer key, pacing and troubleshooting | about 11:24 | [MP4](deliverables/explainers/workshop2-trainer-briefing.mp4) / [SRT](deliverables/explainers/workshop2-trainer-briefing.srt) / [poster](deliverables/explainers/workshop2-trainer-briefing-poster.jpg) |
 
 Audio is mastered quiet on purpose (about -23 LUFS, true peak -4 dBTP or lower) so it
 does not distort on laptop speakers. How they are built, and how to rebuild them:
