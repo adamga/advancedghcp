@@ -1,0 +1,194 @@
+# Frozen application contract v1
+
+## In plain language
+
+A **contract** is an agreement about *exactly* what goes into each piece of the
+app and what must come out. Think of the standard shape of a wall plug: any
+device with that plug works in any socket, without the designers having to talk
+to each other. This page is that "plug shape" for the four features.
+
+Why it is **frozen**: if two workers each build a piece while the shape quietly
+changes, the pieces stop fitting. So the shape is fixed for the whole workshop.
+If someone believes it must change, everybody stops, and only the integrator
+edits it (see Ownership below).
+
+This is the **reference** page. You do not need to read it top to bottom. Open it
+when a lab says "check the contract", and jump to the feature you are building.
+The friendlier explanation of the same rules is in [The story](01-the-story.md).
+
+| If you want to know... | Jump to |
+|---|---|
+| What the data looks like | [Data and pipeline](#data-and-pipeline) |
+| Who may edit which files | [Ownership and dependencies](#ownership-and-dependencies) |
+| How scores are calculated | [Feature 1: priority](#feature-1-priority-lab-2) |
+| How search matches | [Feature 2: search](#feature-2-search-lab-3a) |
+| What the summary counts | [Feature 3: summary](#feature-3-summary-lab-3b) |
+| What the export contains | [Feature 4: evidence export](#feature-4-evidence-export-lab-4) |
+| What the web server allows | [HTTP and UI boundaries](#http-and-ui-boundaries-already-wired) |
+
+Read this before assigning work. Shared wiring is complete and owned by the
+integrator only. Workers must not change it to avoid understanding their feature.
+
+## Data and pipeline
+
+*In plain language: every issue is a small record with a few fields. The app
+takes the list through an assembly line: score it, sort it, narrow it by the
+search, then count and export what is left. Each feature is one station.*
+
+`src/data/issues.mjs` exports eight frozen fictional records:
+
+```text
+Issue {
+  id: string, title: string, description: string, category: string,
+  status: "open" | "in-progress" | "closed",
+  impact: "high" | "medium" | "low",
+  affectedUsers: nonnegative integer, blocked: boolean, ageDays: nonnegative integer
+}
+```
+
+Only valid documented inputs are required. Do not import fixtures inside a feature:
+features receive their input. Return fresh result containers without mutating
+the input or source records. No external services, clock, randomness, package
+changes, or real customer data.
+
+`buildBoard(query)` makes a copy of each issue with `triage`, sorts descending
+score (null treated as zero), then uses issue ID ascending as the tie-breaker.
+It passes the ranked array through search, then passes **that visible subset**
+to summary and export. Search and summary do not import each other.
+The integrator can validate wiring without changing a worker's implementation.
+
+## Ownership and dependencies
+
+| Task | Exclusive editable files | Depends on |
+|---|---|---|
+| Lab 1 | `.github/copilot-instructions.md`, `.github/agents/triage-reviewer.agent.md`, `.github/skills/triage-policy/` | Preflight; policy below |
+| Lab 2 | `src/features/priority.mjs`, `tests/features/priority.test.mjs`; coordinator profile before freeze | Lab 1 skill and report |
+| Lab 3A | `src/features/search.mjs`, `tests/features/search.test.mjs` | Frozen contract only |
+| Lab 3B | `src/features/summary.mjs`, `tests/features/summary.test.mjs` | Frozen contract only; NOT task A |
+| Lab 4 | `src/features/handoff.mjs`, `tests/features/handoff.test.mjs` | Integrated ranked/filtered issue shape |
+| Integrator | Shared wiring, final gate, central board, Git index/branch operations | Workers stop and release owned files |
+
+In the starter, Lab 3A and 3B can be implemented independently in either order.
+No task edits `package.json`, package-lock, shared UI/server, fixtures, acceptance
+tests, instructor solutions, or another task's test. If a contract must change,
+stop both writers, agree a versioned contract, serialize the shared edit, and
+re-run dependent tests. Do not let both workers "quickly fix" a shared file.
+
+## Feature 1: priority (Lab 2)
+
+*In plain language: turn each issue into a score and an urgency level (P1 most
+urgent), and explain the score in words. Closed issues always score zero.*
+
+`prioritizeIssue(issue) -> { level, score, reasons }`
+
+Starter: `{ level: "untriaged", score: null, reasons: [] }`.
+Completion:
+
+- Closed overrides all fields: P3, score 0, sole reason `closed issue (0)`.
+- Active base: high=60, medium=30, low=10.
+- Add 25 if blocked, 10 if affectedUsers >=100, 5 if ageDays >=7.
+- P1 if score >=80; P2 if score >=40; otherwise P3.
+- Reasons are ordered: `<impact> impact (+<base>)`, then
+  `blocked workflow (+25)`, `100+ affected users (+10)`, `7+ days old (+5)`
+  for only the additions that apply. Return fresh objects/arrays.
+
+75/P2 and 85/P1 are the nearest reachable scores around the 80 threshold;
+80 itself cannot be generated by this fixed policy. User and age boundaries
+must test 99/100 and 6/7 exactly. An active issue whose `impact` is not exactly
+`high`, `medium` or `low` (including inherited names such as `constructor`) must
+throw a `TypeError` whose message starts with `Unknown impact`.
+
+| Issue | Score | Level |
+|---|---:|---|
+| ISS-101 | 100 | P1 |
+| ISS-102 | 55 | P2 |
+| ISS-103 | 15 | P3 |
+| ISS-104 | 40 | P2 |
+| ISS-105 | 0 | P3 |
+| ISS-106 | 35 | P3 |
+| ISS-107 | 10 | P3 |
+| ISS-108 | 0 | P3 |
+
+Command: `npm run acceptance -- priority` (six tests).
+
+## Feature 2: search (Lab 3A)
+
+*In plain language: the user types words; keep only issues that contain **every**
+word somewhere in the title, description, or category. Capital letters do not
+matter. Characters like `.*` are treated as plain text, not as a special code.*
+
+`selectIssues(issues, query: string) -> IssueWithTriage[]`
+
+Starter returns a copied array regardless of query. Completion trims query,
+splits on whitespace, lowercases, and matches **every token** as literal substring
+text across the joined title, description, and category. Empty/whitespace returns
+all issues in a new array. Preserve input order and object identity. Do not
+interpret regex characters or exclude closed issues.
+
+`KEYBOARD` -> ISS-102. `bLuE` -> ISS-104 via description.
+`PAYMENTS` -> ISS-101, ISS-105. `keyboard accessibility` -> ISS-102.
+`keyboard payments` and `.*` -> none.
+
+Command: `npm run acceptance -- search` (six tests).
+
+## Feature 3: summary (Lab 3B)
+
+*In plain language: count what is on screen. "Open" means not closed (so
+in-progress counts). "Blocked" counts only issues that are both still open and
+blocked. Categories count everything on screen, closed or not.*
+
+`summarizeIssues(visibleIssues) -> { available, total, open, blocked, byCategory }`
+
+Starter: available=false, total=input.length, other fields=null.
+Completion: available=true; total=input.length; **open means active/not closed**
+(including in-progress); blocked counts only active blocked issues; byCategory
+counts all supplied issues including closed and inserts keys alphabetically.
+Empty input yields true,0,0,0,{}.
+
+Full fixtures: total8, open6, blocked2, four categories with2 each.
+Payments subset: total2, open1, blocked1, `{ payments: 2 }`.
+Closed blocked ISS-105 alone: total1, open0, blocked0.
+
+Command: `npm run acceptance -- summary` (six tests).
+
+## Feature 4: evidence export (Lab 4)
+
+*In plain language: a short JSON file listing the still-open issues on screen,
+in the same order, with only four facts each: id, title, priority, and the
+reason. Nothing else, and nothing that changes between runs (no timestamps).*
+
+`createHandoff(rankedVisibleIssues) -> { available, schemaVersion, items }`
+
+Starter: false,1,[]; HTTP export returns 501 and UI hides the download link.
+Completion: true,1, items for active/not-closed issues only, preserving supplied
+ranked/filtered order. Each item has **exactly**
+`{ id, title, priority: issue.triage.level, reason: issue.triage.reasons.join("; ") }`.
+Do not re-score, add timestamps, export descriptions/user counts, or mutate input.
+Empty input yields true,1,[].
+
+This JSON contains fictional issue-triage evidence, not assertions that tests ran.
+The human/agent task report separately records actual validation. "Handoff" here
+is an app export, distinct from a Local UI agent-transition button.
+
+Command: `npm run acceptance -- handoff` (six tests).
+
+## HTTP and UI boundaries (already wired)
+
+*In plain language: the small web server is already finished and locked down. It
+only answers on your own computer, only for GET requests, and only for a short
+list of known pages. You do not change it in any lab.*
+
+| GET route | Response |
+|---|---|
+| `/api/health` | `{ status: "ok", fixtureCount: 8 }` |
+| `/api/issues?q=...` | `{ issues, summary, handoffAvailable }` |
+| `/api/handoff?q=...` | 501 before feature; JSON attachment afterward |
+| `/`, `/styles.css`, `/app.js`, `/favicon.svg` | Only allowlisted static files |
+
+Query defaults to empty; maximum length is 200 characters, over limit HTTP400.
+Unknown routes HTTP404; methods other than GET HTTP405.
+The server listens on 127.0.0.1, never publishes externally. Browser rendering
+uses textContent, not issue-provided HTML. Do not loosen those boundaries.
+
+Final command: `npm run acceptance -- all` (24 feature +2 integration tests).
+Baseline `npm test` and `npm run smoke` must remain passing throughout.

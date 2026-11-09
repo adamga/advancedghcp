@@ -1,0 +1,296 @@
+[
+  {
+    "slide": 1,
+    "title": "From agent user to agent orchestrator",
+    "start_seconds": 0.0,
+    "speech_seconds": 55.853541666666665,
+    "duration_seconds": 56.375
+  },
+  {
+    "slide": 2,
+    "title": "What you will be able to do",
+    "start_seconds": 56.375,
+    "speech_seconds": 57.97354166666667,
+    "duration_seconds": 58.5
+  },
+  {
+    "slide": 3,
+    "title": "A realistic three-hour agenda",
+    "start_seconds": 114.875,
+    "speech_seconds": 57.736875,
+    "duration_seconds": 58.25
+  },
+  {
+    "slide": 4,
+    "title": "Five words that prevent confusion",
+    "start_seconds": 173.125,
+    "speech_seconds": 61.17616666666667,
+    "duration_seconds": 61.708333333333336
+  },
+  {
+    "slide": 5,
+    "title": "Separate context is not separate files",
+    "start_seconds": 234.83333333333334,
+    "speech_seconds": 55.75720833333333,
+    "duration_seconds": 56.291666666666664
+  },
+  {
+    "slide": 6,
+    "title": "Teach the documented product, not old defaults",
+    "start_seconds": 291.125,
+    "speech_seconds": 55.87125,
+    "duration_seconds": 56.375
+  },
+  {
+    "slide": 7,
+    "title": "A desktop home for agent-driven work",
+    "start_seconds": 347.5,
+    "speech_seconds": 58.164208333333335,
+    "duration_seconds": 58.666666666666664
+  },
+  {
+    "slide": 8,
+    "title": "Direct one small task, then inspect it",
+    "start_seconds": 406.1666666666667,
+    "speech_seconds": 56.98533333333334,
+    "duration_seconds": 57.5
+  },
+  {
+    "slide": 9,
+    "title": "An agent-first window beside your editor",
+    "start_seconds": 463.6666666666667,
+    "speech_seconds": 56.917375,
+    "duration_seconds": 57.458333333333336
+  },
+  {
+    "slide": 10,
+    "title": "Select the harness before copying YAML",
+    "start_seconds": 521.125,
+    "speech_seconds": 60.11416666666667,
+    "duration_seconds": 60.625
+  },
+  {
+    "slide": 11,
+    "title": "Write a task contract, not a wish",
+    "start_seconds": 581.75,
+    "speech_seconds": 52.658833333333334,
+    "duration_seconds": 53.166666666666664
+  },
+  {
+    "slide": 12,
+    "title": "Put shared rules where everyone can find them",
+    "start_seconds": 634.9166666666666,
+    "speech_seconds": 59.19229166666667,
+    "duration_seconds": 59.708333333333336
+  },
+  {
+    "slide": 13,
+    "title": "A reviewer that can read, not write",
+    "start_seconds": 694.625,
+    "speech_seconds": 59.05895833333334,
+    "duration_seconds": 59.583333333333336
+  },
+  {
+    "slide": 14,
+    "title": "A reusable recipe with a trigger",
+    "start_seconds": 754.2083333333334,
+    "speech_seconds": 55.36358333333333,
+    "duration_seconds": 55.875
+  },
+  {
+    "slide": 15,
+    "title": "Discovery is not execution evidence",
+    "start_seconds": 810.0833333333334,
+    "speech_seconds": 59.90775,
+    "duration_seconds": 60.416666666666664
+  },
+  {
+    "slide": 16,
+    "title": "Compose them without mixing harnesses",
+    "start_seconds": 870.5,
+    "speech_seconds": 51.89183333333333,
+    "duration_seconds": 52.416666666666664
+  },
+  {
+    "slide": 17,
+    "title": "Build and verify a role and a recipe",
+    "start_seconds": 922.9166666666666,
+    "speech_seconds": 55.109541666666665,
+    "duration_seconds": 55.625
+  },
+  {
+    "slide": 18,
+    "title": "Use a subagent for a bounded result",
+    "start_seconds": 978.5416666666666,
+    "speech_seconds": 55.831125,
+    "duration_seconds": 56.333333333333336
+  },
+  {
+    "slide": 19,
+    "title": "Give the worker enough context to succeed",
+    "start_seconds": 1034.875,
+    "speech_seconds": 55.100541666666665,
+    "duration_seconds": 55.625
+  },
+  {
+    "slide": 20,
+    "title": "Named workers, one implementation writer",
+    "start_seconds": 1090.5,
+    "speech_seconds": 56.757083333333334,
+    "duration_seconds": 57.291666666666664
+  },
+  {
+    "slide": 21,
+    "title": "Same workflow, different runtime contract",
+    "start_seconds": 1147.7916666666667,
+    "speech_seconds": 54.63458333333333,
+    "duration_seconds": 55.166666666666664
+  },
+  {
+    "slide": 22,
+    "title": "Switching roles is not parallel delegation",
+    "start_seconds": 1202.9583333333335,
+    "speech_seconds": 54.616625,
+    "duration_seconds": 55.125
+  },
+  {
+    "slide": 23,
+    "title": "Research -> implement -> prove -> review",
+    "start_seconds": 1258.0833333333335,
+    "speech_seconds": 60.48733333333333,
+    "duration_seconds": 61.0
+  },
+  {
+    "slide": 24,
+    "title": "Hot files and shared resources",
+    "start_seconds": 1319.0833333333335,
+    "speech_seconds": 57.27858333333333,
+    "duration_seconds": 57.791666666666664
+  },
+  {
+    "slide": 25,
+    "title": "Parallel readers, one integration writer",
+    "start_seconds": 1376.8750000000002,
+    "speech_seconds": 51.79675,
+    "duration_seconds": 52.333333333333336
+  },
+  {
+    "slide": 26,
+    "title": "Freeze the contract, then split the work",
+    "start_seconds": 1429.2083333333335,
+    "speech_seconds": 54.98441666666667,
+    "duration_seconds": 55.5
+  },
+  {
+    "slide": 27,
+    "title": "Parallelize ready tasks, not wishful tasks",
+    "start_seconds": 1484.7083333333335,
+    "speech_seconds": 53.76416666666667,
+    "duration_seconds": 54.291666666666664
+  },
+  {
+    "slide": 28,
+    "title": "A claim is a protocol, not a mutex",
+    "start_seconds": 1539.0000000000002,
+    "speech_seconds": 54.865375,
+    "duration_seconds": 55.375
+  },
+  {
+    "slide": 29,
+    "title": "Use checks and permissions, not slogans",
+    "start_seconds": 1594.3750000000002,
+    "speech_seconds": 56.347833333333334,
+    "duration_seconds": 56.875
+  },
+  {
+    "slide": 30,
+    "title": "Separate working copies for independent tasks",
+    "start_seconds": 1651.2500000000002,
+    "speech_seconds": 54.70079166666667,
+    "duration_seconds": 55.208333333333336
+  },
+  {
+    "slide": 31,
+    "title": "A clean merge is not proof of correctness",
+    "start_seconds": 1706.4583333333335,
+    "speech_seconds": 51.00675,
+    "duration_seconds": 51.541666666666664
+  },
+  {
+    "slide": 32,
+    "title": "Compare two safe orchestration patterns",
+    "start_seconds": 1758.0000000000002,
+    "speech_seconds": 55.28275,
+    "duration_seconds": 55.791666666666664
+  },
+  {
+    "slide": 33,
+    "title": "Keep scope, data and approvals deliberate",
+    "start_seconds": 1813.791666666667,
+    "speech_seconds": 52.77766666666667,
+    "duration_seconds": 53.291666666666664
+  },
+  {
+    "slide": 34,
+    "title": "More agents is not automatically more value",
+    "start_seconds": 1867.0833333333337,
+    "speech_seconds": 51.42783333333333,
+    "duration_seconds": 51.958333333333336
+  },
+  {
+    "slide": 35,
+    "title": "Issue triage board: small on purpose",
+    "start_seconds": 1919.041666666667,
+    "speech_seconds": 55.26070833333333,
+    "duration_seconds": 55.791666666666664
+  },
+  {
+    "slide": 36,
+    "title": "Create and verify useful customizations",
+    "start_seconds": 1974.8333333333337,
+    "speech_seconds": 52.110708333333335,
+    "duration_seconds": 52.625
+  },
+  {
+    "slide": 37,
+    "title": "Delegate a feature and collect proof",
+    "start_seconds": 2027.4583333333337,
+    "speech_seconds": 48.899,
+    "duration_seconds": 49.416666666666664
+  },
+  {
+    "slide": 38,
+    "title": "Orchestrate two tasks without collisions",
+    "start_seconds": 2076.8750000000005,
+    "speech_seconds": 48.985458333333334,
+    "duration_seconds": 49.5
+  },
+  {
+    "slide": 39,
+    "title": "Review, hand off and reflect",
+    "start_seconds": 2126.3750000000005,
+    "speech_seconds": 49.68120833333333,
+    "duration_seconds": 50.208333333333336
+  },
+  {
+    "slide": 40,
+    "title": "Stop, inspect, narrow and rerun",
+    "start_seconds": 2176.583333333334,
+    "speech_seconds": 53.249583333333334,
+    "duration_seconds": 53.75
+  },
+  {
+    "slide": 41,
+    "title": "Reliable orchestration is an engineering skill",
+    "start_seconds": 2230.333333333334,
+    "speech_seconds": 54.89458333333334,
+    "duration_seconds": 55.416666666666664
+  },
+  {
+    "slide": 42,
+    "title": "Official sources and availability",
+    "start_seconds": 2285.7500000000005,
+    "speech_seconds": 54.735166666666665,
+    "duration_seconds": 55.25
+  }
+]

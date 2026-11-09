@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Issue triage board | Copilot workshop</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#issues">Skip to issues</a>
+  <header class="page-header">
+    <p class="eyebrow">Advanced GitHub Copilot workshop</p>
+    <h1>Issue triage board</h1>
+    <p>A local practice board. Every issue is fictional; nothing is saved or sent to a service.</p>
+  </header>
+  <main>
+    <section class="controls" aria-labelledby="controls-heading">
+      <h2 id="controls-heading">Explore the board</h2>
+      <form id="search-form" role="search">
+        <label for="query">Search title, description, or category</label>
+        <div class="search-row">
+          <input id="query" name="q" type="search" maxlength="200" placeholder="Try keyboard or payments">
+          <button type="submit">Search</button>
+          <button type="reset" class="secondary">Clear</button>
+        </div>
+      </form>
+      <p class="lab-note">Practice priority in Lab 2, search and summary in Lab 3, and evidence export in Lab 4. A fresh starter leaves these enhancements incomplete.</p>
+      <a id="handoff" class="button secondary" href="/api/handoff" hidden>Download evidence JSON</a>
+    </section>
+    <section aria-labelledby="summary-heading">
+      <h2 id="summary-heading">At a glance</h2>
+      <p id="summary" role="status" aria-live="polite">Loading issues...</p>
+    </section>
+    <p id="error" role="alert" hidden></p>
+    <section aria-labelledby="issues-heading">
+      <h2 id="issues-heading">Support issues</h2>
+      <div id="issues" tabindex="-1"></div>
+    </section>
+  </main>
+  <footer>Offline app, online Copilot exercises. No cloud resources required.</footer>
+</body>
+</html>

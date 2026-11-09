@@ -1,0 +1,23 @@
+{
+  "name": "copilot-issue-triage-workshop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An offline issue triage board for an advanced GitHub Copilot workshop.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/server.mjs",
+    "start:solutions": "node scripts/start-solutions.mjs",
+    "test": "node scripts/test.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "check:customizations": "node scripts/check-customizations.mjs",
+    "verify:solutions": "node scripts/verify-solutions.mjs",
+    "acceptance": "node scripts/acceptance.mjs",
+    "workshop:setup": "node scripts/workshop-files.mjs setup",
+    "workshop:apply": "node scripts/workshop-files.mjs apply",
+    "workshop:restore": "node scripts/workshop-files.mjs restore",
+    "workshop:starter": "node scripts/workshop-files.mjs starter"
+  }
+}

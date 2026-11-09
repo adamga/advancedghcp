@@ -1,0 +1,2472 @@
+{
+  "fps": 24,
+  "chapters": [
+    {
+      "section": "ADVANCED WORKSHOP",
+      "title": "From agent user to agent orchestrator",
+      "items": [
+        "GitHub Copilot / custom agents / skills / safe parallel work",
+        "3 hours: 60 minutes together + 120 minutes building",
+        "Official guidance verified 7 November 2026 (US Eastern)"
+      ],
+      "narration": "Welcome to your agent teamwork upgrade! No artificial intelligence doctorate required. Imagine a tiny support team: one person keeps the goal straight, another investigates, another builds, and another reviews. We will give Copilot similarly clear jobs, rather than asking a crowd of helpers to change everything at once. Our practice app is an issue triage board with fictional support tickets. It is deliberately small. We will add priority, search, a summary, and an evidence export. The interesting part is how we direct the work, protect shared files, and check that the final result actually works. This is a visual lesson with an artificial intelligence generated voice, not a recording of live product clicks. Pause whenever you want to try an example. The live workshop still lasts three hours: one hour of presentation and demonstrations, followed by two hours of hands-on labs.",
+      "sources": [],
+      "code": "",
+      "cue": "",
+      "kind": "cover",
+      "slide": 1,
+      "beats": [
+        {
+          "headline": "Give every helper a job",
+          "scene": "team",
+          "labels": [
+            "Coordinator",
+            "Researcher",
+            "Builder",
+            "Reviewer"
+          ],
+          "text": "Welcome to your agent teamwork upgrade! No artificial intelligence doctorate required. Imagine a tiny support team: one person keeps the goal straight, another investigates, another builds, and another reviews. We will give Copilot similarly clear jobs, rather than asking a crowd of helpers to change everything at once.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Small app. Real teamwork.",
+          "scene": "board",
+          "labels": [
+            "Priority",
+            "Search",
+            "Summary",
+            "Evidence"
+          ],
+          "text": "Our practice app is an issue triage board with fictional support tickets. It is deliberately small. We will add priority, search, a summary, and an evidence export. The interesting part is how we direct the work, protect shared files, and check that the final result actually works.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Watch, pause, then try",
+          "scene": "flow",
+          "labels": [
+            "Watch",
+            "Pause",
+            "Try",
+            "Review"
+          ],
+          "text": "This is a visual lesson with an artificial intelligence generated voice, not a recording of live product clicks. Pause whenever you want to try an example. The live workshop still lasts three hours: one hour of presentation and demonstrations, followed by two hours of hands-on labs.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "START HERE",
+      "title": "What you will be able to do",
+      "items": [
+        "Choose instructions, a custom agent, or a skill for the right job",
+        "Delegate a bounded task with an evidence-based result",
+        "Coordinate one repository without overlapping writers",
+        "Review and integrate changes instead of trusting completion messages"
+      ],
+      "narration": "Here is the whole workshop in three pieces. A custom agent is a reusable job description. A skill is a reusable recipe with supporting files. Your prompt is today's task: what to change, what to leave alone, and how to prove success. Different jobs need different tools, not bigger promises. You will learn to give a helper a small, complete assignment. It needs the goal, the relevant context, the files it may edit, and the result to return. That result should contain evidence and unresolved questions. A confident sentence saying finished is not the same as a verified change. You will also learn why two chats can collide in one repository. Separate conversations do not guarantee separate files. We will compare clear ownership, a single integration writer, dependency ordering, and separate worktrees. The best choice is the simplest workflow that keeps the changes understandable and safe.",
+      "sources": [],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 2,
+      "beats": [
+        {
+          "headline": "Role + recipe + task",
+          "scene": "recipe",
+          "labels": [
+            "Agent = role",
+            "Skill = recipe",
+            "Prompt = task"
+          ],
+          "text": "Here is the whole workshop in three pieces. A custom agent is a reusable job description. A skill is a reusable recipe with supporting files. Your prompt is today's task: what to change, what to leave alone, and how to prove success. Different jobs need different tools, not bigger promises.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "A useful handoff",
+          "scene": "brief",
+          "labels": [
+            "Goal",
+            "Allowed files",
+            "Checks",
+            "Result"
+          ],
+          "text": "You will learn to give a helper a small, complete assignment. It needs the goal, the relevant context, the files it may edit, and the result to return. That result should contain evidence and unresolved questions. A confident sentence saying finished is not the same as a verified change.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "One repo, no collisions",
+          "scene": "split",
+          "labels": [
+            "Worker A",
+            "Shared file",
+            "Worker B"
+          ],
+          "text": "You will also learn why two chats can collide in one repository. Separate conversations do not guarantee separate files. We will compare clear ownership, a single integration writer, dependency ordering, and separate worktrees. The best choice is the simplest workflow that keeps the changes understandable and safe.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "RUN OF SHOW",
+      "title": "A realistic three-hour agenda",
+      "items": [
+        "00:00-00:15  Concepts + app and VS Code tour",
+        "00:15-00:35  Agent / skill creation + delegation demos",
+        "00:35-01:00  Safe orchestration + review demo",
+        "01:00-03:00  Labs: 30 + 35 + 40 + 15 minutes"
+      ],
+      "narration": "The event clock is simple: sixty minutes together, then four labs of thirty, thirty-five, forty, and fifteen minutes. Demonstrations are inside that first hour, not extra time. Short check-ins are inside the labs. This self-paced video's running time is separate from the live event schedule. Complete the preflight before the workshop. Check Node, Git, your Copilot access, and the starter's tests. The app needs no database, secret keys, or package installation. If an organization blocks a newer feature, use the documented fallback rather than bypassing the policy. Setup should not consume your lab time. Lab one creates useful instructions, an agent, and a skill. Lab two delegates research and implements priority. Lab three coordinates search and summary without overlapping writers. Lab four reviews and exports evidence. Each lab has prompts, checkpoints, hints, and separate instructor answers, so you can recover without guessing.",
+      "sources": [],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 3,
+      "beats": [
+        {
+          "headline": "The three-hour map",
+          "scene": "flow",
+          "labels": [
+            "60 min together",
+            "30 min lab",
+            "35 min lab",
+            "40 + 15 min"
+          ],
+          "text": "The event clock is simple: sixty minutes together, then four labs of thirty, thirty-five, forty, and fifteen minutes. Demonstrations are inside that first hour, not extra time. Short check-ins are inside the labs. This self-paced video's running time is separate from the live event schedule.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Set up before the clock",
+          "scene": "review",
+          "labels": [
+            "Node 22+",
+            "Git",
+            "Copilot access",
+            "Passing starter"
+          ],
+          "text": "Complete the preflight before the workshop. Check Node, Git, your Copilot access, and the starter's tests. The app needs no database, secret keys, or package installation. If an organization blocks a newer feature, use the documented fallback rather than bypassing the policy. Setup should not consume your lab time.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Four things to practice",
+          "scene": "board",
+          "labels": [
+            "Create",
+            "Delegate",
+            "Coordinate",
+            "Hand off"
+          ],
+          "text": "Lab one creates useful instructions, an agent, and a skill. Lab two delegates research and implements priority. Lab three coordinates search and summary without overlapping writers. Lab four reviews and exports evidence. Each lab has prompts, checkpoints, hints, and separate instructor answers, so you can recover without guessing.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "MENTAL MODEL",
+      "title": "Five words that prevent confusion",
+      "items": [
+        "Model: generates and reasons about possible next actions",
+        "Harness: manages context, tool calls, approvals and execution",
+        "Custom agent: reusable role + instructions + selected tools",
+        "Subagent: delegated work in a separate context",
+        "Skill: an on-demand procedure with supporting resources"
+      ],
+      "narration": "A model proposes the next useful action. The harness is the control room around it: it supplies context, tools, permissions, and execution. A tool is an action such as reading a file or running a test. Changing the model does not automatically change the harness or its configuration format. A custom agent is a definition of a specialist. A subagent is a helper doing delegated work in a separate context. You can select a specialist yourself, or a main agent can call it for a side task. Built-in helpers can be subagents too; you do not need a new profile for every task. Context means the notes available to the helper. A session is an ongoing unit of work with its conversation and workspace. Two notebooks can sit on the same desk. Likewise, two separate contexts can still edit the same checkout. Keep the job definition, the delegated call, and the actual workspace separate in your thinking.",
+      "sources": [
+        "S5",
+        "S8",
+        "S9"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 4,
+      "beats": [
+        {
+          "headline": "The engine and control room",
+          "scene": "flow",
+          "labels": [
+            "Model",
+            "Harness",
+            "Tools",
+            "Result"
+          ],
+          "text": "A model proposes the next useful action. The harness is the control room around it: it supplies context, tools, permissions, and execution. A tool is an action such as reading a file or running a test. Changing the model does not automatically change the harness or its configuration format.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "A job is not a side quest",
+          "scene": "team",
+          "labels": [
+            "Custom agent",
+            "Main task",
+            "Subagent",
+            "Returned report"
+          ],
+          "text": "A custom agent is a definition of a specialist. A subagent is a helper doing delegated work in a separate context. You can select a specialist yourself, or a main agent can call it for a side task. Built-in helpers can be subagents too; you do not need a new profile for every task.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Notes are not a workbench",
+          "scene": "split",
+          "labels": [
+            "Context A",
+            "Same checkout",
+            "Context B"
+          ],
+          "text": "Context means the notes available to the helper. A session is an ongoing unit of work with its conversation and workspace. Two notebooks can sit on the same desk. Likewise, two separate contexts can still edit the same checkout. Keep the job definition, the delegated call, and the actual workspace separate in your thinking.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "IMPORTANT DISTINCTION",
+      "title": "Separate context is not separate files",
+      "items": [
+        "Two chats can point at the same checkout",
+        "Subagents do not automatically receive independent worktrees",
+        "A worktree separates working files, not machine permissions",
+        "An approval mode is not a filesystem lock"
+      ],
+      "narration": "Here is our first collision. Two helpers have separate conversations, but both reach for the same file. One edit can overwrite the other. Subagents do not automatically get independent worktrees. A separate chat is useful for focus, but it is not evidence of filesystem isolation. Three protections answer three different questions. A worktree separates working copies. Tool permissions control actions that need approval. A sandbox can restrict access to files, networks, or credentials. None is a substitute for the others. A worktree is another workbench, not a locked room around your computer. Collisions are not limited to source code. Helpers in one checkout share its branch and Git index. Servers can fight over a port, and tests can overwrite a report directory. Before parallel writing, identify all the writable surfaces. If the boundaries are unclear, serialize the writes.",
+      "sources": [
+        "S4",
+        "S7",
+        "S15"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 5,
+      "beats": [
+        {
+          "headline": "Two notebooks, one file",
+          "scene": "split",
+          "labels": [
+            "Agent A",
+            "shared.mjs",
+            "Agent B"
+          ],
+          "text": "Here is our first collision. Two helpers have separate conversations, but both reach for the same file. One edit can overwrite the other. Subagents do not automatically get independent worktrees. A separate chat is useful for focus, but it is not evidence of filesystem isolation.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Three different protections",
+          "scene": "compare",
+          "labels": [
+            "Worktree: files",
+            "Permissions: actions",
+            "Sandbox: access"
+          ],
+          "text": "Three protections answer three different questions. A worktree separates working copies. Tool permissions control actions that need approval. A sandbox can restrict access to files, networks, or credentials. None is a substitute for the others. A worktree is another workbench, not a locked room around your computer.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Check all shared resources",
+          "scene": "brief",
+          "labels": [
+            "Files",
+            "Git index",
+            "Ports",
+            "Outputs"
+          ],
+          "text": "Collisions are not limited to source code. Helpers in one checkout share its branch and Git index. Servers can fight over a port, and tests can overwrite a report directory. Before parallel writing, identify all the writable surfaces. If the boundaries are unclear, serialize the writes.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "FRESHNESS",
+      "title": "Teach the documented product, not old defaults",
+      "items": [
+        "Current documentation checked: 7 November 2026",
+        "28 October release: Copilot harness default for new VS Code sessions",
+        "App Projects, marketplace and connectors: preview-dependent",
+        "Core labs avoid preview-only functionality"
+      ],
+      "narration": "The workshop's product facts were checked against official GitHub and VS Code documentation on November seventh, twenty twenty-six. That is a snapshot, not a promise that interfaces never change. Before teaching it later, check the current clients, policy settings, and file references rather than trusting old examples. The October twenty-eighth VS Code release documents Copilot as the default harness for new sessions. Older examples often assume Local. That matters: some frontmatter fields and delegation tools are different. Always choose the intended harness before copying configuration, and then inspect the runtime behavior. The Copilot app is documented for all Copilot plans, subject to organization policy. Its Projects experience is public preview. Marketplaces and connectors have preview limits, and computer use is experimental. Our core labs do not require these features, a cloud job, or external tools. Use the fallback when needed.",
+      "sources": [
+        "S1",
+        "S2",
+        "S13",
+        "S14"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 6,
+      "beats": [
+        {
+          "headline": "Current facts, dated honestly",
+          "scene": "review",
+          "labels": [
+            "7 Nov 2026",
+            "Official docs",
+            "Actual client",
+            "Recheck later"
+          ],
+          "text": "The workshop's product facts were checked against official GitHub and VS Code documentation on November seventh, twenty twenty-six. That is a snapshot, not a promise that interfaces never change. Before teaching it later, check the current clients, policy settings, and file references rather than trusting old examples.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "The default changed",
+          "scene": "compare",
+          "labels": [
+            "New sessions",
+            "Copilot harness",
+            "Local examples"
+          ],
+          "text": "The October twenty-eighth VS Code release documents Copilot as the default harness for new sessions. Older examples often assume Local. That matters: some frontmatter fields and delegation tools are different. Always choose the intended harness before copying configuration, and then inspect the runtime behavior.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Preview is not a prerequisite",
+          "scene": "review",
+          "labels": [
+            "Projects: preview",
+            "Marketplace: preview",
+            "Core labs: portable"
+          ],
+          "text": "The Copilot app is documented for all Copilot plans, subject to organization policy. Its Projects experience is public preview. Marketplaces and connectors have preview limits, and computer use is experimental. Our core labs do not require these features, a cloud job, or external tools. Use the fallback when needed.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "GITHUB COPILOT APP",
+      "title": "A desktop home for agent-driven work",
+      "items": [
+        "Projects coordinate an ongoing goal; sessions perform scoped work",
+        "Choose New worktree or Current checkout explicitly",
+        "Plan / Interactive / Autopilot are workflow modes",
+        "Review changes, GitHub issues, PRs and checks in one place"
+      ],
+      "narration": "The GitHub Copilot app is a desktop home for agent-driven development on Windows, macOS, and Linux. A Project can coordinate an ongoing goal; a session performs a bounded task. For this workshop, one repository and one small feature are enough. The diagram is an orientation sketch, not a screenshot of your build. When starting a session, choose the environment and workspace deliberately. New worktree gives a separate working copy. Current checkout uses the existing files and can overlap another writer. Read the selector and confirm the actual path. Do not assume the app's parallel sessions make every task independent. Plan lets you review an approach first. Interactive supports collaborative steering. Autopilot suits a clear task. Tool permissions are a separate choice: they decide which actions need approval. More autonomy does not remove your responsibility to inspect the changes and verify the outcome before integration.",
+      "sources": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "app",
+      "slide": 7,
+      "beats": [
+        {
+          "headline": "A home for agent work",
+          "scene": "interface",
+          "labels": [
+            "Projects",
+            "Active session",
+            "Changes"
+          ],
+          "text": "The GitHub Copilot app is a desktop home for agent-driven development on Windows, macOS, and Linux. A Project can coordinate an ongoing goal; a session performs a bounded task. For this workshop, one repository and one small feature are enough. The diagram is an orientation sketch, not a screenshot of your build.",
+          "code": "",
+          "variant": "app"
+        },
+        {
+          "headline": "Choose the workbench",
+          "scene": "compare",
+          "labels": [
+            "New worktree",
+            "Current checkout",
+            "Verify path"
+          ],
+          "text": "When starting a session, choose the environment and workspace deliberately. New worktree gives a separate working copy. Current checkout uses the existing files and can overlap another writer. Read the selector and confirm the actual path. Do not assume the app's parallel sessions make every task independent.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Mode and permission differ",
+          "scene": "interface",
+          "labels": [
+            "Plan",
+            "Interactive",
+            "Autopilot"
+          ],
+          "text": "Plan lets you review an approach first. Interactive supports collaborative steering. Autopilot suits a clear task. Tool permissions are a separate choice: they decide which actions need approval. More autonomy does not remove your responsibility to inspect the changes and verify the outcome before integration.",
+          "code": "",
+          "variant": "modes"
+        }
+      ]
+    },
+    {
+      "section": "APP DEMONSTRATION",
+      "title": "Direct one small task, then inspect it",
+      "items": [
+        "Select the starter repository and verify workspace",
+        "Use Plan: outcome + constraints + acceptance checks",
+        "Approve a bounded change with appropriate permissions",
+        "Inspect the complete diff; rerun checks before integration"
+      ],
+      "narration": "For the app demonstration, ask for a plan to add one triage behavior. Include the expected result, allowed files, and existing test commands. Ask it not to edit yet. The useful output is a bounded plan with affected paths and checks, not a proposal to rebuild the application. Review the plan. Reject surprise dependencies, databases, or unrelated improvements. Then allow the bounded implementation. Watch the changed files while it works. If it drifts, correct the same session with a concrete instruction. Confirm the active workspace before giving feedback; another conversation may be working on a different task. When it finishes, read the complete relevant diff and run the checks. Try the actual behavior in the board. An agent's completion message is not the acceptance criterion. If the desktop app is unavailable, do the same plan, implement, and review loop in VS Code.",
+      "sources": [
+        "S3",
+        "S12"
+      ],
+      "code": "",
+      "cue": "LIVE DEMO: 4 minutes; included in the first 15-minute block.",
+      "kind": "standard",
+      "slide": 8,
+      "beats": [
+        {
+          "headline": "Start with one small plan",
+          "scene": "brief",
+          "labels": [
+            "Outcome",
+            "Constraints",
+            "Acceptance",
+            "No edits yet"
+          ],
+          "text": "For the app demonstration, ask for a plan to add one triage behavior. Include the expected result, allowed files, and existing test commands. Ask it not to edit yet. The useful output is a bounded plan with affected paths and checks, not a proposal to rebuild the application.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Steer the same session",
+          "scene": "interface",
+          "labels": [
+            "Correct session",
+            "Small edit",
+            "Complete diff"
+          ],
+          "text": "Review the plan. Reject surprise dependencies, databases, or unrelated improvements. Then allow the bounded implementation. Watch the changed files while it works. If it drifts, correct the same session with a concrete instruction. Confirm the active workspace before giving feedback; another conversation may be working on a different task.",
+          "code": "",
+          "variant": "app"
+        },
+        {
+          "headline": "Finished is not proven",
+          "scene": "review",
+          "labels": [
+            "Read diff",
+            "Run checks",
+            "Try behavior",
+            "Integrate"
+          ],
+          "text": "When it finishes, read the complete relevant diff and run the checks. Try the actual behavior in the board. An agent's completion message is not the acceptance criterion. If the desktop app is unavailable, do the same plan, implement, and review loop in VS Code.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "VS CODE AGENTS WINDOW",
+      "title": "An agent-first window beside your editor",
+      "items": [
+        "Command Palette: Chat: Open Agents window",
+        "Or use the command line: code --agents",
+        "Sessions + Customizations | conversation | Files + Changes",
+        "Confirm the active pane before commands or feedback"
+      ],
+      "narration": "VS Code's Agents window puts agent work first, beside the normal editor. Open it with the command Chat: Open Agents window, or code, double dash agents. The sidebar organizes sessions and customizations, the center holds the conversation, and the review pane shows files and changes. Actual controls may vary with your build. Several panes can be visible, but only one is active. Select the intended session before feedback, terminal commands, or browser checks. Branch mode uses the selected current folder. New Worktree starts from committed files in a separate directory. Separate panes alone do not isolate edits. Supported sessions can continue between the editor and Agents window without starting over. Cloud and remote sessions have additional requirements; a remote host must remain available. We keep the core labs local, so you can see the paths, run the commands, and understand exactly where the changes go.",
+      "sources": [
+        "S4",
+        "S13"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "vscode",
+      "slide": 9,
+      "beats": [
+        {
+          "headline": "Open the Agents window",
+          "scene": "interface",
+          "labels": [
+            "Sessions",
+            "Conversation",
+            "Files + Changes"
+          ],
+          "text": "VS Code's Agents window puts agent work first, beside the normal editor. Open it with the command Chat: Open Agents window, or code, double dash agents. The sidebar organizes sessions and customizations, the center holds the conversation, and the review pane shows files and changes. Actual controls may vary with your build.",
+          "code": "",
+          "variant": "vscode"
+        },
+        {
+          "headline": "Select the active pane",
+          "scene": "interface",
+          "labels": [
+            "Pane A",
+            "Active pane B",
+            "Commands land here"
+          ],
+          "text": "Several panes can be visible, but only one is active. Select the intended session before feedback, terminal commands, or browser checks. Branch mode uses the selected current folder. New Worktree starts from committed files in a separate directory. Separate panes alone do not isolate edits.",
+          "code": "",
+          "variant": "active"
+        },
+        {
+          "headline": "Keep work in sync",
+          "scene": "flow",
+          "labels": [
+            "Editor",
+            "Same session",
+            "Agents window",
+            "Review"
+          ],
+          "text": "Supported sessions can continue between the editor and Agents window without starting over. Cloud and remote sessions have additional requirements; a remote host must remain available. We keep the core labs local, so you can see the paths, run the commands, and understand exactly where the changes go.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "COMPATIBILITY",
+      "title": "Select the harness before copying YAML",
+      "items": [
+        "Copilot: native task delegation; skills field supported",
+        "Local: agent/runSubagent; agents allowlist + handoffs",
+        "Local does not accept the Copilot skills field",
+        "target selects file interpretation, not the running harness"
+      ],
+      "narration": "Sharing an agent filename does not guarantee identical behavior across harnesses. Copilot uses native task delegation and supports a skills field. Local uses the run subagent tool and supports a named agents allowlist and handoffs. These are different contracts. Check both the schema and actual available tools. The target field tells the editor how to interpret the file. Target vscode means Local interpretation; target github-copilot means Copilot interpretation. It does not switch your session's harness. Select the harness in the interface first. A completion suggestion is helpful, but it does not prove the runtime supports that tool. Do not paste Local's agents list or handoffs into a Copilot example and expect enforcement. Do not paste Copilot's skills field into Local. The repository has separate examples. If native delegation is missing, run the same roles sequentially with a written handoff. The learning goal is reliable work, not a particular button.",
+      "sources": [
+        "S5",
+        "S6",
+        "S7"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 10,
+      "beats": [
+        {
+          "headline": "Same file, different rules",
+          "scene": "compare",
+          "labels": [
+            "Copilot",
+            "Local",
+            "Check runtime"
+          ],
+          "text": "Sharing an agent filename does not guarantee identical behavior across harnesses. Copilot uses native task delegation and supports a skills field. Local uses the run subagent tool and supports a named agents allowlist and handoffs. These are different contracts. Check both the schema and actual available tools.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "The target is a label",
+          "scene": "code",
+          "labels": [
+            "Editor schema",
+            "Not runtime"
+          ],
+          "text": "The target field tells the editor how to interpret the file. Target vscode means Local interpretation; target github-copilot means Copilot interpretation. It does not switch your session's harness. Select the harness in the interface first. A completion suggestion is helpful, but it does not prove the runtime supports that tool.",
+          "code": "target: vscode\n# Select Local in the session too.\n# target is not a runtime switch.",
+          "variant": ""
+        },
+        {
+          "headline": "Do not mix the fields",
+          "scene": "compare",
+          "labels": [
+            "Copilot: skills",
+            "Local: agents + handoffs",
+            "Verify"
+          ],
+          "text": "Do not paste Local's agents list or handoffs into a Copilot example and expect enforcement. Do not paste Copilot's skills field into Local. The repository has separate examples. If native delegation is missing, run the same roles sequentially with a written handoff. The learning goal is reliable work, not a particular button.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "BETTER TASKS",
+      "title": "Write a task contract, not a wish",
+      "items": [
+        "Goal and concrete acceptance examples",
+        "Relevant files, constraints and non-goals",
+        "Allowed actions and explicit write ownership",
+        "Tests + evidence + a stopping condition"
+      ],
+      "narration": "Make this smarter is a wish. Add this exact priority rule, preserve the issue shape, edit only this module and its tests, and run these checks is a task contract. The agent still chooses implementation details, but it no longer needs to invent your business requirements. Provide acceptance examples. One case should trigger the new behavior, one should remain unchanged, and one should test the exact boundary. Give the relevant files and existing commands. These examples are more useful than a long persona description or an instruction to be brilliant. Finish the brief with the expected report and a stopping condition. Return changed paths, exact checks, results, and remaining risks. Stop when the assigned behavior passes, or report a specific blocker. Do not expand into unrelated cleanup. Small, self-contained briefs make delegation easier to evaluate.",
+      "sources": [
+        "S7",
+        "S12"
+      ],
+      "code": "GOAL: implement one named behavior\nCONTEXT: contract + relevant files + examples\nWRITE SET: module A + tests A only\nCHECKS: exact commands and expected results\nRETURN: evidence, risks, blocked decisions\nSTOP: no unrelated improvements",
+      "cue": "",
+      "kind": "standard",
+      "slide": 11,
+      "beats": [
+        {
+          "headline": "Replace the wish with a brief",
+          "scene": "brief",
+          "labels": [
+            "Goal",
+            "Context",
+            "Write set",
+            "Checks"
+          ],
+          "text": "Make this smarter is a wish. Add this exact priority rule, preserve the issue shape, edit only this module and its tests, and run these checks is a task contract. The agent still chooses implementation details, but it no longer needs to invent your business requirements.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Show what success looks like",
+          "scene": "review",
+          "labels": [
+            "Positive",
+            "Negative",
+            "Boundary",
+            "Expected output"
+          ],
+          "text": "Provide acceptance examples. One case should trigger the new behavior, one should remain unchanged, and one should test the exact boundary. Give the relevant files and existing commands. These examples are more useful than a long persona description or an instruction to be brilliant.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Give it a stopping point",
+          "scene": "brief",
+          "labels": [
+            "Return evidence",
+            "Name unknowns",
+            "Stop at scope"
+          ],
+          "text": "Finish the brief with the expected report and a stopping condition. Return changed paths, exact checks, results, and remaining risks. Stop when the assigned behavior passes, or report a specific blocker. Do not expand into unrelated cleanup. Small, self-contained briefs make delegation easier to evaluate.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "CUSTOM INSTRUCTIONS",
+      "title": "Put shared rules where everyone can find them",
+      "items": [
+        ".github/copilot-instructions.md: repository-wide guidance",
+        ".github/instructions/*.instructions.md: scoped guidance",
+        "AGENTS.md: support and activation vary by experience",
+        "Pass important rules explicitly to delegated workers"
+      ],
+      "narration": "Put durable repository rules in shared instructions: the runtime, test commands, fixture policy, and contract boundaries. The common Copilot file is dot github slash copilot instructions dot markdown. Path-specific instruction files can target selected areas. Keep them short enough to check and consistent with the task brief. Instruction formats and activation differ by surface. AGENTS dot markdown is supported in some experiences, not identically everywhere. GitHub documents that custom subagents in Copilot CLI do not receive repository instructions by default. Pass important invariants explicitly. Do not rely on invisible inheritance to protect shared files. Saying do not edit a file is guidance, not an operating-system lock. Combine instructions with appropriate tools, approvals, scope checks, and review. In lab one, you will write a small shared rule set and prove that your chosen agent and skill actually use the relevant guidance.",
+      "sources": [
+        "S9",
+        "S12",
+        "S14"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 12,
+      "beats": [
+        {
+          "headline": "Shared rules live together",
+          "scene": "recipe",
+          "labels": [
+            "Repo instructions",
+            "Scoped instructions",
+            "Task prompt"
+          ],
+          "text": "Put durable repository rules in shared instructions: the runtime, test commands, fixture policy, and contract boundaries. The common Copilot file is dot github slash copilot instructions dot markdown. Path-specific instruction files can target selected areas. Keep them short enough to check and consistent with the task brief.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Do not assume inheritance",
+          "scene": "team",
+          "labels": [
+            "Main context",
+            "Explicit brief",
+            "Custom subagent"
+          ],
+          "text": "Instruction formats and activation differ by surface. AGENTS dot markdown is supported in some experiences, not identically everywhere. GitHub documents that custom subagents in Copilot CLI do not receive repository instructions by default. Pass important invariants explicitly. Do not rely on invisible inheritance to protect shared files.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Guidance is not a lock",
+          "scene": "split",
+          "labels": [
+            "Instruction",
+            "Allowed tools",
+            "Actual edits"
+          ],
+          "text": "Saying do not edit a file is guidance, not an operating-system lock. Combine instructions with appropriate tools, approvals, scope checks, and review. In lab one, you will write a small shared rule set and prove that your chosen agent and skill actually use the relevant guidance.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "CUSTOM AGENT",
+      "title": "A reviewer that can read, not write",
+      "items": [
+        "A focused role beats a grandiose persona",
+        "Use only tools the role needs",
+        "Define useful findings and honest uncertainty"
+      ],
+      "narration": "Our first specialist is a reviewer. Its job is to find incorrect behavior and missing tests in the assigned files, then return actionable findings. It does not need to implement the fix. A focused role is easier to verify than a grand persona such as ultimate expert in everything. Give this reviewer reading and search tools, not editing or terminal execution. Define the report: file, problem, impact, and suggested fix or test. Check actual runtime activity because restrictions differ by harness. A read-only reviewer must not claim it ran tests; execution evidence comes from someone with execution tools. Start a fresh session with the intended harness and a small file you understand. Ask for a review without repeating the role instructions. Inspect the findings against the source and look at tool activity and workspace changes. Listed in the picker is discovery, not proof that the agent behaves correctly.",
+      "sources": [
+        "S5",
+        "S6"
+      ],
+      "code": "---\nname: Workshop Reviewer\ndescription: Review behavior and missing tests\ntools: ['read', 'search']\n---\nRead the assigned source and tests.\nDo not edit or run commands.\nReturn file, issue, impact and suggested test.\nState what you could not verify.",
+      "cue": "",
+      "kind": "standard",
+      "slide": 13,
+      "beats": [
+        {
+          "headline": "A reviewer with a small job",
+          "scene": "team",
+          "labels": [
+            "Source + tests",
+            "Reviewer",
+            "Findings"
+          ],
+          "text": "Our first specialist is a reviewer. Its job is to find incorrect behavior and missing tests in the assigned files, then return actionable findings. It does not need to implement the fix. A focused role is easier to verify than a grand persona such as ultimate expert in everything.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Tools match the job",
+          "scene": "code",
+          "labels": [
+            "Read",
+            "Search",
+            "No shell"
+          ],
+          "text": "Give this reviewer reading and search tools, not editing or terminal execution. Define the report: file, problem, impact, and suggested fix or test. Check actual runtime activity because restrictions differ by harness. A read-only reviewer must not claim it ran tests; execution evidence comes from someone with execution tools.",
+          "code": "name: Triage Reviewer\ndescription: Review assigned behavior\ntools: ['read', 'search']",
+          "variant": ""
+        },
+        {
+          "headline": "Test the role, not the name",
+          "scene": "review",
+          "labels": [
+            "Fresh chat",
+            "Known files",
+            "Check findings",
+            "Check tools"
+          ],
+          "text": "Start a fresh session with the intended harness and a small file you understand. Ask for a review without repeating the role instructions. Inspect the findings against the source and look at tool activity and workspace changes. Listed in the picker is discovery, not proof that the agent behaves correctly.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "AGENT SKILL",
+      "title": "A reusable recipe with a trigger",
+      "items": [
+        "Folder: .github/skills/test-changes/",
+        "Required: SKILL.md name + description",
+        "Name matches folder; describe WHAT and WHEN",
+        "Resources and scripts stay with the skill"
+      ],
+      "narration": "A skill is a folder containing a procedure and any supporting resources. Our triage-policy skill has a SKILL dot markdown file, a policy reference, and a fixture inspection script. Copy the whole folder, not just the headline file. Otherwise the recipe can point at missing ingredients. The skill needs a name and description in frontmatter. The lowercase, hyphenated name must match the directory. The description explains what it does and when to use it. Refer to supporting files with paths relative to SKILL dot markdown. Keep the steps concrete and tied to the repository. Verify explicit invocation, then test a matching ordinary request separately. Automatic selection is useful, not guaranteed. Check whether the agent read the resource and used the right command. A skill does not grant tools or credentials. A reader-only role can describe a check, but cannot truthfully execute it.",
+      "sources": [
+        "S8"
+      ],
+      "code": "---\nname: test-changes\ndescription: Validate code changes with the\n  repository tests; use before a handoff.\n---\n1. Read the repository test commands.\n2. Run checks for the assigned change.\n3. Report passed / failed / not run.\nUse [report format](./references/report.md).",
+      "cue": "",
+      "kind": "standard",
+      "slide": 14,
+      "beats": [
+        {
+          "headline": "A skill is a recipe folder",
+          "scene": "recipe",
+          "labels": [
+            "SKILL.md",
+            "references/",
+            "scripts/"
+          ],
+          "text": "A skill is a folder containing a procedure and any supporting resources. Our triage-policy skill has a SKILL dot markdown file, a policy reference, and a fixture inspection script. Copy the whole folder, not just the headline file. Otherwise the recipe can point at missing ingredients.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Tell it what and when",
+          "scene": "code",
+          "labels": [
+            "Name matches folder",
+            "Useful trigger"
+          ],
+          "text": "The skill needs a name and description in frontmatter. The lowercase, hyphenated name must match the directory. The description explains what it does and when to use it. Refer to supporting files with paths relative to SKILL dot markdown. Keep the steps concrete and tied to the repository.",
+          "code": "name: triage-policy\ndescription: Apply the issue policy\n  when changing priority behavior.",
+          "variant": ""
+        },
+        {
+          "headline": "A recipe cannot grant tools",
+          "scene": "review",
+          "labels": [
+            "Invoke",
+            "Inspect activity",
+            "Check output",
+            "No permission grant"
+          ],
+          "text": "Verify explicit invocation, then test a matching ordinary request separately. Automatic selection is useful, not guaranteed. Check whether the agent read the resource and used the right command. A skill does not grant tools or credentials. A reader-only role can describe a check, but cannot truthfully execute it.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "SKILL QUALITY",
+      "title": "Discovery is not execution evidence",
+      "items": [
+        "Metadata first; full procedure when relevant",
+        "References and scripts loaded only as needed",
+        "Test positive, negative and ambiguous requests",
+        "No automatic grants of credentials or tools"
+      ],
+      "narration": "These are four different checkpoints. A skill can exist on disk without discovery. It can be discovered without selection. It can be selected without successfully running its script. Do not collapse the whole chain into a green installed badge. Inspect the actual activity and the result. Test a request that clearly matches the skill, one that should not use it, and one that is ambiguous. For triage policy, changing priority should load the policy. Explaining the page layout should not need to run priority checks. Refine the description when observed behavior is wrong. Review scripts and resources before using an acquired skill. A skill supplies a recipe; an MCP connection exposes external tools. Approve and review those tools separately. Marketplace availability is not a trust guarantee. The report should distinguish passed, failed, and not run. Missing capability must not become a success-shaped answer.",
+      "sources": [
+        "S8",
+        "S12"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 15,
+      "beats": [
+        {
+          "headline": "Available, selected, executed",
+          "scene": "flow",
+          "labels": [
+            "Available",
+            "Selected",
+            "Executed",
+            "Verified"
+          ],
+          "text": "These are four different checkpoints. A skill can exist on disk without discovery. It can be discovered without selection. It can be selected without successfully running its script. Do not collapse the whole chain into a green installed badge. Inspect the actual activity and the result.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Three small probes",
+          "scene": "review",
+          "labels": [
+            "Matching request",
+            "Unrelated request",
+            "Ambiguous request"
+          ],
+          "text": "Test a request that clearly matches the skill, one that should not use it, and one that is ambiguous. For triage policy, changing priority should load the policy. Explaining the page layout should not need to run priority checks. Refine the description when observed behavior is wrong.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Trust the whole package",
+          "scene": "recipe",
+          "labels": [
+            "Instructions",
+            "Scripts",
+            "Data access",
+            "Publisher"
+          ],
+          "text": "Review scripts and resources before using an acquired skill. A skill supplies a recipe; an MCP connection exposes external tools. Approve and review those tools separately. Marketplace availability is not a trust guarantee. The report should distinguish passed, failed, and not run. Missing capability must not become a success-shaped answer.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "AGENTS + SKILLS",
+      "title": "Compose them without mixing harnesses",
+      "items": [
+        "Copilot agent: skills: ['test-changes']",
+        "Local agent: ask it to load the relevant skill",
+        "Both: narrow tools and explicit success criteria",
+        "Verify the enabled skill inventory in a fresh session"
+      ],
+      "narration": "Now combine the parts. The implementer is responsible for one change. The triage policy supplies a repeated procedure. The task brief supplies today's acceptance examples and allowed files. This is composition, not magic: each part has a clear responsibility that you can inspect. Copilot supports naming enabled skills in the agent's skills field. Use the exact skill name and confirm the inventory and actual loading. Preloading is not execution proof. The worker still needs appropriate tools and approvals, and the task still needs a narrow write set. Local does not accept that Copilot skills field. Use its supported discovery or explicit invocation instead. Do not give a researcher terminal access merely because an implementer uses a test procedure. Compose only what the role needs, then verify the behavior in the selected harness.",
+      "sources": [
+        "S5",
+        "S8"
+      ],
+      "code": "# Copilot harness example\n---\nname: Bounded Implementer\ndescription: Implement one assigned change\ntarget: github-copilot\ntools: ['read', 'search', 'edit', 'execute']\nskills: ['test-changes']\n---\nStay in the assigned write set.\nReturn validation evidence and risks.",
+      "cue": "",
+      "kind": "standard",
+      "slide": 16,
+      "beats": [
+        {
+          "headline": "Role plus recipe",
+          "scene": "team",
+          "labels": [
+            "Implementer",
+            "Triage policy",
+            "Validation"
+          ],
+          "text": "Now combine the parts. The implementer is responsible for one change. The triage policy supplies a repeated procedure. The task brief supplies today's acceptance examples and allowed files. This is composition, not magic: each part has a clear responsibility that you can inspect.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Copilot can preload skills",
+          "scene": "code",
+          "labels": [
+            "Copilot harness",
+            "Enabled skill"
+          ],
+          "text": "Copilot supports naming enabled skills in the agent's skills field. Use the exact skill name and confirm the inventory and actual loading. Preloading is not execution proof. The worker still needs appropriate tools and approvals, and the task still needs a narrow write set.",
+          "code": "target: github-copilot\nskills: ['triage-policy']\ntools: ['read', 'search', 'edit']",
+          "variant": ""
+        },
+        {
+          "headline": "Local uses a different path",
+          "scene": "compare",
+          "labels": [
+            "Local: invoke/discover",
+            "Copilot: skills field",
+            "Same checks"
+          ],
+          "text": "Local does not accept that Copilot skills field. Use its supported discovery or explicit invocation instead. Do not give a researcher terminal access merely because an implementer uses a test procedure. Compose only what the role needs, then verify the behavior in the selected harness.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "DEMO 1",
+      "title": "Build and verify a role and a recipe",
+      "items": [
+        "Create the reviewer; confirm tool restrictions",
+        "Create a skill with a real report reference",
+        "Use an explicit invocation, then a matching plain-language request",
+        "Show one skipped check reported honestly"
+      ],
+      "narration": "In the live demonstration, create a workspace reviewer through Customizations, then inspect its file. Ask it to review a known small module. Look for useful findings and reading activity, not edits. If the report implies tests passed without execution, correct the role and repeat the small probe. Next, create the triage-policy skill with a real policy reference. Invoke it explicitly, inspect its resource use, then try a matching plain-language request. If automatic selection fails, refine the description rather than pretending installation guarantees use. Review the script before trusting its output. Finally, request a check that needs an unavailable tool. A good report says not run and explains why. It does not invent browser or test evidence. Lab one gives you time to create these files yourself and collect proof; the demonstration is inside the first hour.",
+      "sources": [
+        "S6",
+        "S8"
+      ],
+      "code": "",
+      "cue": "LIVE DEMO: 5 minutes; included in the 00:15-00:35 block.",
+      "kind": "standard",
+      "slide": 17,
+      "beats": [
+        {
+          "headline": "Demo: create the reviewer",
+          "scene": "code",
+          "labels": [
+            "Small role",
+            "Known input",
+            "Read-only activity"
+          ],
+          "text": "In the live demonstration, create a workspace reviewer through Customizations, then inspect its file. Ask it to review a known small module. Look for useful findings and reading activity, not edits. If the report implies tests passed without execution, correct the role and repeat the small probe.",
+          "code": ".github/agents/triage-reviewer.agent.md\n# Check the selected harness.\n# Inspect actual tool calls.",
+          "variant": ""
+        },
+        {
+          "headline": "Demo: create the recipe",
+          "scene": "recipe",
+          "labels": [
+            "Create folder",
+            "Add reference",
+            "Invoke",
+            "Inspect"
+          ],
+          "text": "Next, create the triage-policy skill with a real policy reference. Invoke it explicitly, inspect its resource use, then try a matching plain-language request. If automatic selection fails, refine the description rather than pretending installation guarantees use. Review the script before trusting its output.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Not run is an honest result",
+          "scene": "review",
+          "labels": [
+            "Passed",
+            "Failed",
+            "Not run"
+          ],
+          "text": "Finally, request a check that needs an unavailable tool. A good report says not run and explains why. It does not invent browser or test evidence. Lab one gives you time to create these files yourself and collect proof; the demonstration is inside the first hour.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "DELEGATION",
+      "title": "Use a subagent for a bounded result",
+      "items": [
+        "Good: inspect a module and return patterns + unknowns",
+        "Good: implement one independent owned task",
+        "Poor: split a tiny edit or delegate an undefined goal",
+        "Cost grows with calls, context and coordination"
+      ],
+      "narration": "Use a subagent when a separate context contains meaningful independent work. Research a module, implement one owned feature, or review a completed change. Do not split a tiny edit into a crowd of helpers. Delegation adds model usage, waiting, and coordination; it should earn its place. An orchestrator keeps the overall goal, identifies prerequisites, assigns context and tools, then combines results. Fleet mode in the app or CLI can delegate suitable tasks, but it does not make unsafe writes safe. Start with one read-only specialist, then add parallelism only when work is genuinely independent. Local subagent calls are stateless and do not inherit the full conversation. A further Local review needs a new invocation with updated context. Copilot has its own delegation lifecycle. Do not teach one harness's behavior as universal. Always give the worker the important constraints explicitly.",
+      "sources": [
+        "S7",
+        "S9",
+        "S10"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 18,
+      "beats": [
+        {
+          "headline": "Choose a useful side quest",
+          "scene": "team",
+          "labels": [
+            "Main task",
+            "Bounded research",
+            "Useful report"
+          ],
+          "text": "Use a subagent when a separate context contains meaningful independent work. Research a module, implement one owned feature, or review a completed change. Do not split a tiny edit into a crowd of helpers. Delegation adds model usage, waiting, and coordination; it should earn its place.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Dependencies still matter",
+          "scene": "flow",
+          "labels": [
+            "Research",
+            "Plan",
+            "Implement",
+            "Review"
+          ],
+          "text": "An orchestrator keeps the overall goal, identifies prerequisites, assigns context and tools, then combines results. Fleet mode in the app or CLI can delegate suitable tasks, but it does not make unsafe writes safe. Start with one read-only specialist, then add parallelism only when work is genuinely independent.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Know your harness lifecycle",
+          "scene": "compare",
+          "labels": [
+            "Local: new invocation",
+            "Copilot: own lifecycle",
+            "Pass context"
+          ],
+          "text": "Local subagent calls are stateless and do not inherit the full conversation. A further Local review needs a new invocation with updated context. Copilot has its own delegation lifecycle. Do not teach one harness's behavior as universal. Always give the worker the important constraints explicitly.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "DELEGATED BRIEF",
+      "title": "Give the worker enough context to succeed",
+      "items": [
+        "Exact goal and relevant contract version",
+        "Allowed files and prohibited shared files",
+        "Acceptance examples and check commands",
+        "Return findings, evidence, unknowns and stop"
+      ],
+      "narration": "A research brief might say: locate triage behavior, read the contract and tests, do not edit or run commands, and return paths, patterns, and unknowns. Include the fictional-fixture rule and no-dependency constraint. The worker should not need to guess what happened earlier in your main conversation. For an implementation worker, replace read-only with the exact files it owns and acceptance examples. If it needs a shared contract change, it must stop and report that decision. Silent scope expansion is not helpful autonomy. The returned report should let the coordinator integrate without rereading every intermediate message. When a handoff is incomplete, identify the missing fact and supply it through the harness's supported lifecycle. For Local, start a new invocation with the relevant findings. Do not assume the earlier worker remembers a follow-up. A concise, self-contained brief is the portable fallback.",
+      "sources": [
+        "S7",
+        "S9"
+      ],
+      "code": "Use a read-only researcher subagent.\nGoal: locate current triage behavior.\nContext: fictional issues; no dependencies.\nRead: contract, rules module and tests.\nDo not edit or execute commands.\nReturn paths, I/O shape, existing patterns,\nunknowns and what you did not verify.\nStop after this report.",
+      "cue": "",
+      "kind": "standard",
+      "slide": 19,
+      "beats": [
+        {
+          "headline": "Pack a complete brief",
+          "scene": "brief",
+          "labels": [
+            "Goal",
+            "Contract",
+            "Allowed actions",
+            "Expected report"
+          ],
+          "text": "A research brief might say: locate triage behavior, read the contract and tests, do not edit or run commands, and return paths, patterns, and unknowns. Include the fictional-fixture rule and no-dependency constraint. The worker should not need to guess what happened earlier in your main conversation.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Name the write boundary",
+          "scene": "board",
+          "labels": [
+            "Owned module",
+            "Owned tests",
+            "Shared files reserved"
+          ],
+          "text": "For an implementation worker, replace read-only with the exact files it owns and acceptance examples. If it needs a shared contract change, it must stop and report that decision. Silent scope expansion is not helpful autonomy. The returned report should let the coordinator integrate without rereading every intermediate message.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Update the context deliberately",
+          "scene": "review",
+          "labels": [
+            "Findings",
+            "Missing detail",
+            "Updated brief",
+            "Recheck"
+          ],
+          "text": "When a handoff is incomplete, identify the missing fact and supply it through the harness's supported lifecycle. For Local, start a new invocation with the relevant findings. Do not assume the earlier worker remembers a follow-up. A concise, self-contained brief is the portable fallback.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "LOCAL COORDINATOR",
+      "title": "Named workers, one implementation writer",
+      "items": [
+        "Local-only agents list limits delegation",
+        "Researcher and reviewer remain read-only",
+        "Coordinator makes the implementation change",
+        "Re-invoke review with updated context when needed"
+      ],
+      "narration": "Our conservative Local pattern has two readers and one writer. The researcher reports, the coordinator implements and validates, and the reviewer inspects. Readers cannot collide with implementation edits. This is a useful first multi-agent design for a small, tightly connected repository. Local's coordinator can list exact worker names in its agents field. Include the agent tool set. Picker visibility is a separate control: hiding a helper does not automatically prevent model invocation. The Copilot harness does not accept this Local allowlist field. Inspect runtime calls rather than relying on a copied example. The role describes a sequence, not a personality. Research first, implement within scope, validate, then request review. Fix actionable findings and provide updated context for another Local review invocation. At the checkpoint, inspect which files and tools actually changed, not only the frontmatter.",
+      "sources": [
+        "S5",
+        "S7"
+      ],
+      "code": "---\nname: Local Coordinator\ndescription: Research, implement and review\ntarget: vscode\ntools: ['agent', 'read', 'search', 'edit', 'execute']\nagents: ['Researcher', 'Workshop Reviewer']\n---\nDelegate read-only research; implement once.\nValidate, then delegate read-only review.",
+      "cue": "",
+      "kind": "standard",
+      "slide": 20,
+      "beats": [
+        {
+          "headline": "Local: one writer",
+          "scene": "flow",
+          "labels": [
+            "Researcher",
+            "Coordinator writes",
+            "Reviewer",
+            "Evidence"
+          ],
+          "text": "Our conservative Local pattern has two readers and one writer. The researcher reports, the coordinator implements and validates, and the reviewer inspects. Readers cannot collide with implementation edits. This is a useful first multi-agent design for a small, tightly connected repository.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Allow only named workers",
+          "scene": "code",
+          "labels": [
+            "Local only",
+            "Exact names",
+            "Agent tool"
+          ],
+          "text": "Local's coordinator can list exact worker names in its agents field. Include the agent tool set. Picker visibility is a separate control: hiding a helper does not automatically prevent model invocation. The Copilot harness does not accept this Local allowlist field. Inspect runtime calls rather than relying on a copied example.",
+          "code": "target: vscode\ntools: ['agent', 'read', 'edit', 'execute']\nagents: ['Researcher', 'Reviewer']",
+          "variant": ""
+        },
+        {
+          "headline": "Review, fix, review again",
+          "scene": "review",
+          "labels": [
+            "Research",
+            "Implement",
+            "Validate",
+            "Fresh review"
+          ],
+          "text": "The role describes a sequence, not a personality. Research first, implement within scope, validate, then request review. Fix actionable findings and provide updated context for another Local review invocation. At the checkpoint, inspect which files and tools actually changed, not only the frontmatter.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "COPILOT COORDINATOR",
+      "title": "Same workflow, different runtime contract",
+      "items": [
+        "Use native delegation through the agent alias",
+        "No Local agents allowlist or handoffs fields",
+        "Pass skill, constraints and expected result explicitly",
+        "/fleet is optional, not automatic file isolation"
+      ],
+      "narration": "Keep the same safe plan in Copilot, but use its native delegation and compatible fields. Pass the skill procedure, repository constraints, and expected result explicitly. Naming preferred workers in prose is guidance, not an equivalent Local schema allowlist. One owner still controls shared writes. The Copilot profile can use the agent tool alias and preload triage-policy. Leave out Local's agents and handoffs fields. The target helps the editor interpret the file; the session picker chooses the actual harness. Confirm enabled tools and skill use in the fresh session. Fleet can help split suitable work, but each helper consumes usage and separate context does not create a private filesystem. If delegation is unavailable, run the roles sequentially with written handoffs. Success is still the correct behavior, intended file changes, honest evidence, and no unapproved scope expansion.",
+      "sources": [
+        "S5",
+        "S9",
+        "S10"
+      ],
+      "code": "---\nname: Copilot Coordinator\ndescription: Coordinate bounded triage work\ntarget: github-copilot\ntools: ['agent', 'read', 'search', 'edit', 'execute']\nskills: ['test-changes']\n---\nPass self-contained briefs to specialists.\nKeep one writer per shared file.\nReview and validate before integrating.",
+      "cue": "",
+      "kind": "standard",
+      "slide": 21,
+      "beats": [
+        {
+          "headline": "Copilot: same safe plan",
+          "scene": "flow",
+          "labels": [
+            "Research",
+            "Owned change",
+            "Review",
+            "Integrate"
+          ],
+          "text": "Keep the same safe plan in Copilot, but use its native delegation and compatible fields. Pass the skill procedure, repository constraints, and expected result explicitly. Naming preferred workers in prose is guidance, not an equivalent Local schema allowlist. One owner still controls shared writes.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Do not smuggle Local fields",
+          "scene": "code",
+          "labels": [
+            "Copilot",
+            "Skill inventory",
+            "No handoffs field"
+          ],
+          "text": "The Copilot profile can use the agent tool alias and preload triage-policy. Leave out Local's agents and handoffs fields. The target helps the editor interpret the file; the session picker chooses the actual harness. Confirm enabled tools and skill use in the fresh session.",
+          "code": "target: github-copilot\ntools: ['agent', 'read', 'edit', 'execute']\nskills: ['triage-policy']",
+          "variant": ""
+        },
+        {
+          "headline": "Fleet is not file isolation",
+          "scene": "split",
+          "labels": [
+            "Fleet",
+            "Same files?",
+            "Ownership first"
+          ],
+          "text": "Fleet can help split suitable work, but each helper consumes usage and separate context does not create a private filesystem. If delegation is unavailable, run the roles sequentially with written handoffs. Success is still the correct behavior, intended file changes, honest evidence, and no unapproved scope expansion.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "HANDOFF OR SUBAGENT?",
+      "title": "Switching roles is not parallel delegation",
+      "items": [
+        "Handoff: Local UI transition to the next agent",
+        "Subagent: main agent delegates and keeps ownership",
+        "Separate session: independent tracked work and workspace choice",
+        "Fallback: manually paste a concise reviewed handoff"
+      ],
+      "narration": "A handoff changes the active agent in your conversation. Local can offer a button with a prefilled implementation prompt after planning. This is useful when you want to review a stage before continuing. It is not parallel delegation, and custom-agent handoffs are Local-only. A subagent does a bounded side task and returns a result while the main agent keeps ownership. A separate session is independently tracked work with its own workspace choice. These are three different mechanisms. Choose a transition, delegated result, or independently tracked task based on your actual workflow. A missing handoff button should not block learning. Paste a concise reviewed plan, affected files, checks, and remaining decisions into the next role. If using a Local handoff, send false lets you review the prompt before submission. Preserve the decision point rather than automating past it.",
+      "sources": [
+        "S5",
+        "S6",
+        "S7"
+      ],
+      "code": "# Local-only optional frontmatter\nhandoffs:\n  - label: Implement reviewed plan\n    agent: agent\n    prompt: Implement the reviewed plan.\n    send: false",
+      "cue": "",
+      "kind": "standard",
+      "slide": 22,
+      "beats": [
+        {
+          "headline": "Handoff: switch the driver",
+          "scene": "flow",
+          "labels": [
+            "Planner",
+            "You review",
+            "Implementer"
+          ],
+          "text": "A handoff changes the active agent in your conversation. Local can offer a button with a prefilled implementation prompt after planning. This is useful when you want to review a stage before continuing. It is not parallel delegation, and custom-agent handoffs are Local-only.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Subagent: get a report back",
+          "scene": "team",
+          "labels": [
+            "Main agent",
+            "Side task",
+            "Returned result"
+          ],
+          "text": "A subagent does a bounded side task and returns a result while the main agent keeps ownership. A separate session is independently tracked work with its own workspace choice. These are three different mechanisms. Choose a transition, delegated result, or independently tracked task based on your actual workflow.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "A manual handoff still works",
+          "scene": "brief",
+          "labels": [
+            "Plan",
+            "Files",
+            "Checks",
+            "Risks"
+          ],
+          "text": "A missing handoff button should not block learning. Paste a concise reviewed plan, affected files, checks, and remaining decisions into the next role. If using a Local handoff, send false lets you review the prompt before submission. Preserve the decision point rather than automating past it.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "DEMO 2",
+      "title": "Research -> implement -> prove -> review",
+      "items": [
+        "Research the issue input and rule boundary",
+        "ISS-101 -> score 100 / P1; closed issues -> 0 / P3",
+        "Nearest reachable P1 boundary: 75 / P2 vs 85 / P1",
+        "Review source evidence, then fix or report findings"
+      ],
+      "narration": "Let's make the priority example concrete. Active issues start at sixty points for high impact, thirty for medium, or ten for low. A blocked workflow adds twenty-five. At least one hundred affected users adds ten. At least seven days old adds five. Our first issue totals one hundred points. P one starts at eighty points, P two at forty, and lower scores are P three. This additive policy cannot produce exactly eighty, so test the nearest reachable scores: seventy-five is P two, eighty-five is P one. Also test ninety-nine versus one hundred users and six versus seven days. Closed issues override the bonuses: zero points, P three, and only the closed-issue reason. Research the contract, implement one owned module, run those cases, then request review. This demo proves a requirement, not merely that an agent wrote code. Lab two supplies the complete specification.",
+      "sources": [
+        "S7",
+        "S12"
+      ],
+      "code": "",
+      "cue": "LIVE DEMO: 5 minutes; included in the 00:15-00:35 block.",
+      "kind": "standard",
+      "slide": 23,
+      "beats": [
+        {
+          "headline": "Add the points",
+          "scene": "score",
+          "labels": [
+            "High 60",
+            "Blocked +25",
+            "Users +10",
+            "Age +5"
+          ],
+          "text": "Let's make the priority example concrete. Active issues start at sixty points for high impact, thirty for medium, or ten for low. A blocked workflow adds twenty-five. At least one hundred affected users adds ten. At least seven days old adds five. Our first issue totals one hundred points.",
+          "code": "",
+          "variant": "sum"
+        },
+        {
+          "headline": "Test the exact edge",
+          "scene": "score",
+          "labels": [
+            "75 = P2",
+            "80 threshold",
+            "85 = P1"
+          ],
+          "text": "P one starts at eighty points, P two at forty, and lower scores are P three. This additive policy cannot produce exactly eighty, so test the nearest reachable scores: seventy-five is P two, eighty-five is P one. Also test ninety-nine versus one hundred users and six versus seven days.",
+          "code": "",
+          "variant": "boundary"
+        },
+        {
+          "headline": "Closed beats every bonus",
+          "scene": "score",
+          "labels": [
+            "Closed",
+            "Score 0",
+            "P3"
+          ],
+          "text": "Closed issues override the bonuses: zero points, P three, and only the closed-issue reason. Research the contract, implement one owned module, run those cases, then request review. This demo proves a requirement, not merely that an agent wrote code. Lab two supplies the complete specification.",
+          "code": "",
+          "variant": "closed"
+        }
+      ]
+    },
+    {
+      "section": "COLLISION RISKS",
+      "title": "Hot files and shared resources",
+      "items": [
+        "Shared contracts, package manifests and lockfiles",
+        "Server wiring, generated outputs and fixtures",
+        "Git index, branch switching and concurrent commits",
+        "Ports, databases, credentials and external side effects"
+      ],
+      "narration": "Before parallel writing, spot the hot files: shared contracts, package manifests, lockfiles, server wiring, and common fixtures. If two tasks need one hot file, assign it to an integrator or finish that prerequisite first. Asking both workers to be careful is not a coordination plan. Also reserve ports, output directories, databases, and external actions. In one checkout, concurrent stage-all commits can scoop up another worker's unfinished files. Different branches in the same folder do not give separate workspaces. Our offline sample removes databases and credentials so the remaining boundaries are easy to see. If boundaries are uncertain, let readers investigate in parallel and keep a single implementation writer. That may feel less flashy than a swarm, but it is often faster overall because integration stays simple. Identify every writable surface, not only the source module named in the prompt.",
+      "sources": [
+        "S4",
+        "S15"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 24,
+      "beats": [
+        {
+          "headline": "Spot the hot files",
+          "scene": "board",
+          "labels": [
+            "Contract",
+            "Package files",
+            "UI wiring",
+            "Fixtures"
+          ],
+          "text": "Before parallel writing, spot the hot files: shared contracts, package manifests, lockfiles, server wiring, and common fixtures. If two tasks need one hot file, assign it to an integrator or finish that prerequisite first. Asking both workers to be careful is not a coordination plan.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "The invisible shared stuff",
+          "scene": "brief",
+          "labels": [
+            "Git index",
+            "Ports",
+            "Reports",
+            "External state"
+          ],
+          "text": "Also reserve ports, output directories, databases, and external actions. In one checkout, concurrent stage-all commits can scoop up another worker's unfinished files. Different branches in the same folder do not give separate workspaces. Our offline sample removes databases and credentials so the remaining boundaries are easy to see.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "When unsure, queue the writes",
+          "scene": "flow",
+          "labels": [
+            "Reader A + B",
+            "Reports",
+            "One writer",
+            "Checks"
+          ],
+          "text": "If boundaries are uncertain, let readers investigate in parallel and keep a single implementation writer. That may feel less flashy than a swarm, but it is often faster overall because integration stays simple. Identify every writable surface, not only the source module named in the prompt.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "SAFE DEFAULT",
+      "title": "Parallel readers, one integration writer",
+      "items": [
+        "Researchers inspect different questions concurrently",
+        "Workers return findings or proposed patches",
+        "One integrator applies edits and owns shared files",
+        "Combine results only after checking their current base"
+      ],
+      "narration": "One reader can study priority while another studies the filter controls. Each returns findings; neither changes the shared checkout. The coordinator combines the reports and performs the edit. This keeps useful specialization without overlapping writers or competing Git commits. Workers can also return proposed patches without applying them. The integrator checks the current file version and applies deliberately. If the base changed, regenerate or rebase the proposal. Do not paste an old whole-file replacement over newer work. A patch still needs review and behavior checks. This pattern fits small repositories, coupled tasks, and newer teams. Two helpers examining one short file may only duplicate effort. Use separate contexts when their work is substantial enough to help. The advanced skill is choosing the workflow, not maximizing the agent count.",
+      "sources": [
+        "S7",
+        "S10"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "flow",
+      "slide": 25,
+      "beats": [
+        {
+          "headline": "Parallel research, single writer",
+          "scene": "team",
+          "labels": [
+            "Research A",
+            "Research B",
+            "Integrator"
+          ],
+          "text": "One reader can study priority while another studies the filter controls. Each returns findings; neither changes the shared checkout. The coordinator combines the reports and performs the edit. This keeps useful specialization without overlapping writers or competing Git commits.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Propose before applying",
+          "scene": "flow",
+          "labels": [
+            "Patch proposal",
+            "Check base",
+            "Apply once",
+            "Validate"
+          ],
+          "text": "Workers can also return proposed patches without applying them. The integrator checks the current file version and applies deliberately. If the base changed, regenerate or rebase the proposal. Do not paste an old whole-file replacement over newer work. A patch still needs review and behavior checks.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Small can be sophisticated",
+          "scene": "review",
+          "labels": [
+            "Useful scope",
+            "Less duplication",
+            "Clear integration"
+          ],
+          "text": "This pattern fits small repositories, coupled tasks, and newer teams. Two helpers examining one short file may only duplicate effort. Use separate contexts when their work is substantial enough to help. The advanced skill is choosing the workflow, not maximizing the agent count.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "FILE OWNERSHIP",
+      "title": "Freeze the contract, then split the work",
+      "items": [
+        "Owner A: one behavior module and its own tests",
+        "Owner B: one independent module and its own tests",
+        "Integrator: contract, UI wiring, fixtures and shared files",
+        "Workers stop if a change needs another owner's file"
+      ],
+      "narration": "A contract is the agreed input and output shape. Freeze that agreement before splitting work. For example, search and summary both consume the same issue shape. Neither changes it. File disjointness alone is not independence if one worker renames a field the other expects. Assign worker A the search module and its own tests, worker B the summary module and its tests, and the integrator the shared wiring and fixtures. Record acceptance checks and dependencies. If a worker needs another owner's file, it pauses and reports the decision rather than quietly expanding its territory. The ownership board is a team convention, not a filesystem lock. Run changed-path scope checks and inspect the combined diff. They can detect an out-of-scope edit, not magically prevent every write. Keep one owner for the board itself, so coordination notes do not become another shared-file collision.",
+      "sources": [
+        "S4",
+        "S10"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "ownership",
+      "slide": 26,
+      "beats": [
+        {
+          "headline": "Agree on the contract first",
+          "scene": "flow",
+          "labels": [
+            "Contract v1",
+            "Worker A",
+            "Worker B",
+            "Integrator"
+          ],
+          "text": "A contract is the agreed input and output shape. Freeze that agreement before splitting work. For example, search and summary both consume the same issue shape. Neither changes it. File disjointness alone is not independence if one worker renames a field the other expects.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Own the module and its tests",
+          "scene": "board",
+          "labels": [
+            "A: search + tests",
+            "B: summary + tests",
+            "Integrator: shared files"
+          ],
+          "text": "Assign worker A the search module and its own tests, worker B the summary module and its tests, and the integrator the shared wiring and fixtures. Record acceptance checks and dependencies. If a worker needs another owner's file, it pauses and reports the decision rather than quietly expanding its territory.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Ownership is an agreement",
+          "scene": "review",
+          "labels": [
+            "Advisory",
+            "Changed-path check",
+            "Complete diff"
+          ],
+          "text": "The ownership board is a team convention, not a filesystem lock. Run changed-path scope checks and inspect the combined diff. They can detect an out-of-scope edit, not magically prevent every write. Keep one owner for the board itself, so coordination notes do not become another shared-file collision.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "DEPENDENCIES",
+      "title": "Parallelize ready tasks, not wishful tasks",
+      "items": [
+        "Define contract -> independent workers -> integration",
+        "Serialize changes to hot files and shared configuration",
+        "Reserve one writer for the task board and Git integration",
+        "Retest the combined result, not just individual branches"
+      ],
+      "narration": "A dependency arrow means a prerequisite must finish first. If both features need the contract, agree and commit it before launching them. Then independent tasks can run together. List actual prerequisites; do not infer dependencies merely from the order tasks appear in a list. Manifest, lockfile, shared configuration, and board updates belong to a serialized stage. Let one integrator change them once. Workers report progress back instead of competing to edit the same coordination document. Reserve a single writer for staging and integration in a shared checkout. Two tasks can pass separately and fail together because their assumptions disagree. Retest the combined application and actual user flow after integration. If the dependency graph is mostly a chain, run it sequentially. Spend the saved attention on clear examples and review rather than artificial parallelism.",
+      "sources": [
+        "S10",
+        "S12"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "flow",
+      "slide": 27,
+      "beats": [
+        {
+          "headline": "An arrow means wait",
+          "scene": "flow",
+          "labels": [
+            "Contract",
+            "A + B ready",
+            "Integrate",
+            "Retest"
+          ],
+          "text": "A dependency arrow means a prerequisite must finish first. If both features need the contract, agree and commit it before launching them. Then independent tasks can run together. List actual prerequisites; do not infer dependencies merely from the order tasks appear in a list.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Serialize shared changes",
+          "scene": "board",
+          "labels": [
+            "Shared config",
+            "Single owner",
+            "One commit sequence"
+          ],
+          "text": "Manifest, lockfile, shared configuration, and board updates belong to a serialized stage. Let one integrator change them once. Workers report progress back instead of competing to edit the same coordination document. Reserve a single writer for staging and integration in a shared checkout.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Green plus green can fail",
+          "scene": "review",
+          "labels": [
+            "Task A passes",
+            "Task B passes",
+            "Combined check"
+          ],
+          "text": "Two tasks can pass separately and fail together because their assumptions disagree. Retest the combined application and actual user flow after integration. If the dependency graph is mostly a chain, run it sequentially. Spend the saved attention on clear examples and review rather than artificial parallelism.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "ADVISORY CLAIMS",
+      "title": "A claim is a protocol, not a mutex",
+      "items": [
+        "Claim: owner + paths + base revision + expiry",
+        "Acknowledge before writing; release after handoff",
+        "Expired or conflicting claims need coordinator review",
+        "A Markdown task board cannot prevent filesystem writes"
+      ],
+      "narration": "An advisory claim is a sticky note saying who owns which paths, from which base revision, and until when. The coordinator checks conflicts and acknowledges the assignment before writing. At handoff, the worker reports its changed files and releases the claim. An expiry prevents a stale claim from blocking work forever. It does not authorize overwriting an active worker. Inspect the current state and resolve uncertainty. If a worker needs another path, request a new assignment. Markdown and chat claims are protocols, not operating-system mutexes. For many small projects, combine advisory ownership, appropriate tools, scope checks, and one integrator. Use worktrees when separate working copies help. Actual locking requires an enforcement mechanism with defined failure behavior. Do not market a task board as a built-in cross-agent security boundary.",
+      "sources": [],
+      "code": "Task: search enhancement\nOwner: worker A\nAllowed paths: named module + named tests\nBase: agreed commit / contract version\nShared files: integrator only\nState: claimed -> running -> reviewed -> released\nConflict: STOP and report; do not overwrite",
+      "cue": "",
+      "kind": "standard",
+      "slide": 28,
+      "beats": [
+        {
+          "headline": "A claim is a sticky note",
+          "scene": "board",
+          "labels": [
+            "Owner",
+            "Paths",
+            "Base revision",
+            "Expiry"
+          ],
+          "text": "An advisory claim is a sticky note saying who owns which paths, from which base revision, and until when. The coordinator checks conflicts and acknowledges the assignment before writing. At handoff, the worker reports its changed files and releases the claim.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Expiry is not overwrite permission",
+          "scene": "split",
+          "labels": [
+            "Stale claim?",
+            "Inspect state",
+            "Coordinator decides"
+          ],
+          "text": "An expiry prevents a stale claim from blocking work forever. It does not authorize overwriting an active worker. Inspect the current state and resolve uncertainty. If a worker needs another path, request a new assignment. Markdown and chat claims are protocols, not operating-system mutexes.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Combine the protections",
+          "scene": "review",
+          "labels": [
+            "Claims",
+            "Narrow tools",
+            "Scope checks",
+            "One integrator"
+          ],
+          "text": "For many small projects, combine advisory ownership, appropriate tools, scope checks, and one integrator. Use worktrees when separate working copies help. Actual locking requires an enforcement mechanism with defined failure behavior. Do not market a task board as a built-in cross-agent security boundary.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "ENFORCEMENT",
+      "title": "Use checks and permissions, not slogans",
+      "items": [
+        "Preflight + changed-path scope checks + required CI",
+        "Tool restrictions reduce capability; terminal access is broad",
+        "Hooks can inspect or deny calls; verify runtime behavior",
+        "CODEOWNERS routes review; it does not lock edits"
+      ],
+      "narration": "A scope check detects changed files outside an assignment. Required continuous integration can gate integration until tests pass. CODEOWNERS routes review to people; it does not lock local edits. These mechanisms are complementary. Be precise about whether a check prevents an action or detects it afterward. Give each role only needed capabilities, then inspect actual activity. Terminal execution is broad: a shell can write files even without a separate edit tool. A do-not-edit instruction alone is not a permission boundary. Keep approvals and machine access separate from repository ownership conventions. Hooks can run checks before or after tools. VS Code's hooks experience is preview and harness formats differ. A post-tool hook cannot undo a completed action. Copilot command pre-tool errors deny, but timeouts fall through to normal permissions. Test failure behavior; our core labs do not need hooks.",
+      "sources": [
+        "S5",
+        "S11",
+        "S12"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 29,
+      "beats": [
+        {
+          "headline": "Checks have different jobs",
+          "scene": "review",
+          "labels": [
+            "Detect edits",
+            "Gate integration",
+            "Route review"
+          ],
+          "text": "A scope check detects changed files outside an assignment. Required continuous integration can gate integration until tests pass. CODEOWNERS routes review to people; it does not lock local edits. These mechanisms are complementary. Be precise about whether a check prevents an action or detects it afterward.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "A shell is a powerful tool",
+          "scene": "compare",
+          "labels": [
+            "Read/search",
+            "Edit",
+            "Terminal access"
+          ],
+          "text": "Give each role only needed capabilities, then inspect actual activity. Terminal execution is broad: a shell can write files even without a separate edit tool. A do-not-edit instruction alone is not a permission boundary. Keep approvals and machine access separate from repository ownership conventions.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Hooks need failure tests",
+          "scene": "flow",
+          "labels": [
+            "Before tool",
+            "Decision",
+            "Normal permissions",
+            "Verify failure rules"
+          ],
+          "text": "Hooks can run checks before or after tools. VS Code's hooks experience is preview and harness formats differ. A post-tool hook cannot undo a completed action. Copilot command pre-tool errors deny, but timeouts fall through to normal permissions. Test failure behavior; our core labs do not need hooks.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "WORKTREES",
+      "title": "Separate working copies for independent tasks",
+      "items": [
+        "Commit the contract and customizations before branching",
+        "Each worktree: distinct files, branch and working index",
+        "Ignored dependencies and uncommitted files are not copied",
+        "Give servers and outputs distinct resources too"
+      ],
+      "narration": "A Git worktree provides another working directory, normally on another branch. Independent workers edit separate copies. Start from an agreed committed baseline containing the contract and customizations. Uncommitted agent files, ignored dependencies, and local configuration do not automatically appear in a new worktree. Worktrees separate working files and indices, not every part of Git or your machine. Give servers different ports and outputs separate locations. They do not protect credentials or external services by themselves. Sandboxing and permission controls address different risks. A task commit remains on its task branch until you integrate it. Review the scope and evidence, then use your normal merge, cherry-pick, or pull-request workflow. Keep the worktree until integration is verified. Do not delete useful work just because the last response sounded successful.",
+      "sources": [
+        "S4",
+        "S15"
+      ],
+      "code": "git status --short\ngit worktree add ..\\triage-search -b lab-search HEAD\ngit worktree add ..\\triage-summary -b lab-summary HEAD\ngit worktree list\n\n# Use separate test outputs / server ports.\n# Shared contract changes belong to the integrator.",
+      "cue": "",
+      "kind": "standard",
+      "slide": 30,
+      "beats": [
+        {
+          "headline": "A second workbench",
+          "scene": "branch",
+          "labels": [
+            "Committed base",
+            "Worktree A",
+            "Worktree B"
+          ],
+          "text": "A Git worktree provides another working directory, normally on another branch. Independent workers edit separate copies. Start from an agreed committed baseline containing the contract and customizations. Uncommitted agent files, ignored dependencies, and local configuration do not automatically appear in a new worktree.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Separate files, shared surroundings",
+          "scene": "compare",
+          "labels": [
+            "Working copy",
+            "Ports + services",
+            "Sandbox separately"
+          ],
+          "text": "Worktrees separate working files and indices, not every part of Git or your machine. Give servers different ports and outputs separate locations. They do not protect credentials or external services by themselves. Sandboxing and permission controls address different risks.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Commit, review, then integrate",
+          "scene": "branch",
+          "labels": [
+            "Task commit",
+            "Review",
+            "Integrate",
+            "Combined tests"
+          ],
+          "text": "A task commit remains on its task branch until you integrate it. Review the scope and evidence, then use your normal merge, cherry-pick, or pull-request workflow. Keep the worktree until integration is verified. Do not delete useful work just because the last response sounded successful.",
+          "code": "",
+          "variant": "merge"
+        }
+      ]
+    },
+    {
+      "section": "INTEGRATION",
+      "title": "A clean merge is not proof of correctness",
+      "items": [
+        "Review each task's diff, scope and test evidence",
+        "Integrate one task at a time using normal Git / PR workflow",
+        "Resolve conflicts against the frozen contract",
+        "Rerun combined tests and the actual user flow"
+      ],
+      "narration": "Integration is a separate stage with one owner. Inspect each task's diff, scope, and test evidence. Integrate one task at a time. If shared assumptions changed, resolve them against the agreed contract before accepting another worker's result. A conflict requires reasoning. Read both intentions and preserve the required behavior; do not blindly choose ours or theirs. Even a clean merge can be wrong if the features disagree on fields, filtering, or order. Combining text is not the same as combining correct behavior. Run the relevant combined checks and try the user flow. In our board, search, priority, summary, and export must agree on the visible issues. Document remaining risks honestly. A useful integration handoff is more than a merge commit or a collection of separate green test messages.",
+      "sources": [
+        "S4",
+        "S12"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 31,
+      "beats": [
+        {
+          "headline": "Give integration an owner",
+          "scene": "flow",
+          "labels": [
+            "Review A",
+            "Integrate A",
+            "Integrate B",
+            "Retest"
+          ],
+          "text": "Integration is a separate stage with one owner. Inspect each task's diff, scope, and test evidence. Integrate one task at a time. If shared assumptions changed, resolve them against the agreed contract before accepting another worker's result.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Do not blindly choose a side",
+          "scene": "split",
+          "labels": [
+            "Change A",
+            "Conflict",
+            "Change B"
+          ],
+          "text": "A conflict requires reasoning. Read both intentions and preserve the required behavior; do not blindly choose ours or theirs. Even a clean merge can be wrong if the features disagree on fields, filtering, or order. Combining text is not the same as combining correct behavior.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Exercise the combined flow",
+          "scene": "review",
+          "labels": [
+            "Whole suite",
+            "Board behavior",
+            "Expected evidence"
+          ],
+          "text": "Run the relevant combined checks and try the user flow. In our board, search, priority, summary, and export must agree on the visible issues. Document remaining risks honestly. A useful integration handoff is more than a merge commit or a collection of separate green test messages.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "DEMO 3",
+      "title": "Compare two safe orchestration patterns",
+      "items": [
+        "Pattern A: shared checkout, parallel readers, one writer",
+        "Pattern B: committed contract + separate task worktrees",
+        "Show a scope violation caught before integration",
+        "PAYMENTS -> ISS-101 + ISS-105; export only active ISS-101"
+      ],
+      "narration": "The third demo compares shared-checkout readers with one writer, and committed contracts with separate worktrees. Point out the actual paths and owners, not just separate tabs. Demonstrate a harmless scope violation caught before integration, then correct it rather than accepting an expanded write set. Now try the combined example. Searching uppercase PAYMENTS finds issues one hundred and one and one hundred and five. Search includes the closed issue because it matches the category. The visible summary is two total, one active, and one active blocked issue. Evidence export includes only the active visible issue, one hundred and one, with P one and its reasons. That proves all four behaviors agree. Rerun required checks explicitly: some UI commit and Create PR actions skip local Git hooks. The forty-minute orchestration lab gives you the hands-on practice.",
+      "sources": [
+        "S4",
+        "S7",
+        "S12"
+      ],
+      "code": "",
+      "cue": "LIVE DEMO: 6 minutes; included in the 00:35-01:00 block.",
+      "kind": "standard",
+      "slide": 32,
+      "beats": [
+        {
+          "headline": "Compare the two patterns",
+          "scene": "compare",
+          "labels": [
+            "Readers + one writer",
+            "Separate worktrees",
+            "Same checks"
+          ],
+          "text": "The third demo compares shared-checkout readers with one writer, and committed contracts with separate worktrees. Point out the actual paths and owners, not just separate tabs. Demonstrate a harmless scope violation caught before integration, then correct it rather than accepting an expanded write set.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "PAYMENTS gives two cards",
+          "scene": "filter",
+          "labels": [
+            "PAYMENTS",
+            "ISS-101 active",
+            "ISS-105 closed"
+          ],
+          "text": "Now try the combined example. Searching uppercase PAYMENTS finds issues one hundred and one and one hundred and five. Search includes the closed issue because it matches the category. The visible summary is two total, one active, and one active blocked issue.",
+          "code": "",
+          "variant": "payments"
+        },
+        {
+          "headline": "Evidence keeps the active issue",
+          "scene": "filter",
+          "labels": [
+            "Visible: 2",
+            "Export: ISS-101",
+            "P1 evidence"
+          ],
+          "text": "Evidence export includes only the active visible issue, one hundred and one, with P one and its reasons. That proves all four behaviors agree. Rerun required checks explicitly: some UI commit and Create PR actions skip local Git hooks. The forty-minute orchestration lab gives you the hands-on practice.",
+          "code": "",
+          "variant": "export"
+        }
+      ]
+    },
+    {
+      "section": "SAFETY",
+      "title": "Keep scope, data and approvals deliberate",
+      "items": [
+        "Use synthetic issues; never paste secrets into context",
+        "Review scripts, MCP tools, plugins and acquired skills",
+        "Worktree isolation != sandboxing != approval policy",
+        "Review the diff before committing or sending external actions"
+      ],
+      "narration": "Keep the sample fixtures fictional and never paste credentials into task context. If you later connect a tool, inspect its permissions and data destination. Repository text and outside documents are data, not authority to ignore the task's rules or ownership boundary. Review acquired skills, plugins, and scripts before enabling them. Hooks may run without the model requesting the procedure. A marketplace listing is not a trust guarantee. Worktrees, sandboxing, and approval policies protect different things; none proves the generated code is correct. Inspect the full diff before committing. Before an external action, confirm its destination and required approval. Our app is local and has no write API, so you can practice these habits without a database or cloud service. Optional media regeneration is separate from the attendee labs.",
+      "sources": [
+        "S3",
+        "S8",
+        "S11",
+        "S15"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 33,
+      "beats": [
+        {
+          "headline": "Fictional data only",
+          "scene": "review",
+          "labels": [
+            "Synthetic issues",
+            "No secrets",
+            "Known destination"
+          ],
+          "text": "Keep the sample fixtures fictional and never paste credentials into task context. If you later connect a tool, inspect its permissions and data destination. Repository text and outside documents are data, not authority to ignore the task's rules or ownership boundary.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Review acquired capabilities",
+          "scene": "recipe",
+          "labels": [
+            "Skill files",
+            "Plugin scripts",
+            "Hooks",
+            "Tool access"
+          ],
+          "text": "Review acquired skills, plugins, and scripts before enabling them. Hooks may run without the model requesting the procedure. A marketplace listing is not a trust guarantee. Worktrees, sandboxing, and approval policies protect different things; none proves the generated code is correct.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Review before external actions",
+          "scene": "flow",
+          "labels": [
+            "Inspect diff",
+            "Check destination",
+            "Approval",
+            "Action"
+          ],
+          "text": "Inspect the full diff before committing. Before an external action, confirm its destination and required approval. Our app is local and has no write API, so you can practice these habits without a database or cloud service. Optional media regeneration is separate from the attendee labs.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "EFFICIENCY",
+      "title": "More agents is not automatically more value",
+      "items": [
+        "Use a direct request for small, cohesive work",
+        "Delegate substantial independent work with a bounded result",
+        "Limit depth and avoid duplicate investigation",
+        "Choose available models for the task; measure quality and usage"
+      ],
+      "narration": "Use a direct request for a small cohesive change. Delegate substantial independent work with a bounded result. Repeating the same investigation in several contexts costs more and may not improve the answer. A tiny team with clear jobs often beats an impressive-looking swarm. Keep delegation depth bounded and include a stopping condition. Nesting has harness-specific support and is not a core lab requirement. Choose a model actually available to your account and suited to the task. Changing model and changing harness are different experiments. Measure whether the worker's result was useful and how much coordination it added. Lighter models may handle straightforward tasks. The app offers usage insights such as chronicle, but those are optional. Optimize the workflow, not the agent count, and respect your plan's usage allowance.",
+      "sources": [
+        "S1",
+        "S7",
+        "S10",
+        "S12"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 34,
+      "beats": [
+        {
+          "headline": "More helpers is not always better",
+          "scene": "team",
+          "labels": [
+            "Small task",
+            "Direct edit",
+            "One useful specialist"
+          ],
+          "text": "Use a direct request for a small cohesive change. Delegate substantial independent work with a bounded result. Repeating the same investigation in several contexts costs more and may not improve the answer. A tiny team with clear jobs often beats an impressive-looking swarm.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Bound the depth and cost",
+          "scene": "flow",
+          "labels": [
+            "Scope",
+            "Stop condition",
+            "Available model",
+            "Usage"
+          ],
+          "text": "Keep delegation depth bounded and include a stopping condition. Nesting has harness-specific support and is not a core lab requirement. Choose a model actually available to your account and suited to the task. Changing model and changing harness are different experiments.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Measure usefulness",
+          "scene": "review",
+          "labels": [
+            "Correct result",
+            "Coordination effort",
+            "Usage",
+            "Refine"
+          ],
+          "text": "Measure whether the worker's result was useful and how much coordination it added. Lighter models may handle straightforward tasks. The app offers usage insights such as chronicle, but those are optional. Optimize the workflow, not the agent count, and respect your plan's usage allowance.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "PRACTICE APPLICATION",
+      "title": "Issue triage board: small on purpose",
+      "items": [
+        "Node built-in HTTP + static page + node:test",
+        "Fictional support issues; no database or API keys",
+        "Eight issues: six active, two closed; four categories",
+        "Passing starter + progressive features + separate answer key"
+      ],
+      "narration": "Our issue triage board has eight fictional issues, six active and two closed. Two active workflows are blocked. Accessibility, payments, reporting, and search each contain two issues. It runs with Node's built-in HTTP server, a static page, and the built-in test runner. The starter passes its baseline checks but intentionally lacks the four lab enhancements. Shared wiring already follows frozen contracts, so workers can own separate modules and tests. Instructor answers live separately and are not hidden inside the normal starter. Do not copy them before trying the exercise. From the repository root, run npm test and npm start, then open the loopback page. No npm install, database, API keys, or Azure account is needed for the app. Use the exact paths and acceptance outputs in the lab files; these diagrams explain the workflow rather than replace the executable specification.",
+      "sources": [],
+      "code": "",
+      "cue": "",
+      "kind": "appsample",
+      "slide": 35,
+      "beats": [
+        {
+          "headline": "Eight fictional issues",
+          "scene": "filter",
+          "labels": [
+            "8 total",
+            "6 active",
+            "2 active blocked"
+          ],
+          "text": "Our issue triage board has eight fictional issues, six active and two closed. Two active workflows are blocked. Accessibility, payments, reporting, and search each contain two issues. It runs with Node's built-in HTTP server, a static page, and the built-in test runner.",
+          "code": "",
+          "variant": "all"
+        },
+        {
+          "headline": "Four deliberate gaps",
+          "scene": "board",
+          "labels": [
+            "Priority",
+            "Search",
+            "Summary",
+            "Evidence"
+          ],
+          "text": "The starter passes its baseline checks but intentionally lacks the four lab enhancements. Shared wiring already follows frozen contracts, so workers can own separate modules and tests. Instructor answers live separately and are not hidden inside the normal starter. Do not copy them before trying the exercise.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Run the actual app",
+          "scene": "code",
+          "labels": [
+            "No install",
+            "Passing baseline",
+            "Local browser"
+          ],
+          "text": "From the repository root, run npm test and npm start, then open the loopback page. No npm install, database, API keys, or Azure account is needed for the app. Use the exact paths and acceptance outputs in the lab files; these diagrams explain the workflow rather than replace the executable specification.",
+          "code": "npm test\nnpm start\n# Open http://127.0.0.1:3000",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "LAB 1 / 30 MINUTES",
+      "title": "Create and verify useful customizations",
+      "items": [
+        "Author short repository instructions",
+        "Build a focused custom agent with narrow tools",
+        "Build a skill with a supporting reference or script",
+        "Capture discovery, invocation and honest result evidence"
+      ],
+      "narration": "You have thirty minutes. Confirm the starter and harness, then write short repository instructions. Create a focused custom agent with only needed tools. Create a matching skill directory, name, description, and supporting resource. Test them on a known small task. Show discovery separately from behavior. Inspect tool activity and compare output with the source. Record an explicit skill invocation and a matching plain-language request. Include an unavailable check reported honestly as not run. A listed file or a polished report is not sufficient proof. At the checkpoint, explain why each rule belongs in instructions, a role, or a skill. Use the hint ladder if you fall behind; the first hint is not the complete answer. The lab's measured outcome is a useful toolkit you can evaluate, not just more customization files.",
+      "sources": [
+        "S5",
+        "S6",
+        "S8"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 36,
+      "beats": [
+        {
+          "headline": "Lab one: build the toolkit",
+          "scene": "recipe",
+          "labels": [
+            "Instructions",
+            "Reviewer",
+            "Policy skill"
+          ],
+          "text": "You have thirty minutes. Confirm the starter and harness, then write short repository instructions. Create a focused custom agent with only needed tools. Create a matching skill directory, name, description, and supporting resource. Test them on a known small task.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Collect actual evidence",
+          "scene": "review",
+          "labels": [
+            "Discovery",
+            "Invocation",
+            "Activity",
+            "Honest limits"
+          ],
+          "text": "Show discovery separately from behavior. Inspect tool activity and compare output with the source. Record an explicit skill invocation and a matching plain-language request. Include an unavailable check reported honestly as not run. A listed file or a polished report is not sufficient proof.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Explain your choices",
+          "scene": "brief",
+          "labels": [
+            "Why this role?",
+            "Why this recipe?",
+            "Why these tools?"
+          ],
+          "text": "At the checkpoint, explain why each rule belongs in instructions, a role, or a skill. Use the hint ladder if you fall behind; the first hint is not the complete answer. The lab's measured outcome is a useful toolkit you can evaluate, not just more customization files.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "LAB 2 / 35 MINUTES",
+      "title": "Delegate a feature and collect proof",
+      "items": [
+        "Prepare a self-contained research brief",
+        "Use a coordinator plus a read-only specialist",
+        "Implement one exact behavior using the skill",
+        "Verify boundary cases and request evidence-based review"
+      ],
+      "narration": "You have thirty-five minutes. Prepare a self-contained research brief with the contract, constraints, allowed actions, and expected report. Use a read-only specialist to find the priority behavior and existing test pattern. Review that report before implementation. Keep one writer for the assigned priority module and tests. Use the policy skill to apply the exact rules. Check positive, negative, and boundary cases, including closed override. A nearby example is not proof of the real threshold. Supply test output as execution evidence. Ask the restricted reviewer to inspect the requirements and changed source. It must not claim command execution it could not perform. If native delegation is unavailable, run the roles sequentially. Hand off the outcome, changed paths, checks, and remaining uncertainty.",
+      "sources": [
+        "S7",
+        "S9",
+        "S12"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 37,
+      "beats": [
+        {
+          "headline": "Lab two: brief the researcher",
+          "scene": "brief",
+          "labels": [
+            "Goal",
+            "Contract",
+            "Read-only",
+            "Report"
+          ],
+          "text": "You have thirty-five minutes. Prepare a self-contained research brief with the contract, constraints, allowed actions, and expected report. Use a read-only specialist to find the priority behavior and existing test pattern. Review that report before implementation.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Implement and check the edge",
+          "scene": "score",
+          "labels": [
+            "Positive",
+            "Negative",
+            "Exact boundary"
+          ],
+          "text": "Keep one writer for the assigned priority module and tests. Use the policy skill to apply the exact rules. Check positive, negative, and boundary cases, including closed override. A nearby example is not proof of the real threshold. Supply test output as execution evidence.",
+          "code": "",
+          "variant": "boundary"
+        },
+        {
+          "headline": "Get an honest review",
+          "scene": "review",
+          "labels": [
+            "Source findings",
+            "Actual test output",
+            "Risks",
+            "Scope"
+          ],
+          "text": "Ask the restricted reviewer to inspect the requirements and changed source. It must not claim command execution it could not perform. If native delegation is unavailable, run the roles sequentially. Hand off the outcome, changed paths, checks, and remaining uncertainty.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "LAB 3 / 40 MINUTES",
+      "title": "Orchestrate two tasks without collisions",
+      "items": [
+        "Freeze the contract and assign disjoint write sets",
+        "Compare one-writer and worktree strategies",
+        "Exercise the advisory board and a scope violation check",
+        "Integrate serially, then validate the combined app"
+      ],
+      "narration": "You have forty minutes. Read the shared contract and the search and summary tasks. Record owners, write sets, prerequisites, and reserved shared files. If both tasks need a contract change, complete it first. Do not send workers out with different assumptions. Compare the one-writer pattern with separate worktrees where available. Exercise claims and handoffs, then use the controlled scope-violation check. Explain whether it prevents a write or detects it later. Shared files, board updates, and Git integration remain with the integrator. Review and integrate one result at a time, then rerun the combined checks and try the board. Separate passing reports are not enough. At debrief, explain what could still collide and what you would do if a worker needed another owner's file.",
+      "sources": [
+        "S4",
+        "S7",
+        "S10",
+        "S15"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 38,
+      "beats": [
+        {
+          "headline": "Lab three: split safely",
+          "scene": "board",
+          "labels": [
+            "Contract agreed",
+            "Search owner",
+            "Summary owner",
+            "Integrator"
+          ],
+          "text": "You have forty minutes. Read the shared contract and the search and summary tasks. Record owners, write sets, prerequisites, and reserved shared files. If both tasks need a contract change, complete it first. Do not send workers out with different assumptions.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Claims are advisory",
+          "scene": "split",
+          "labels": [
+            "Claim",
+            "Scope check",
+            "Conflict = pause"
+          ],
+          "text": "Compare the one-writer pattern with separate worktrees where available. Exercise claims and handoffs, then use the controlled scope-violation check. Explain whether it prevents a write or detects it later. Shared files, board updates, and Git integration remain with the integrator.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Retest the whole board",
+          "scene": "review",
+          "labels": [
+            "Integrate A",
+            "Integrate B",
+            "Combined checks",
+            "User flow"
+          ],
+          "text": "Review and integrate one result at a time, then rerun the combined checks and try the board. Separate passing reports are not enough. At debrief, explain what could still collide and what you would do if a worker needed another owner's file.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "LAB 4 / 15 MINUTES",
+      "title": "Review, hand off and reflect",
+      "items": [
+        "Inspect all changed files and requirement coverage",
+        "Run the final quality gates and user-flow check",
+        "Write evidence, risks and remaining decisions",
+        "Explain where parallelism helped or hurt"
+      ],
+      "narration": "You have fifteen minutes. Review the complete relevant diff and requirement coverage. Run the final checks and user flow, then create the minimal evidence export. Mark unavailable checks not run with a reason. Do not turn missing evidence into a success statement. Write a handoff someone can use without reading the whole agent history. Include the outcome, changed paths, assumptions, exact checks and results, remaining risks, and next decisions. An evidence-based handoff is the final product, not an agent completion message. Ask which tasks were truly independent, whether separate contexts helped, and where coordination cost more than a direct edit. The live workshop ends at three hours. Hooks, marketplace packaging, and cloud continuity are optional extensions afterward, not hidden extra requirements.",
+      "sources": [
+        "S12"
+      ],
+      "code": "OUTCOME / changed paths\nCONTRACT / assumptions\nCHECKS / exact commands and results\nNOT RUN / reasons\nRISKS / unresolved findings\nINTEGRATION / reviewed state\nNEXT DECISION / owner",
+      "cue": "",
+      "kind": "standard",
+      "slide": 39,
+      "beats": [
+        {
+          "headline": "Lab four: evidence and handoff",
+          "scene": "review",
+          "labels": [
+            "Full diff",
+            "Quality gates",
+            "User flow",
+            "JSON"
+          ],
+          "text": "You have fifteen minutes. Review the complete relevant diff and requirement coverage. Run the final checks and user flow, then create the minimal evidence export. Mark unavailable checks not run with a reason. Do not turn missing evidence into a success statement.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Help the next developer",
+          "scene": "brief",
+          "labels": [
+            "Outcome",
+            "Paths",
+            "Checks",
+            "Risks"
+          ],
+          "text": "Write a handoff someone can use without reading the whole agent history. Include the outcome, changed paths, assumptions, exact checks and results, remaining risks, and next decisions. An evidence-based handoff is the final product, not an agent completion message.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Reflect, then finish on time",
+          "scene": "team",
+          "labels": [
+            "What helped?",
+            "What collided?",
+            "Simpler next time"
+          ],
+          "text": "Ask which tasks were truly independent, whether separate contexts helped, and where coordination cost more than a direct edit. The live workshop ends at three hours. Hooks, marketplace packaging, and cloud continuity are optional extensions afterward, not hidden extra requirements.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "RECOVERY",
+      "title": "Stop, inspect, narrow and rerun",
+      "items": [
+        "Missing customization? Check path, harness and committed base",
+        "Wrong tools? Check runtime inventory, not just YAML",
+        "Overlapping edits? Pause writers and inspect actual files",
+        "Stopping does not undo commands or external effects"
+      ],
+      "narration": "When work goes wrong, stop expanding the prompt. Inspect the actual files, changes, and evidence. If a customization is missing, check its path, frontmatter, harness, inventory, and committed worktree base. If tools differ, check the runtime rather than only the editor completion. Pause overlapping writers and choose one integration owner. Preserve useful work and resolve the shared contract. Do not run a destructive reset simply to look clean. The lab provides named backup and restore operations that preserve current contents before undoing specific files. Stopping does not undo completed commands or external actions. Checkpoints can restore some workspace and chat state, not every side effect. Use the appropriate Git or service recovery controls, then rerun affected checks. Recovery is complete when the required behavior is verified again.",
+      "sources": [
+        "S4",
+        "S6",
+        "S8",
+        "S12"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 40,
+      "beats": [
+        {
+          "headline": "Recover from the actual state",
+          "scene": "review",
+          "labels": [
+            "Pause",
+            "Inspect",
+            "Narrow",
+            "Rerun"
+          ],
+          "text": "When work goes wrong, stop expanding the prompt. Inspect the actual files, changes, and evidence. If a customization is missing, check its path, frontmatter, harness, inventory, and committed worktree base. If tools differ, check the runtime rather than only the editor completion.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Preserve useful work",
+          "scene": "split",
+          "labels": [
+            "Writer A paused",
+            "Inspect changes",
+            "One integration owner"
+          ],
+          "text": "Pause overlapping writers and choose one integration owner. Preserve useful work and resolve the shared contract. Do not run a destructive reset simply to look clean. The lab provides named backup and restore operations that preserve current contents before undoing specific files.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Stop is not undo",
+          "scene": "flow",
+          "labels": [
+            "Stop request",
+            "Completed actions remain",
+            "Recover",
+            "Recheck"
+          ],
+          "text": "Stopping does not undo completed commands or external actions. Checkpoints can restore some workspace and chat state, not every side effect. Use the appropriate Git or service recovery controls, then rerun affected checks. Recovery is complete when the required behavior is verified again.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "TAKEAWAYS",
+      "title": "Reliable orchestration is an engineering skill",
+      "items": [
+        "Role + recipe + task contract",
+        "Separate context != isolated workspace",
+        "Independent tasks + explicit ownership + one integrator",
+        "Evidence beats confident prose"
+      ],
+      "narration": "Your reliable teamwork recipe is a role, a reusable procedure, and a specific task contract. Choose narrow responsibilities and real acceptance examples. The agent owns a job, the skill supplies a process, and the prompt defines what success means today. Separate context does not mean separate files. Freeze contracts, assign owners, serialize shared changes, and use one integrator. Worktrees help separate working copies; permissions and sandboxing solve different problems. Advisory claims help coordination but do not enforce a lock. Evidence beats confident prose. A read-only reviewer cannot claim it ran tests. Target vscode does not switch the harness. Two passing branches can fail together, so retest after integration. Keep the smallest workflow that reliably proves the outcome. That's the upgrade from agent user to orchestrator.",
+      "sources": [
+        "S5",
+        "S7",
+        "S12"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "cover",
+      "slide": 41,
+      "beats": [
+        {
+          "headline": "Your reliable teamwork recipe",
+          "scene": "recipe",
+          "labels": [
+            "Role",
+            "Recipe",
+            "Task contract"
+          ],
+          "text": "Your reliable teamwork recipe is a role, a reusable procedure, and a specific task contract. Choose narrow responsibilities and real acceptance examples. The agent owns a job, the skill supplies a process, and the prompt defines what success means today.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "The desk is what matters",
+          "scene": "split",
+          "labels": [
+            "Separate context",
+            "Actual workspace",
+            "Explicit owners"
+          ],
+          "text": "Separate context does not mean separate files. Freeze contracts, assign owners, serialize shared changes, and use one integrator. Worktrees help separate working copies; permissions and sandboxing solve different problems. Advisory claims help coordination but do not enforce a lock.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Evidence wins",
+          "scene": "review",
+          "labels": [
+            "Read-only cannot run",
+            "Target is not runtime",
+            "Combined tests matter"
+          ],
+          "text": "Evidence beats confident prose. A read-only reviewer cannot claim it ran tests. Target vscode does not switch the harness. Two passing branches can fail together, so retest after integration. Keep the smallest workflow that reliably proves the outcome. That's the upgrade from agent user to orchestrator.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    },
+    {
+      "section": "REFERENCE / NOT EXTRA TEACHING TIME",
+      "title": "Official sources and availability",
+      "items": [
+        "S1-S3: Copilot app, Projects preview, sessions and permissions",
+        "S4-S8: VS Code window, agent syntax, delegation and skills",
+        "S9-S12: inheritance, /fleet, hooks preview and best practices",
+        "S13-S15: 28 October release, compatibility and isolation"
+      ],
+      "narration": "The full package includes the official source ledger, labs, instructor answers, captions, and this video's script. Product facts were checked on November seventh, twenty twenty-six. Recheck them before a later event. Preview features and organization policy can change what appears in your client. The animated interfaces and team diagrams are original teaching illustrations, not recordings of live Copilot activity. They show concepts; the labs show executable steps. Voice and animation are separate from the offline sample application, and they do not add time to the three-hour live schedule. Start with one small task you understand. Give it a clear brief, use only the help it needs, and check the result. Then add one specialist or one independent workstream when it genuinely helps. Keep the controls visible and the evidence honest. You are directing the work, not surrendering it.",
+      "sources": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15"
+      ],
+      "code": "",
+      "cue": "",
+      "kind": "standard",
+      "slide": 42,
+      "beats": [
+        {
+          "headline": "Keep the sources handy",
+          "scene": "review",
+          "labels": [
+            "Official ledger",
+            "Dated facts",
+            "Actual versions"
+          ],
+          "text": "The full package includes the official source ledger, labs, instructor answers, captions, and this video's script. Product facts were checked on November seventh, twenty twenty-six. Recheck them before a later event. Preview features and organization policy can change what appears in your client.",
+          "code": "",
+          "variant": ""
+        },
+        {
+          "headline": "Illustrations, not hidden proof",
+          "scene": "interface",
+          "labels": [
+            "Illustrated controls",
+            "Live client may vary",
+            "Verify tools"
+          ],
+          "text": "The animated interfaces and team diagrams are original teaching illustrations, not recordings of live Copilot activity. They show concepts; the labs show executable steps. Voice and animation are separate from the offline sample application, and they do not add time to the three-hour live schedule.",
+          "code": "",
+          "variant": "vscode"
+        },
+        {
+          "headline": "Ready for your small task",
+          "scene": "team",
+          "labels": [
+            "One goal",
+            "Clear brief",
+            "Useful help",
+            "Proof"
+          ],
+          "text": "Start with one small task you understand. Give it a clear brief, use only the help it needs, and check the result. Then add one specialist or one independent workstream when it genuinely helps. Keep the controls visible and the evidence honest. You are directing the work, not surrendering it.",
+          "code": "",
+          "variant": ""
+        }
+      ]
+    }
+  ],
+  "burned_captions": true,
+  "no_music_or_sound_effects": true,
+  "preview": false
+}
