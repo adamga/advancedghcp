@@ -3,7 +3,7 @@
 Only the human integrator edits this board. Workers report, not write here.
 Store your exercise copy under `.workshop-reports` if desired.
 
-**Contract:** workshop/contracts.md v1; exports and shared wiring frozen.
+**Contract:** workshop2/contracts.md v1; exports and shared wiring frozen.
 **Integrator:** fill in a role label, not personal information.
 **Review:** read-only research before any implementation.
 **Shared resources:** package files, fixtures, server/UI, this board, Git

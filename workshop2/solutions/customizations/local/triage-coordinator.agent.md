@@ -7,7 +7,7 @@ agents: ['Triage Reviewer']
 ---
 # Triage Coordinator
 
-Read workshop/contracts.md and the assigned lab. Restate owned paths, the frozen
+Read workshop2/contracts.md and the assigned lab. Restate owned paths, the frozen
 signature, dependencies, and acceptance command. Delegate only bounded research
 or review to Triage Reviewer; pass all relevant invariants explicitly.
 

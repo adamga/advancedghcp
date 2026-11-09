@@ -252,7 +252,7 @@ def main():
         "\n## Media provenance",
         "The editable deck carries the supplied theme and recreates its dark/cyan/purple visual treatment.",
         "All teaching text, task diagrams and interface schematics are original. No presenter or GitHub Expert Services affiliation is implied.",
-        "The video uses local Microsoft Zira speech synthesis. It is narrated instruction with code examples, not a recording of a live product demo.",
+        "The video uses Microsoft Foundry `gpt-audio-1.5` with the `coral` voice for speech synthesis. It is narrated instruction with code examples, not a recording of a live product demo.",
     ]
     (args.out / "source-ledger.md").write_text("\n".join(ledger) + "\n", encoding="utf-8")
     print(json.dumps({"deck": str(path), "slides": len(SLIDES), "agenda_minutes": sum(m for _, m in AGENDA)}))

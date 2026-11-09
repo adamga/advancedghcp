@@ -1,7 +1,8 @@
 param(
     [string]$OutputDirectory = ".\deliverables",
     [int]$SpeechRate = 0,
-    [switch]$RenderOnly
+    [switch]$RenderOnly,
+    [switch]$SkipNarration
 )
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path $OutputDirectory).Path
@@ -46,7 +47,7 @@ finally {
     $app.Quit()
     [void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($app)
 }
-if ($RenderOnly) { return }
+if ($RenderOnly -or $SkipNarration) { return }
 $voice = New-Object -ComObject SAPI.SpVoice
 $zira = @($voice.GetVoices() | Where-Object { $_.GetDescription() -like '*Zira*' })
 if ($zira.Count -eq 0) { throw 'Local Microsoft Zira voice is unavailable. Install a local voice or explicitly select another.' }

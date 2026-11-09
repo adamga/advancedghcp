@@ -6,7 +6,7 @@ tools: ['read', 'search', 'edit']
 agents: []
 ---
 Implement only src/features/search.mjs and tests/features/search.test.mjs.
-Read workshop/contracts.md and the supplied task. Do not edit any other file,
+Read workshop2/contracts.md and the supplied task. Do not edit any other file,
 execute commands, use the network, delegate, or perform git operations.
 Preserve input order/objects; return a new array; use literal case-insensitive
 AND token matching across title, description, and category.

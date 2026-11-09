@@ -51,7 +51,7 @@ def main():
             if not full:
                 archive.writestr(
                     "START-HERE.txt",
-                    "Open advancedghcp/README.md and workshop/README.md.\n"
+                    "Open advancedghcp/README.md, then advancedghcp/workshop2/01-the-story.md and workshop2/README.md.\n"
                     "This lightweight archive contains the starter, labs, templates and instructor answers.\n"
                     "PowerPoint, video, transcript and source ledger are in the separately supplied complete-workshop.zip.\n"
                     "No Git metadata is included. Run git init and create a baseline commit before using worktree labs.\n"

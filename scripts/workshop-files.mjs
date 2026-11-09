@@ -82,10 +82,10 @@ async function fromSource(source, target, transform = (content) => content) {
 async function featureChanges(names, starter = false) {
   const changes = [];
   for (const name of names) {
-    changes.push(await fromSource(`workshop/${starter ? 'starter' : 'solutions'}/features/${name}.mjs`, `src/features/${name}.mjs`));
+    changes.push(await fromSource(`workshop2/${starter ? 'starter' : 'solutions'}/features/${name}.mjs`, `src/features/${name}.mjs`));
     changes.push(starter
       ? { path: `tests/features/${name}.test.mjs`, content: null }
-      : await fromSource(`workshop/solutions/tests/${name}.test.mjs`, `tests/features/${name}.test.mjs`));
+      : await fromSource(`workshop2/solutions/tests/${name}.test.mjs`, `tests/features/${name}.test.mjs`));
   }
   return changes;
 }
@@ -93,14 +93,14 @@ async function featureChanges(names, starter = false) {
 async function customizationChanges(harness, template = false, onlyLab1 = false) {
   const changes = [];
   for (const profile of template || onlyLab1 ? ['triage-reviewer'] : profiles) {
-    const source = template ? `workshop/templates/${profile}.agent.md` : `workshop/solutions/customizations/${harness}/${profile}.agent.md`;
+    const source = template ? `workshop2/templates/${profile}.agent.md` : `workshop2/solutions/customizations/${harness}/${profile}.agent.md`;
     changes.push(await fromSource(source, `.github/agents/${profile}.agent.md`, (content) => template
       ? content.replace("tools: ['read', 'search']", `target: ${harness === 'local' ? 'vscode' : 'github-copilot'}\ntools: ['read', 'search']`)
         .replace('TODO: Add target: vscode for Local OR target: github-copilot for Copilot above.', 'The target is set for your selected harness; it does not switch the runtime.')
       : content));
   }
   for (const resource of resources) {
-    changes.push(await fromSource(`workshop/${template ? 'templates' : 'solutions/customizations'}/triage-policy/${resource}`, `.github/skills/triage-policy/${resource}`));
+    changes.push(await fromSource(`workshop2/${template ? 'templates' : 'solutions/customizations'}/triage-policy/${resource}`, `.github/skills/triage-policy/${resource}`));
   }
   return changes;
 }

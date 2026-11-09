@@ -58,11 +58,5 @@
     "shape": "More agents is not automatically more value",
     "before": 32.0,
     "after": 31.0
-  },
-  {
-    "slide": 39,
-    "shape": "Inspect all changed files and requirement coverage",
-    "before": 15.0,
-    "after": 14.0
   }
 ]

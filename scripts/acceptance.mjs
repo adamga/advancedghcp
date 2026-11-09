@@ -7,6 +7,6 @@ if (process.argv.length > 3 || (selected !== 'all' && !features.includes(selecte
   throw new Error('Usage: npm run acceptance -- priority|search|summary|handoff|all');
 }
 const names = selected === 'all' ? features : [selected];
-const files = names.map((name) => join(root, 'workshop', 'acceptance', `${name}.test.mjs`));
-if (selected === 'all') files.push(join(root, 'workshop', 'acceptance', 'integration.test.mjs'));
+const files = names.map((name) => join(root, 'workshop2', 'acceptance', `${name}.test.mjs`));
+if (selected === 'all') files.push(join(root, 'workshop2', 'acceptance', 'integration.test.mjs'));
 process.exitCode = runTests(files);

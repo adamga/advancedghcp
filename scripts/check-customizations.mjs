@@ -86,10 +86,10 @@ async function checkSkill(directory, active) {
 
 await access(join(root, '.github', 'copilot-instructions.md'));
 for (const harness of ['local', 'copilot']) {
-  const names = await checkAgents(join(root, 'workshop', 'solutions', 'customizations', harness), false);
+  const names = await checkAgents(join(root, 'workshop2', 'solutions', 'customizations', harness), false);
   if (names.length !== 4) throw new Error(`Expected four complete ${harness} instructor profiles.`);
 }
-await checkSkill(join(root, 'workshop', 'solutions', 'customizations', 'triage-policy'), false);
+await checkSkill(join(root, 'workshop2', 'solutions', 'customizations', 'triage-policy'), false);
 const activeNames = await checkAgents(join(root, '.github', 'agents'), true);
 const skillDirectory = join(root, '.github', 'skills', 'triage-policy');
 const activeSkills = (await entries(skillDirectory)).some((entry) => entry.isFile() && entry.name === 'SKILL.md');

@@ -430,68 +430,67 @@ Measure both quality and usage. Did the worker return a correct, usable result? 
 In the Copilot app, current documentation also describes usage insights through chronicle. That is an optional way to reflect on patterns, not a requirement for the lab. The key habit is to optimize the workflow, not just increase the agent count.""", sources=("S1", "S7", "S10", "S12"))
 
 slide("PRACTICE APPLICATION", "Issue triage board: small on purpose", [
-    "Node built-in HTTP + static page + node:test",
-    "Fictional support issues; no database or API keys",
-    "Eight issues: six active, two closed; four categories",
-    "Passing starter + progressive features + separate answer key",
-], """The practice application is intentionally modest. It serves a static issue triage board using Node's built-in HTTP support and uses the built-in test runner. There is no database, authentication service, external AI call, or dependency-heavy framework to distract from the workflow.
-The board shows eight fictional support issues: six active and two closed, with two active blocked workflows. Four categories have two issues each: accessibility, payments, reporting, and search. The exercises add priority scoring, case-insensitive search, summaries, and evidence export behind documented feature-module boundaries. That gives us a realistic reason to use skills, reviewers, and multiple task owners without building a production support platform.
-Start with a passing baseline. A workshop should not require you to fix unrelated infrastructure before learning its topic. The missing lab features are intentional and described in the lab specifications.
-The repository separates starter templates, attendee instructions, and instructor answers. The answer key can demonstrate one valid solution, but the acceptance checks evaluate behavior rather than requiring identical code.
-Use the documented start and test commands from the README. Run the smoke check and inspect the page so you know the app works before asking agents to change it.
-When you assign work, use the repository's actual module paths and contract. The generic diagrams in this deck illustrate the pattern; the lab files are the executable source of truth for exact features, fixtures, and allowed files.""", kind="appsample")
+    "Scenario: Sam asks, what should we fix first?",
+    "Eight fictional issues; the board works but is unfinished",
+    "Missing on purpose: priority, search, summary, export",
+    "Real goal: direct agents safely and prove their work",
+], """Every lab uses one small practice application, and it comes with a story. Sam is the support lead at a made-up online shop called Harbor and Pine. On Monday morning Sam has eight customer problems and one question for the ten o'clock meeting: what should the engineers fix first?
+The issue triage board is the page Sam uses. It shows the eight fictional issues, but only in the order they were filed. Four useful features were removed on purpose, and the page says so honestly rather than pretending. Every badge reads untriaged. The search box changes nothing. The summary says detailed counts are not ready. The export link answers not implemented.
+Why does each missing piece matter? Without a priority ranking, a checkout failure sits next to a typo. Without search, you cannot find every payments issue once there are hundreds. Without a summary, a manager cannot tell at a glance whether to worry. Without an export, engineers cannot take the list into their own tools.
+Over the labs you put those four features back: priority in Lab 2, search and summary together in Lab 3, and export in Lab 4. Lab 1 comes first and fixes nothing in the app. It builds the team that will do the work.
+The app is deliberately modest: Node's built-in web server, a static page, and the built-in test runner. There is no database, no keys, and no installs. That keeps your attention on the real skill, which is directing agents, protecting shared files, and checking claims with evidence.
+Each lab tells two stories at once. The app story is what we are building and why Sam needs it. The Copilot story is the habit we practice and why it matters.
+Start from the passing baseline of fourteen tests. Expect the acceptance checks to fail until you build each feature; that is by design. Use the written Workshop 2 labs as the source of truth for exact commands, files, and expected outputs. Every step there says what to do, why, what you should see, and what to try if it does not match.""", kind="appsample")
 
 slide("LAB 1 / 30 MINUTES", "Create and verify useful customizations", [
-    "Author short repository instructions",
-    "Build a focused custom agent with narrow tools",
-    "Build a skill with a supporting reference or script",
-    "Capture discovery, invocation and honest result evidence",
-], """The first lab takes thirty minutes. Use the first few minutes to confirm the passing starter and select the intended harness. Then write short repository instructions based on the existing commands and constraints.
-Create a custom agent for a focused recurring role. It should have a useful description, only the tools it needs, and a result format you can evaluate. Do not simply call it senior expert and hope that defines its behavior.
-Create a real skill directory with matching name and frontmatter. Include at least one supporting resource, and reference it from SKILL dot markdown. Verify that its commands and paths work in this repository.
-Test discovery and behavior separately. A listed agent or skill is available, not necessarily correct. Use a small known request, inspect the activity, and compare the result with the source.
-Record a positive invocation and a case that must be reported as not run or out of scope. This makes honesty part of the acceptance criteria.
-The lab provides step-by-step actions, expected outputs, a hint ladder, and an answer key. If you fall behind, use the first hint before copying a complete solution.
-At the checkpoint, you should be able to explain why each instruction belongs in its chosen file and why the specialist does not need unrestricted tools.""", sources=("S5", "S6", "S8"))
+    "Why: agents guess without rules, a role and a recipe",
+    "Rules poster, read-only Triage Reviewer, triage-policy skill",
+    "Check the files, then try each one and note what happened",
+    "Reviewer gets read and search only: least privilege",
+], """The first lab takes thirty minutes, and it changes nothing in the app. It builds the team. Think of hiring three new colleagues on the same day with no handbook and no job description: each would guess, and you would repeat the same warnings to every one of them. Agents behave the same way.
+You create three small pieces of guidance, and each solves a different problem. Repository instructions are the house rules poster that every agent follows. A custom agent, the Triage Reviewer, is a job description: someone who can look at work but never touch it. A skill, triage-policy, is a recipe card with a reference drawer, so agents consult the exact scoring rule instead of guessing.
+The five steps are: look before you leap, write two rules, finish the reviewer, finish the skill, then check it and try it twice. Every step explains what to do and why. The reviewer gets only read and search tools because of least privilege: give a role the abilities it needs and nothing more. A skill does not grant tools, so it cannot widen what the reviewer may do.
+Choose one harness, Copilot or Local, and stay with it. The file formats differ, and switching in the middle of a lab is the most common source of confusion.
+The check script proves the files are well formed. It does not prove that an agent actually loaded or obeyed them. So you try each one and write an honest note: it worked, it did not, or I could not tell.
+At the checkpoint you should be able to explain why each instruction lives in its chosen file, and why a specialist does not need unrestricted tools. If you fall behind, use the first hint before any answer key. The lab prints a backup ID, so every change can be undone.""", sources=("S5", "S6", "S8"))
 
 slide("LAB 2 / 35 MINUTES", "Delegate a feature and collect proof", [
-    "Prepare a self-contained research brief",
-    "Use a coordinator plus a read-only specialist",
-    "Implement one exact behavior using the skill",
-    "Verify boundary cases and request evidence-based review",
-], """The second lab takes thirty-five minutes. Your first deliverable is a self-contained delegated brief. It includes the relevant contract, repository constraints, allowed actions, and expected report.
-Use the read-only researcher to locate the behavior and existing test pattern. Check its report before implementation. If it assumes missing context, correct the brief.
-Then use the coordinator workflow to implement the lab's exact enhancement. One implementation writer owns the assigned source and tests. The skill provides the repeatable validation procedure.
-The acceptance criteria include positive, negative, and boundary cases. Do not accept a nearby example as proof of the actual threshold or precedence rule.
-Ask the reviewer to inspect the changed code against the requirements. Supply the test output as evidence; do not let a read-only reviewer claim it executed commands.
-If native delegation is unavailable, perform the roles sequentially with a concise manual handoff. You still need to produce the same behavior and evidence.
-At the checkpoint, your report must show what changed, which checks ran, their results, and any remaining uncertainty. It must also identify the ownership boundary you preserved. The goal is a complete, verifiable loop, not merely a successful subagent call.""", sources=("S7", "S9", "S12"))
+    "Why: done is only a claim, so delegate, then verify",
+    "Hire a coordinator; helpers research read-only first",
+    "One writer builds priority from the skill's scoring rule",
+    "Run the gates, get a fresh review, say who did what",
+], """The second lab takes thirty-five minutes and adds the first real feature: priority. The question Sam needs answered is what should the engineers fix first, so the board must rank issues and say why.
+The lesson underneath is delegation. Handing a job to a helper works when the job is small, the brief is complete, and the result is checked. Done is only a claim until evidence says otherwise.
+The five steps are: build a coordinator, delegate research only, implement priority using the skill, run the gates and request a fresh review, then explain who did what. The coordinator is the project lead. It may read, search, edit, run commands, and delegate to a helper. The reviewer stays read-only.
+Research comes first because it is cheap and safe. A research helper starts with a blank context, so the brief must be self-contained: the goal, the relevant contract, the allowed actions, and the report format. Check the report before anyone writes code.
+Then one writer implements priority. The scoring rule is plain arithmetic: points for impact, plus twenty-five if blocked, plus ten for a hundred or more affected users, plus five for seven or more days. Closed issues score zero. Because it is arithmetic, you can check any claim with a calculator: ISS-101 should score one hundred. Test the boundaries too. Exactly eighty cannot occur under this rule, so check seventy-five and eighty-five instead.
+Run the priority acceptance check and the full test suite, then ask a fresh reviewer to inspect the change. Give it the test output as evidence, because a read-only reviewer cannot run commands and must write not run. If native delegation is unavailable, play the roles one after another and write that the delegation was simulated.
+At the checkpoint, your report shows what changed, which checks ran, their results, and what remains uncertain.""", sources=("S7", "S9", "S12"))
 
 slide("LAB 3 / 40 MINUTES", "Orchestrate two tasks without collisions", [
-    "Freeze the contract and assign disjoint write sets",
-    "Compare one-writer and worktree strategies",
-    "Exercise the advisory board and a scope violation check",
-    "Integrate serially, then validate the combined app",
-], """The third lab takes forty minutes and concentrates on one repository. Start by reading the shared contract and the two task specifications. Decide which files belong to each worker and which remain with the integrator.
-Record the dependencies. If either task needs a contract change, perform that prerequisite before parallel work. Do not launch workers against different assumptions.
-Exercise the shared-checkout safe pattern using readers and one writer, then compare the worktree option where available. The lab's fallback runs the same tasks sequentially without newer UI features.
-Use the task board to record claims and handoffs. Treat the board as advisory. Run the changed-path scope check to catch a controlled violation and explain whether the check prevents a write or detects it afterward.
-Review the worker results and integrate one at a time. Shared files, Git integration, and board updates belong to the integrator. Do not allow concurrent stage-all commits in one checkout.
-Finally, rerun the combined checks and inspect the actual application. Separate green test reports are not sufficient.
-At the debrief, explain which strategy you chose, what could still collide, and how you would handle a worker that needed an unassigned file. That reasoning is the main advanced skill this workshop aims to develop.""", sources=("S4", "S7", "S10", "S15"))
+    "Why: agents collide on files, ports and the git index",
+    "Freeze the contract; each task owns its own files",
+    "Pick a route: one writer, same checkout, or worktrees",
+    "One integrator releases, merges and runs the gates",
+], """The third lab takes forty minutes and adds two features at once: search and summary. They are independent, so it is tempting to give each one to a different agent and run them in parallel. That is the danger. Two builders remodeling the same house with no plan will move a wall while the other hangs a picture on it.
+Agents collide because they share files, ports, and the Git index, not because they share a conversation. Separate contexts do not isolate the filesystem. So we plan who touches what before anyone starts.
+Four ideas do the work, and the first three work in a single checkout. Ownership gives each task its own files. A frozen contract fixes the exact inputs and outputs, so the pieces fit without the workers talking. One integrator owns the shared things: Git, shared files, and the final check. Gates require each piece to pass its own test and the combined test. A worktree, a separate copy of the files for each worker, is an optional extra.
+The steps are: freeze the contract and assign ownership, produce two read-only research packets, implement under one route, release then integrate and validate, and finally map the limits and alternatives. The recommended route is research in parallel with one writer, which has the lowest collision risk. If your app already gives each session its own worktree, do not fight it.
+Ownership and leases are agreements, not locks. Run the changed-path check to see what actually changed. Integrate one task at a time, and never run two stage-all commits in one checkout. A worktree isolates files and the index, but not ports, network, or secrets.
+At the end you should have twelve passing acceptance checks, the right counts on screen, and a written ownership record. Searching PAYMENTS should return two issues, and the summary should read two visible, one active, one active blocked.""", sources=("S4", "S7", "S10", "S15"))
 
 slide("LAB 4 / 15 MINUTES", "Review, hand off and reflect", [
-    "Inspect all changed files and requirement coverage",
-    "Run the final quality gates and user-flow check",
-    "Write evidence, risks and remaining decisions",
-    "Explain where parallelism helped or hurt",
-], """The final lab takes fifteen minutes. It is deliberately short because integration and validation have already happened in the previous exercises. Now consolidate the evidence and review the complete result.
-Inspect the entire relevant diff, not only the last turn. Look for unrelated edits, changes to shared contracts, and tests that merely mirror the implementation without proving the requirement.
-Run the final quality gates and the user-flow check described in the lab. If a check cannot run, mark it as not run with a reason. Do not present it as a success.
-Write a handoff that another developer can use without reading the full agent history. Include the outcome, changed paths, contract version or assumptions, exact checks, results, risks, and next decisions.
-Then reflect on orchestration. Which tasks were actually independent? Did separate contexts improve focus? Did coordination consume more effort than a direct edit would have? Would you use worktrees, one writer, or a sequential chain for the same task tomorrow?
-The workshop ends at three hours. Optional extensions such as hook enforcement, marketplace packaging, or cloud continuity belong after the core session.
-A good handoff is the final proof that you can direct agents as engineering collaborators rather than simply collect their completion messages.""", sources=("S12",), code="OUTCOME / changed paths\nCONTRACT / assumptions\nCHECKS / exact commands and results\nNOT RUN / reasons\nRISKS / unresolved findings\nINTEGRATION / reviewed state\nNEXT DECISION / owner")
+    "Why: a report is only as good as its evidence",
+    "Build a minimal, deterministic JSON export",
+    "Run all 26 checks, then use the real page",
+    "Honest report: what ran, NOT RUN, limits, risks",
+], """The final lab takes fifteen minutes. It adds the last missing piece, the evidence export, and then finishes the way a responsible teammate would. Sam needs to hand the current view to an engineer, and an engineer wants a short, trustworthy list, not every detail.
+There is a bigger problem than the code. At the end of any agent-assisted task someone must answer: is this actually done? An agent will happily say complete while a test is failing. A report that overstates its evidence is the most expensive kind of mistake, because people stop checking.
+So there are two small fixes. First, build the export with a minimal, deterministic shape: four fields per item, no timestamps, no descriptions. Less data is safer data, and the same input always gives the same output. Second, finish with a truthful handoff report.
+The steps are: implement the export, run the final gates and look at the result, get one integrated read-only review, write the handoff report, and hold a short retrospective. Run all twenty-six acceptance checks, then open the page, search for PAYMENTS, and download the file. Static tests do not replace seeing the real flow.
+Inspect the whole diff, not only the last turn. A role that only read code must write not run, and the person who ran the commands supplies the evidence. If a check fails, the honest answer is not ready, with the exact failing command.
+The app's handoff is a JSON download. It is not the Local harness handoff button. Same word, different thing.
+A good report is the final proof that you can direct agents as collaborators, not just collect their completion messages.""", sources=("S12",), code="OBJECTIVE / the assigned outcome\nCONTEXT / paths, contract, limits\nOWNERSHIP / files and leases\nDEPENDENCY / what finishes first\nFINDINGS / what changed\nVALIDATION / command, exit, count\nRISKS / limits and NOT RUN\nHANDOFF / next step, no auto-push")
 
 slide("RECOVERY", "Stop, inspect, narrow and rerun", [
     "Missing customization? Check path, harness and committed base",

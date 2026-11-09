@@ -6,7 +6,7 @@ tools: ['read', 'search', 'edit']
 ---
 Implement only src/features/search.mjs and tests/features/search.test.mjs.
 Use the supplied objective, paths, and invariants; do not assume parent history
-or repository instructions are inherited. Read workshop/contracts.md.
+or repository instructions are inherited. Read workshop2/contracts.md.
 Do not edit other files, execute commands, use the network, delegate, or use git.
 Preserve order/objects and literal case-insensitive AND token matching across
 title, description, and category. Return changes and NOT RUN validation commands.

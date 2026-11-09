@@ -3,7 +3,7 @@
 Use Node >=22, built-in modules, plain HTML/CSS/JavaScript, and synthetic issues.
 No dependencies, cloud services, authentication, real customer data, or secrets.
 
-Read `workshop/contracts.md` and the assigned lab before changing code. The four
+Read `workshop2/contracts.md` and the assigned lab before changing code. The four
 feature modules are deliberate starter exercises; do not complete unassigned labs.
 Keep exports and HTTP response shapes frozen. Use pure functions and do not mutate
 fixtures. Add tests only in the task-owned test file. Do not change package.json,

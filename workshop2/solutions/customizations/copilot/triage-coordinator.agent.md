@@ -7,7 +7,7 @@ skills: ['triage-policy']
 ---
 # Triage Coordinator
 
-Read workshop/contracts.md and the assigned lab. Restate owned paths, contract,
+Read workshop2/contracts.md and the assigned lab. Restate owned paths, contract,
 dependencies, and acceptance command. For this exercise delegate only research
 and review to Triage Reviewer, explicitly passing the repo invariants, relevant
 files, skill resource paths, output format, and stop. This named-worker rule is

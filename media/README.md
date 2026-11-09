@@ -33,7 +33,12 @@ not a recording of live Copilot UI interaction. The current edition uses
 **Microsoft Foundry `gpt-audio-1.5`, playful Coral voice**. It has a shorter,
 beginner-friendly script and 126 teaching beats: animated roles, ownership,
 dependency flows, worktrees, code highlighting, priority math and filtering.
-The original PowerPoint, handouts, app and labs remain unchanged. The video's
+The video narration was recorded for the first edition of the labs and has **not**
+been re-narrated for Workshop 2. It still explains the concepts correctly; the
+written labs in `workshop2/` are the source of truth for exact steps. The
+PowerPoint's five practice-application and lab slides (35-39) and their speaker
+notes were updated for Workshop 2; titles, sections and sources are unchanged,
+so the video's 42 chapters still line up with the deck. The video's
 script is separate from the PowerPoint's long-form teaching notes.
 Only the workshop narration
 is submitted to the specified Foundry endpoint; credentials stay in process
@@ -76,9 +81,12 @@ The bundled `imageio-ffmpeg` executable supplies the encoder; no separate global
 FFmpeg installation is needed. Animation is rendered directly from the storyboard.
 For the legacy static-slide edition, `-RenderOnly` renders the existing presentation
 without changing its bytes or generating a local voice. To rebuild the deck
-itself, use `build_deck.py --template "C:\path\to\reference.pptx"` first.
-Do not use ordinary `render_narrate.ps1` for the Foundry edition: that explicitly
-selects the legacy local Zira narration.
+itself (for example after editing `workshop_content.py`), run
+`build_deck.py --template "C:\path\to\reference.pptx" --out .\deliverables` and then
+`.\media\render_narrate.ps1 -OutputDirectory .\deliverables -SkipNarration`. The second
+command shrinks any overflowing text, saves the PPTX, and exports the PDF and slide
+PNGs without any narration. Do not run `render_narrate.ps1` without `-SkipNarration` or
+`-RenderOnly` for the Foundry edition: that selects the legacy local Zira narration.
 
 Foundry generation uses short, resumable chunks and two bounded simultaneous
 requests. Each returned transcript must match the source after punctuation,

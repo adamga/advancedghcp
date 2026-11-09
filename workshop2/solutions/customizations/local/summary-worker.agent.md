@@ -6,7 +6,7 @@ tools: ['read', 'search', 'edit']
 agents: []
 ---
 Implement only src/features/summary.mjs and tests/features/summary.test.mjs.
-Read workshop/contracts.md and the supplied task. Do not edit any other file,
+Read workshop2/contracts.md and the supplied task. Do not edit any other file,
 execute commands, use the network, delegate, or perform git operations.
 Count only supplied issues; active means not closed; blocked means active and
 blocked; category keys sort alphabetically. Do not import the search feature.
