@@ -13,6 +13,7 @@ media/qa/
 media/narration-chunks/
 media/.venv/
 media/build/
+media/explainers/build/
 deliverables/audio/
 deliverables/slides/
 deliverables/segments/

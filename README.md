@@ -171,12 +171,28 @@ Each command prints a backup ID **before** writing and includes the task's owned
 test. [Restore instructions](workshop2/restore.md) preserve current contents before
 undoing named files; no destructive Git reset/checkout commands are used.
 
-## Deck, standalone video, and accessible editions
+## Deck, videos, and accessible editions
+
+**New for Workshop 2: two short explainer videos**, fun, animated and narrated in the
+Coral voice. Both cover the sample app, the scenario and *why* we are changing it,
+the approach, and a quick start. Each has a poster, an SRT, embedded soft captions and
+one chapter per topic. They are original motion graphics, **not recordings of live
+Copilot UI**.
+
+| Video | For | Length | Download |
+|---|---|---|---|
+| Attendee guide | People taking the labs | about 5:40 | [MP4](deliverables/explainers/workshop2-attendee-guide.mp4) / [SRT](deliverables/explainers/workshop2-attendee-guide.srt) / [poster](deliverables/explainers/workshop2-attendee-guide-poster.jpg) |
+| Trainer briefing | The facilitator: adds pre-class setup, verification, answer key, pacing and troubleshooting | about 11:24 | [MP4](deliverables/explainers/workshop2-trainer-briefing.mp4) / [SRT](deliverables/explainers/workshop2-trainer-briefing.srt) / [poster](deliverables/explainers/workshop2-trainer-briefing-poster.jpg) |
+
+Audio is mastered quiet on purpose (about -23 LUFS, true peak -4 dBTP or lower) so it
+does not distort on laptop speakers. How they are built, and how to rebuild them:
+[media/README.md](media/README.md#workshop-2-explainer-videos-attendee-and-trainer).
+**The written labs remain the source of truth for the steps.**
 
 The **42-slide editable deck** adapts the supplied template's near-black background,
 Arial typography, white text, cyan accents, and purple-blue palette with original
-workshop content. The **animated GPT-audio Coral explainer** is separate self-paced
-pre/post material; it is **not added to the 180-minute live agenda**.
+workshop content. The **edition-1 animated GPT-audio Coral explainer** below is separate
+self-paced pre/post material; it is **not added to the 180-minute live agenda**.
 
 | Material | Download |
 |---|---|
@@ -197,10 +213,10 @@ areas in 126 visual teaching beats. [Motion graphics](deliverables/animation-con
 explain roles, shared files, dependencies, worktrees, code and worked triage examples.
 It is an original animated lesson, **not a recording of live Copilot UI**.
 
-> **The video explains the concepts; the written labs are the source of truth for
-> the steps.** The video was produced for edition 1. It has **not** been re-narrated
-> for the workshop2 lab rewrite. It covers the same concepts (agents, skills,
-> delegation, safe orchestration), but where it differs in detail from
+> **The edition-1 video explains the concepts; the written labs are the source of truth for
+> the steps.** The 42-chapter video below was produced for edition 1. It has **not** been
+> re-narrated for the workshop2 lab rewrite. The two new Workshop 2 videos above are the
+> up-to-date overview. Where any video differs in detail from
 > [`workshop2/labs/`](workshop2/labs/lab-1.md), follow the written labs.
 
 The [narration manifest](deliverables/narration-manifest.json) records voice
@@ -232,8 +248,8 @@ Copilot-enabled account; the sample app itself does not.
 | `public/` | Accessible static board, safe text rendering, pre-wired controls |
 | `tests/` | Always-on baseline checks; task-owned tests added during labs |
 | `scripts/` | Portable runners, explicit feature acceptance, backup/restore, customization checks |
-| `deliverables/` | All 21 final presentation/video/accessibility/verification outputs |
-| `media/` | Original slide source, beginner storyboard, animation, Foundry narration and rebuild scripts |
+| `deliverables/` | All final presentation/video/accessibility/verification outputs, including `explainers/` (Workshop 2 attendee and trainer videos) |
+| `media/` | Original slide source, beginner storyboard, animation, Foundry narration and rebuild scripts; `media/explainers/` builds the two Workshop 2 videos |
 
 This is a teaching sample, not a production support system. It has no persistent
 storage or write API. File ownership and leases are **advisory**, not enforced

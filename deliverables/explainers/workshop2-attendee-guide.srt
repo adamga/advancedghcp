@@ -1,0 +1,462 @@
+1
+00:00:00,550 --> 00:00:02,107
+Hey there, and welcome!
+
+2
+00:00:02,147 --> 00:00:07,385
+Today you are going to lead a team of
+friendly robot helpers through a real,
+
+3
+00:00:07,425 --> 00:00:08,358
+messy problem.
+
+4
+00:00:08,398 --> 00:00:12,872
+And you will learn why it works, not just
+which buttons to press.
+
+5
+00:00:13,112 --> 00:00:16,561
+This is your quick start guide for workshop
+two.
+
+6
+00:00:16,601 --> 00:00:18,524
+Grab a snack, and let's go!
+
+7
+00:00:19,925 --> 00:00:20,956
+First, meet Sam.
+
+8
+00:00:20,996 --> 00:00:25,708
+Sam is the support lead at a little online
+shop called Harbor and Pine.
+
+9
+00:00:25,748 --> 00:00:30,326
+It is Monday morning, ten minutes before the
+big ten o'clock meeting,
+
+10
+00:00:30,366 --> 00:00:33,338
+and the inbox just exploded with bug
+reports.
+
+11
+00:00:33,578 --> 00:00:37,983
+Sam has one question to answer: what should
+the engineers fix first?
+
+12
+00:00:39,383 --> 00:00:43,900
+To help Sam, there is a tiny website called
+the Issue Triage Board.
+
+13
+00:00:43,940 --> 00:00:49,340
+It shows eight pretend bug reports, each
+with a title, a category, and a status.
+
+14
+00:00:49,380 --> 00:00:53,896
+It is small on purpose: no database, nothing
+to install, just Node.
+
+15
+00:00:54,136 --> 00:00:56,769
+But the board is unfinished, on purpose!
+
+16
+00:00:56,809 --> 00:00:58,372
+Four things are missing.
+
+17
+00:00:58,412 --> 00:01:02,381
+The priority badges all say untriaged, so
+nothing is ranked.
+
+18
+00:01:02,421 --> 00:01:04,251
+The search box does nothing.
+
+19
+00:01:04,291 --> 00:01:07,792
+The summary says detailed counts unlock in
+lab three.
+
+20
+00:01:08,032 --> 00:01:10,897
+And there is no export button at all.
+
+21
+00:01:12,300 --> 00:01:14,039
+So why does that matter?
+
+22
+00:01:14,079 --> 00:01:16,115
+Without it, Sam is guessing.
+
+23
+00:01:16,155 --> 00:01:19,674
+With it, Sam can say: here are the top
+problems,
+
+24
+00:01:19,714 --> 00:01:23,307
+here is the proof, and here is what to fix
+first.
+
+25
+00:01:23,347 --> 00:01:26,125
+Better answers, in minutes, not hours.
+
+26
+00:01:27,550 --> 00:01:29,102
+So how do we build it?
+
+27
+00:01:29,142 --> 00:01:32,142
+Not with one giant robot doing everything.
+
+28
+00:01:32,182 --> 00:01:33,011
+With a team!
+
+29
+00:01:33,051 --> 00:01:35,544
+A coordinator robot makes the plan.
+
+30
+00:01:35,584 --> 00:01:41,334
+A reviewer robot only reads and checks, and
+it is not allowed to change a thing.
+
+31
+00:01:41,574 --> 00:01:45,033
+And builder robots each write one small
+piece.
+
+32
+00:01:45,073 --> 00:01:48,912
+Specialists usually beat one overloaded
+generalist.
+
+33
+00:01:50,342 --> 00:01:52,755
+Three words you will hear all day.
+
+34
+00:01:52,795 --> 00:01:55,930
+An agent is a helper with a job description:
+
+35
+00:01:55,970 --> 00:01:59,754
+its role, its instructions, and the tools it
+may use.
+
+36
+00:01:59,994 --> 00:02:05,057
+A skill is a recipe card of know-how that a
+helper can read when needed.
+
+37
+00:02:05,097 --> 00:02:08,317
+A recipe card gives knowledge, not new
+powers.
+
+38
+00:02:08,557 --> 00:02:13,722
+And a subagent is a helper that your main
+agent hands a small job to,
+
+39
+00:02:13,762 --> 00:02:18,324
+working in its own fresh context so the main
+chat stays tidy.
+
+40
+00:02:19,717 --> 00:02:21,236
+Now for the tricky part.
+
+41
+00:02:21,276 --> 00:02:26,108
+What happens when several robots work in the
+same project at the same time?
+
+42
+00:02:26,148 --> 00:02:26,548
+Chaos!
+
+43
+00:02:26,538 --> 00:02:31,306
+They overwrite each other's work, and nobody
+knows whose version is right.
+
+44
+00:02:32,717 --> 00:02:33,801
+The fix is lanes.
+
+45
+00:02:33,841 --> 00:02:37,768
+Each robot owns its own files, and nobody
+else touches them.
+
+46
+00:02:37,808 --> 00:02:40,744
+Shared rules, which we call frozen
+contracts,
+
+47
+00:02:40,784 --> 00:02:45,306
+are agreed before anyone starts, so everyone
+builds to the same plan.
+
+48
+00:02:45,546 --> 00:02:48,561
+Each robot can even work in its own
+worktree,
+
+49
+00:02:48,601 --> 00:02:52,364
+which is a separate folder checkout of the
+same project.
+
+50
+00:02:52,404 --> 00:02:56,777
+And one integrator robot puts all the pieces
+together at the end.
+
+51
+00:02:57,017 --> 00:03:00,145
+One honest warning: worktrees separate
+files,
+
+52
+00:03:00,185 --> 00:03:05,284
+but not ports or secrets, so two apps can
+still fight over the same port.
+
+53
+00:03:06,675 --> 00:03:09,842
+Here is how the board decides what is
+urgent.
+
+54
+00:03:09,882 --> 00:03:12,693
+Take issue one oh one, the checkout bug.
+
+55
+00:03:12,733 --> 00:03:15,116
+High impact is worth sixty points.
+
+56
+00:03:15,156 --> 00:03:17,539
+It is blocked, so add twenty five.
+
+57
+00:03:17,579 --> 00:03:20,818
+A hundred or more users are affected, add
+ten.
+
+58
+00:03:21,058 --> 00:03:23,873
+It has waited a week or more, add five.
+
+59
+00:03:23,913 --> 00:03:28,267
+Sixty plus twenty five plus ten plus five
+makes one hundred.
+
+60
+00:03:28,307 --> 00:03:31,928
+And eighty or above is priority one: fix it
+first!
+
+61
+00:03:33,342 --> 00:03:38,452
+The rest of today is four hands-on labs, a
+hundred and twenty minutes in all.
+
+62
+00:03:38,492 --> 00:03:43,804
+Lab one, thirty minutes: set the team's
+rules, and build a reviewer and a skill.
+
+63
+00:03:43,844 --> 00:03:47,483
+Lab two, thirty five minutes: build the
+priority score.
+
+64
+00:03:47,723 --> 00:03:52,362
+Lab three, forty minutes: add search and the
+summary at the same time.
+
+65
+00:03:52,402 --> 00:03:55,170
+Lab four, fifteen minutes: add the export,
+
+66
+00:03:55,210 --> 00:03:58,445
+run the final checks, and write an honest
+report.
+
+67
+00:03:59,842 --> 00:04:05,862
+Every step in the lab guides follows the
+same pattern, so you never feel lost.
+
+68
+00:04:05,902 --> 00:04:06,717
+What to do.
+
+69
+00:04:06,757 --> 00:04:08,348
+Why you are doing it.
+
+70
+00:04:08,388 --> 00:04:09,358
+How to do it.
+
+71
+00:04:09,398 --> 00:04:10,912
+What you should see.
+
+72
+00:04:10,952 --> 00:04:13,399
+What to try if you don't see it.
+
+73
+00:04:13,639 --> 00:04:16,201
+And a quick question to reflect on.
+
+74
+00:04:16,241 --> 00:04:20,141
+The why is the most important part, so don't
+skip it!
+
+75
+00:04:21,550 --> 00:04:22,638
+Ready to start?
+
+76
+00:04:22,678 --> 00:04:26,623
+Open a terminal, clone the workshop, and
+step inside.
+
+77
+00:04:26,663 --> 00:04:30,608
+Run npm test, and you should see fourteen
+tests pass.
+
+78
+00:04:30,648 --> 00:04:33,842
+Run npm run smoke for a quick health check.
+
+79
+00:04:34,082 --> 00:04:37,415
+Then run npm start, and open the address it
+prints,
+
+80
+00:04:37,455 --> 00:04:40,060
+on port three thousand, in your browser.
+
+81
+00:04:40,100 --> 00:04:43,368
+You should see eight cards that all say
+untriaged.
+
+82
+00:04:43,408 --> 00:04:45,683
+And please, do not run npm install.
+
+83
+00:04:45,723 --> 00:04:47,865
+This project needs nothing extra.
+
+84
+00:04:49,258 --> 00:04:51,906
+One tip: be honest in your reports.
+
+85
+00:04:51,946 --> 00:04:54,210
+If a check passed, say passed.
+
+86
+00:04:54,250 --> 00:04:56,130
+If it failed, say failed.
+
+87
+00:04:56,170 --> 00:04:59,125
+And if you did not run it, say not run.
+
+88
+00:04:59,165 --> 00:05:01,582
+That is a perfectly good answer!
+
+89
+00:05:01,822 --> 00:05:05,349
+Honest evidence is worth more than a green
+checkmark.
+
+90
+00:05:06,758 --> 00:05:07,159
+Stuck?
+
+91
+00:05:07,199 --> 00:05:09,071
+Ask yourself three things.
+
+92
+00:05:09,111 --> 00:05:10,689
+Did I restart the app?
+
+93
+00:05:10,729 --> 00:05:12,527
+Am I in the right folder?
+
+94
+00:05:12,567 --> 00:05:15,100
+And which Copilot setup am I using?
+
+95
+00:05:15,140 --> 00:05:15,982
+Made a mess?
+
+96
+00:05:16,022 --> 00:05:20,247
+Workshop commands save a backup first, so
+you can restore.
+
+97
+00:05:20,287 --> 00:05:21,423
+And still stuck?
+
+98
+00:05:21,663 --> 00:05:22,835
+Raise your hand.
+
+99
+00:05:22,875 --> 00:05:25,866
+Every helper in the room has been there.
+
+100
+00:05:27,258 --> 00:05:28,026
+That's it!
+
+101
+00:05:28,066 --> 00:05:31,822
+You now know the story, the team, and the
+plan.
+
+102
+00:05:31,862 --> 00:05:38,040
+By the end of today, Sam will have an
+answer, and you will know why it works.
+
+103
+00:05:38,080 --> 00:05:39,574
+See you in lab one!

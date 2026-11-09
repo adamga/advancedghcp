@@ -42,7 +42,9 @@ def main():
     for name, full in (("complete-workshop.zip", True), ("sample-app-and-labs.zip", False)):
         output = destination / name
         selected = [(item, path) for item, path in files if full or not item.startswith(("media/", "deliverables/"))]
-        omitted = ("deliverables/explainer-audio.m4a", "deliverables/animated-explainer-preview.mp4")
+        omitted = ("deliverables/explainer-audio.m4a", "deliverables/animated-explainer-preview.mp4",
+                   "deliverables/explainers/workshop2-attendee-guide.mp4",
+                   "deliverables/explainers/workshop2-trainer-briefing.mp4")
         if full and args.compact_media:
             selected = [(item, path) for item, path in selected if item not in omitted]
         with zipfile.ZipFile(output, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
@@ -61,8 +63,9 @@ def main():
                 archive.writestr(
                     "OPTIONAL-MEDIA.txt",
                     "This archive contains the full video, deck, app, labs, instructor materials and source.\n"
-                    "The optional audio-only M4A and short preview are separate downloads to meet file limits.\n"
-                    "If wanted, place them in advancedghcp/deliverables/ beside the full video.\n",
+                    "The optional audio-only M4A, short preview and the two Workshop 2 explainer videos are separate downloads to meet file limits.\n"
+                    "If wanted, place the M4A and preview in advancedghcp/deliverables/ beside the full video,\n"
+                    "and the two explainer MP4s in advancedghcp/deliverables/explainers/.\n",
                 )
         with zipfile.ZipFile(output) as archive:
             if archive.testzip() is not None:
