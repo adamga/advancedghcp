@@ -85,12 +85,26 @@ it**, and it becomes a habit they can use on any future task:
 
 ## Presentation and standalone lesson
 
+**Workshop 2 explainer videos.** Two fun, animated, Coral-narrated videos cover the sample
+app, the scenario and why we change it, the approach, and a quick start:
+
+- **Trainer briefing** (about 11:25, 24 chapters): [MP4](../deliverables/explainers/workshop2-trainer-briefing.mp4) /
+  [SRT](../deliverables/explainers/workshop2-trainer-briefing.srt). Watch it **before** the
+  session: it adds pre-class setup, verification, the answer key, pacing and troubleshooting.
+- **Attendee guide** (about 5:43, 15 chapters): [MP4](../deliverables/explainers/workshop2-attendee-guide.mp4) /
+  [SRT](../deliverables/explainers/workshop2-attendee-guide.srt). Send it to attendees as
+  optional pre-work, or play it at the start of the session. It is **not** an extra
+  segment in the timed 180-minute agenda.
+
+Both are mastered quiet (about -23 LUFS, true peak -4 dBTP or lower). Hardware volume
+remains under the listener's control. The written labs remain the source of truth.
+
 Use the [42-slide editable PowerPoint](../deliverables/advanced-github-copilot-workshop.pptx)
 and [printable PDF](../deliverables/advanced-github-copilot-workshop.pdf).
 The supplied template's near-black/Arial/white/cyan/purple-blue language is adapted
 with original workshop content; the original reference deck is not redistributed.
 
-The [animated Coral MP4](../deliverables/advanced-github-copilot-explainer.mp4)
+The edition-1 [animated Coral MP4](../deliverables/advanced-github-copilot-explainer.mp4)
 is **separate self-paced pre/post material**, not an extra segment in the live
 180-minute agenda. It uses Microsoft Foundry `gpt-audio-1.5`, playful Coral voice,
 24 fps explanatory motion graphics, on-screen captions and 42 embedded chapters.
@@ -99,9 +113,9 @@ through 126 teaching beats. It is not a recording of live Copilot UI.
 Full slide speaker notes remain a long-form teaching reference,
 **not text to read verbatim within the 60-minute talk/demo block**.
 
-> **The video explains concepts; the lab steps live in the written labs.** The
-> video was produced before workshop2's lab rewrite and covers the same concepts
-> (agents, skills, delegation, safe orchestration). Where the video and a lab
+> **The edition-1 video explains concepts; the lab steps live in the written labs.** The
+> 42-chapter video was produced before workshop2's lab rewrite and covers the same concepts
+> (agents, skills, delegation, safe orchestration). Where any video and a lab
 > differ in detail, **the written lab in `workshop2/labs/` is the source of truth.**
 
 Accessible and navigation editions:

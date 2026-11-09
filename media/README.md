@@ -121,6 +121,81 @@ The original deck is not redistributed. Its actual theme is copied into the
 output, and the measured near-black/white/cyan/purple-blue formatting is adapted
 with original text and diagrams. No legacy presenter affiliation is copied.
 
+## Workshop 2 explainer videos (attendee and trainer)
+
+Two newer, shorter, more playful videos cover the **Workshop 2** sample app, scenario,
+approach and getting started. They are separate from the 42-chapter deck video above
+and are built by the self-contained pipeline in `media/explainers/`.
+
+| Video | Audience | Length | Chapters | Output |
+|---|---|---|---|---|
+| Attendee guide | People taking the labs: the app, the scenario, why, the approach, quick start, if you get stuck | about 5:43 | 15 | `deliverables/explainers/workshop2-attendee-guide.mp4` |
+| Trainer briefing | The facilitator: all of the above plus pre-class setup, verification, the answer key, pacing and troubleshooting | about 11:25 | 24 | `deliverables/explainers/workshop2-trainer-briefing.mp4` |
+
+Each has a matching `.srt` and `-poster.jpg`. Captions are also embedded as a soft
+subtitle track, and every scene is a chapter.
+
+How they are made:
+
+- **Voice:** Microsoft Foundry `gpt-audio-1.5`, playful **Coral** voice at a brisk
+  cadence (about 165 words per minute). Narration is generated once per scene by
+  `generate_narration.py` and **cached** in `media/explainers/build/narration/`, with
+  a manifest of the text each clip must match. Only the narration text is sent to Foundry.
+- **Visuals:** 8 generated key-art images (`art/`) under a procedural motion-graphics
+  renderer (`scenes_a.py`, `scenes_b.py`, `gfx.py`) written with Pillow only: 15 scene
+  types, animated robots, a live board, score counters, terminals, confetti, a progress
+  bar and a "CHAPTER n of N" intro card whenever a scene would otherwise open on an
+  empty screen. Each on-screen item appears on the exact spoken phrase it illustrates
+  (`timing.py` resolves every cue and fails loudly if a phrase is missing).
+- **Sound:** synthesized sound effects plus a quiet music bed that ducks under speech
+  (`sfx.py`). There is no stock audio.
+- **Loudness:** both videos are mastered **quiet on purpose** to avoid laptop-speaker
+  distortion: about -23 LUFS integrated with a true peak of -4 dBTP or lower.
+- **Content:** scripts are in `storyboards.py`. All numbers (scoring weights, lab
+  durations, test counts) come from the `workshop2/` documents; the videos do not
+  show live Copilot UI.
+
+```powershell
+# Optional: regenerate narration (only needed if a script in storyboards.py changes).
+# Use an explicitly supplied service principal; the script never falls back to your CLI login
+# and never writes the secret to disk.
+$env:AZURE_TENANT_ID = "<tenant ID>"
+$env:AZURE_CLIENT_ID = "<application ID>"
+$env:AZURE_CLIENT_SECRET = [Net.NetworkCredential]::new("", (Read-Host "Client secret" -AsSecureString)).Password
+try {
+    python .\media\explainers\generate_narration.py --endpoint "https://<resource>.services.ai.azure.com/openai/v1"
+} finally {
+    $env:AZURE_CLIENT_SECRET = $null; $env:AZURE_CLIENT_ID = $null; $env:AZURE_TENANT_ID = $null
+}
+
+# Render, mix, encode, master and mux (about 4 minutes for the attendee video, 9 for the trainer):
+python .\media\explainers\make_videos.py all attendee --workers 7
+python .\media\explainers\make_videos.py all trainer --workers 7
+
+# Copy the finished MP4, SRT and poster into deliverables/explainers/:
+python .\media\explainers\make_videos.py publish attendee
+python .\media\explainers\make_videos.py publish trainer
+
+# Check the published files and run the offline tests:
+python .\media\explainers\verify_explainers.py
+python -m unittest discover -s .\media\explainers -p "test_*.py"
+```
+
+Rendering needs only Python 3.11+, Pillow and the bundled `imageio-ffmpeg`
+(see `requirements.txt`). Intermediate files live in the git-ignored
+`media/explainers/build/`, **including the cached narration audio**. A fresh clone therefore
+has the finished videos in `deliverables/explainers/` but must run the narration step
+above (Foundry access required) before it can re-render. Any change to a scene, storyboard
+or graphics source invalidates the cached video segments but never the cached narration.
+Useful flags: `--only a04,a05` renders selected scenes, `--force` ignores caches, and
+`--max-mib` changes the size budget (the defaults are 40 MiB for the attendee video and
+60 MiB for the trainer video). `make_videos.py segments <video> --only ...` is a fast
+way to preview a few scenes, and `all <video> --only ...` writes a short slice to
+`build/<video>/slice/` that cannot be published as a complete video.
+`verify_explainers.py` checks codec, size, chapters, caption coverage, decodes, frozen
+stretches, loudness (-25 to -21 LUFS) and true peak (-4 dBTP or lower).
+The Foundry-hosted narration incurs normal Azure inference charges; rendering does not.
+
 After committing the workshop source and final media, create distributable
 archives with `python .\media\package_workshop.py --repo .`.
 Use `--compact-media` for attachment delivery: the full video and core workshop
